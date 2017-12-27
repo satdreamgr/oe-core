@@ -6,17 +6,15 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=84dcc94da3adb52b53ae4fa38fe49e5d"
 
 SRC_URI = "git://github.com/PLi-metas/BackupSuite.git;protocol=git"
 
-inherit gitpkgv allarch distutils-openplugins gettext
+inherit gitpkgv distutils-openplugins gettext
 
-DEPENDS = "gettext-native"
+RDEPENDS_${PN} = "mtd-utils mtd-utils-ubifs ofgwrite"
 
 S = "${WORKDIR}/git"
 
-PV = "22+git${SRCPV}"
-PKGV = "22+git${GITPKGV}"
+PV = "23+git${SRCPV}"
+PKGV = "23+git${GITPKGV}"
 
 do_install_append() {
 	find "${D}" -name '*.sh' -exec chmod a+x '{}' ';'
 }
-
-RDEPENDS_${PN} = "mtd-utils mtd-utils-ubifs ofgwrite"
