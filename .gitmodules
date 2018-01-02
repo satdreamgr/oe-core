@@ -35,3 +35,6 @@
 [submodule "meta-ixuss"]
 	path = meta-ixuss
 	url = https://github.com/satdreamgr/meta-ixuss.git
+[submodule "meta-octagon"]
+	path = meta-octagon
+	url = https://github.com/satdreamgr/meta-octagon.git
