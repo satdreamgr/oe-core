@@ -29,9 +29,6 @@
 [submodule "meta-zgemma"]
 	path = meta-zgemma
 	url = http://github.com/zgemma-star/meta-zgemma.git
-[submodule "meta-miraclebox"]
-	path = meta-miraclebox
-	url = http://github.com/miraclebox-git/meta-miraclebox.git
 [submodule "meta-xtrend"]
 	path = meta-xtrend
 	url = http://github.com/XTrendTeam/meta-xtrend.git
