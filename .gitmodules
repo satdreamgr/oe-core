@@ -23,9 +23,6 @@
 [submodule "meta-xp"]
 	path = meta-xp
 	url = https://github.com/XP-Master/meta-xp.git
-[submodule "meta-xpeedc"]
-	path = meta-xpeedc
-	url = http://github.com/XpeedDeveloperTeam/meta-xpeedc.git
 [submodule "meta-xtrend"]
 	path = meta-xtrend
 	url = http://github.com/XTrendTeam/meta-xtrend.git
