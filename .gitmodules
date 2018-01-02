@@ -41,9 +41,6 @@
 [submodule "meta-gi"]
 	path = meta-gi
 	url = http://github.com/GIDeveloperTeam/meta-gi.git
-[submodule "meta-gfutures"]
-	path = meta-gfutures
-	url = http://github.com/HD-Digital/meta-gfutures.git
 [submodule "meta-xsarius.pli5"]
 	path = meta-xsarius.pli5
 	url = http://github.com/pli3/meta-xsarius.pli5.git
