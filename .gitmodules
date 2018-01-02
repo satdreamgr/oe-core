@@ -29,9 +29,6 @@
 [submodule "meta-qt5"]
 	path = meta-qt5
 	url = http://github.com/meta-qt5/meta-qt5.git
-[submodule "meta-gi"]
-	path = meta-gi
-	url = http://github.com/GIDeveloperTeam/meta-gi.git
 [submodule "meta-gigablue"]
 	path = meta-gigablue
 	url = https://github.com/GigaBlue-STB/meta-gigablue
