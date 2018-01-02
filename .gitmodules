@@ -47,9 +47,6 @@
 [submodule "meta-gfutures"]
 	path = meta-gfutures
 	url = http://github.com/HD-Digital/meta-gfutures.git
-[submodule "meta-sab"]
-	path = meta-sab
-	url = http://github.com/mariner2/meta-sab.git
 [submodule "meta-xsarius.pli5"]
 	path = meta-xsarius.pli5
 	url = http://github.com/pli3/meta-xsarius.pli5.git
