@@ -14,24 +14,24 @@
 	path = meta-openpli/recipes-openpli/e2openplugins
 	url = git://github.com/E2OpenPlugins/e2openplugins.git
 	ignore = dirty
-[submodule "meta-hd"]
-	path = meta-hd
-	url = https://github.com/HD-Digital/meta-hd.git
 [submodule "meta-vuplus"]
 	path = meta-vuplus
-	url = http://github.com/vu-plus/meta-vuplus.git
+	url = http://github.com/satdreamgr/meta-vuplus.git
 [submodule "meta-xp"]
 	path = meta-xp
 	url = https://github.com/XP-Master/meta-xp.git
 [submodule "meta-xtrend"]
 	path = meta-xtrend
-	url = http://github.com/XTrendTeam/meta-xtrend.git
+	url = http://github.com/satdreamgr/meta-xtrend.git
 [submodule "meta-qt5"]
 	path = meta-qt5
 	url = http://github.com/meta-qt5/meta-qt5.git
 [submodule "meta-gigablue"]
 	path = meta-gigablue
-	url = https://github.com/GigaBlue-STB/meta-gigablue
+	url = https://github.com/satdreamgr/meta-gigablue.git
 [submodule "meta-edision"]
 	path = meta-edision
-	url = http://github.com/edision-open/meta-edision.git
+	url = http://github.com/satdreamgr/meta-edision.git
+[submodule "meta-ixuss"]
+	path = meta-ixuss
+	url = https://github.com/satdreamgr/meta-ixuss.git
