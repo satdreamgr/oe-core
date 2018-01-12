@@ -19,7 +19,7 @@
 	url = http://github.com/satdreamgr/meta-vuplus.git
 [submodule "meta-xp"]
 	path = meta-xp
-	url = https://github.com/XP-Master/meta-xp.git
+	url = https://github.com/satdreamgr/meta-xp.git
 [submodule "meta-xtrend"]
 	path = meta-xtrend
 	url = http://github.com/satdreamgr/meta-xtrend.git
