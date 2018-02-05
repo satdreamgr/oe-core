@@ -4,7 +4,7 @@ MAINTAINER = "Persian Professionals"
 AUTHOR = "Pedro Newbie <pedro.newbie@gmail.com>"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=84dcc94da3adb52b53ae4fa38fe49e5d"
 
-SRC_URI = "git://github.com/persianpros/BackupSuite.git;protocol=git"
+SRC_URI = "git://github.com/PLi-metas/BackupSuite.git;protocol=git"
 
 inherit gitpkgv allarch distutils-openplugins gettext
 
