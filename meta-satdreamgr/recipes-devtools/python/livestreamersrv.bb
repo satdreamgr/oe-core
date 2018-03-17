@@ -7,13 +7,17 @@ inherit allarch
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-RDEPENDS_${PN} = "livestreamer"
+RDEPENDS_${PN} = "livestreamer streamlink"
 
 SRC_URI = "git://github.com/athoik/livestreamersrv.git"
 S = "${WORKDIR}/git/"
 
 inherit gitpkgv
 SRCREV = "${AUTOREV}"
+PV = "0.4+git${SRCPV}"
+PKGV = "0.4+git${GITPKGV}"
+
+PACKAGES = "${PV}"
 
 do_install_append() {
 	install -d ${D}${sbindir}
