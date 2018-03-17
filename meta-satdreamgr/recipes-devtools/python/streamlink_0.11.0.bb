@@ -17,6 +17,7 @@ RDEPENDS_${PN} = "python \
 	python-iso639 \
 	python-misc \
 	python-pkgutil \
+	python-pycrypto \
 	python-requests \
 	python-shell \
 	python-singledispatch \
