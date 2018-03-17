@@ -17,7 +17,7 @@ SRCREV = "${AUTOREV}"
 PV = "0.4+git${SRCPV}"
 PKGV = "0.4+git${GITPKGV}"
 
-PACKAGES = "${PV}"
+PACKAGES = "${PN}"
 
 do_install_append() {
 	install -d ${D}${sbindir}
