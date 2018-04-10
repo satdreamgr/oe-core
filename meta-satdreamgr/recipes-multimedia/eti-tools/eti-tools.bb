@@ -18,3 +18,5 @@ SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
 inherit autotools-brokensep pkgconfig
+
+PARALLEL_MAKE = ""
