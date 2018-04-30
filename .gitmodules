@@ -38,3 +38,6 @@
 [submodule "meta-octagon"]
 	path = meta-octagon
 	url = https://github.com/satdreamgr/meta-octagon.git
+[submodule "meta-gfutures"]
+	path = meta-gfutures
+	url = https://github.com/satdreamgr/meta-gfutures.git

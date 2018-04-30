@@ -56,6 +56,7 @@ BBLAYERS ?= \
 	$(CURDIR)/meta-xp \
 	$(CURDIR)/meta-xtrend \
 	$(CURDIR)/meta-octagon \
+	$(CURDIR)/meta-gfutures \
 	$(CURDIR)/meta-gigablue \
 	$(CURDIR)/meta-ixuss \
 	$(CURDIR)/meta-local \
