@@ -4,6 +4,10 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 python do_cleanup () {
     # contains: MACHINE, box image, remote image, remote map
     boxtypes = [
+        ('ixusszero', 'ixusszero.png', 'ixusszero.png', 'ixusszero.html'),
+        ('ixussone', 'ixussone.png', 'ixussone.png', 'ixussone.html'),
+        ('gbquadplus', 'gbquad.png', 'gbquadplus.png', 'gbquadplus.html'),
+        ('sf4008', 'sf4008.png', 'octagon.png', 'octagon.html'),
         ('dm500hd', 'dm500hd.png', 'dm_normal.png', 'dmm.html'),
         ('dm7020hd', 'dm7020hd.png', 'dmm2.png', 'dmm2.html'),
         ('dm8000', 'dm8000.png', 'dmm1.png', 'dmm1.html'),
