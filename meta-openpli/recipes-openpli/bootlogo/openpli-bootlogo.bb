@@ -42,22 +42,30 @@ PNG = "logo-black-image.png \
 
 do_install() {
 	install -d ${D}/boot
-	install -d ${D}/usr/share
+	install -d ${D}${datadir}
 	for i in ${MVI}; do
-		install ${S}/$i ${D}/usr/share/
-		ln -sf /usr/share/$i ${D}/boot/$i
+		install ${S}/$i ${D}${datadir}
+		ln -sf ${datadir}/$i ${D}/boot/$i
 	done
 	for i in ${MVISYMLINKS}; do
 		ln -sf /boot/bootlogo.mvi ${D}/boot/$i.mvi
-		ln -sf /usr/share/bootlogo.mvi ${D}/usr/share/$i.mvi;
+		ln -sf ${datadir}/bootlogo.mvi ${D}${datadir}/$i.mvi;
 	done
-	install -d ${D}/usr/share/logo
+	install -d ${D}${datadir}/logo
 	for i in ${PNG}; do
-		install ${S}/$i ${D}/usr/share/logo
+		install ${S}/$i ${D}${datadir}/logo
 	done
 	install -d ${D}/${sysconfdir}/init.d
 	install -m 0755 ${S}/bootlogo.sh ${D}/${sysconfdir}/init.d/bootlogo
 }
 
-PACKAGE_ARCH := "${MACHINE_ARCH}"
-FILES_${PN} = "/boot /usr/share /etc/init.d"
+FILES_${PN} = "/boot ${datadir} ${sysconfdir}/init.d"
+
+do_compile[nostamp] = "1"
+do_install[nostamp] = "1"
+do_package[nostamp] = "1"
+do_packagedata[nostamp] = "1"
+do_package_write[nostamp] = "1"
+do_populate_sysroot[nostamp] = "1"
+do_strip[nostamp] = "1"
+do_deploy[nostamp] = "1"
