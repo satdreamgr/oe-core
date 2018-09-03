@@ -6,13 +6,13 @@ HOMEPAGE = "www.xtrend-home.de"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${OPENPLI_BASE}/LICENSE;md5=eb723b61539feef013de476e68b5c50a"
 
-# libblkid1
-RDEPENDS_${PN} = "e2fsprogs-e2fsck e2fsprogs-mke2fs ntfsprogs"
-RDEPENDS_${PN} += "hddtemp util-linux-sfdisk"
+RDEPENDS_${PN} = "e2fsprogs-e2fsck e2fsprogs-mke2fs ntfsprogs hddtemp util-linux-sfdisk"
 
-PR = "r1"
+PR = "r2"
 
 inherit allarch
+INHIBIT_PACKAGE_DEBUG_SPLIT = '1'
+INHIBIT_PACKAGE_STRIP = '1'
 
 SRC_URI = "file://devicemanager-${PV}.tar"
 
