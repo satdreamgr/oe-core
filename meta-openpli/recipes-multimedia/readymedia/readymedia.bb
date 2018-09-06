@@ -13,7 +13,7 @@ PKGV = "1.1.0+git${GITPKGV}"
 PR = "r0"
 DEPENDS = "libexif libav libjpeg-turbo libvorbis flac libid3tag sqlite3"
 
-SRC_URI = "git://github.com/NathanaelA/minidlna.git;branch=origin_master;protocol=http \
+SRC_URI = "git://git.code.sf.net/p/minidlna/git;protocol=http \
 		file://readymedia.sh \
 		file://minidlna.conf \
 "
