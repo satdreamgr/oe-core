@@ -15,6 +15,7 @@ PKGV = "1+git${GITPKGV}"
 inherit allarch distutils-openplugins
 
 RDEPENDS_${PN} = " \
+	enigma2-plugin-extensions-iptvplayer-deps \
 	python-compression \
 	python-core \
 	python-html \
