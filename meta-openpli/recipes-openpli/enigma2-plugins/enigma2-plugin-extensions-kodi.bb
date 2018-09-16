@@ -22,7 +22,3 @@ FILES_${PN} = " \
     ${datadir}/kodi/system \
     "
 
-do_install_append() {
-	install -d ${D}${datadir}/kodi/system
-	install -m 0755 ${WORKDIR}/advancedsettings.xml ${D}${datadir}/kodi/system
-}
