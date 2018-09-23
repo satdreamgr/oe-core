@@ -1,0 +1,16 @@
+diff --git a/tools/enigma2.sh.in b/tools/enigma2.sh.in
+index f0990ae..ed27555 100755
+--- a/tools/enigma2.sh.in
++++ b/tools/enigma2.sh.in
+@@ -4,6 +4,11 @@ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ datarootdir=@datarootdir@
+ 
++# SatDreamGr Infobar
++if [ ! -f /etc/enigma2/skin_user_Satdreamgr-HD-TranspBA.xml ]; then
++	cp /usr/share/enigma2/Satdreamgr-HD-TranspBA/skinconfig/skin_user_Satdreamgr-HD-TranspBA.xml /etc/enigma2/
++fi
++
+ if [ -x @bindir@/showiframe ]; then
+ 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
+ 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi

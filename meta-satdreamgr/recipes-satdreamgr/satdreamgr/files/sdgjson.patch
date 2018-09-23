@@ -1,0 +1,13 @@
+diff --git a/lib/python/Screens/FlashImage.py b/lib/python/Screens/FlashImage.py
+index e2607f3..453271e 100644
+--- a/lib/python/Screens/FlashImage.py
++++ b/lib/python/Screens/FlashImage.py
+@@ -76,7 +76,7 @@ class SelectImage(Screen):
+ 		if not self.imagesList:
+ 			if not self.jsonlist:
+ 				try:
+-					self.jsonlist = json.load(urllib2.urlopen('http://downloads.openpli.org/json/%s' % model))
++					self.jsonlist = json.load(urllib2.urlopen('http://sgcpm.com/json/%s' % model))
+ 				except:
+ 					pass
+ 			self.imagesList = dict(self.jsonlist) if self.jsonlist else {}

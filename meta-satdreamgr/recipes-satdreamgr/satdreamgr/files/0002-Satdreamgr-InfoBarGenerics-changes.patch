@@ -1,0 +1,33 @@
+Subject: [PATCH] Satdreamgr InfoBarGenerics changes
+
+
+diff --git a/lib/python/Screens/InfoBarGenerics.py b/lib/python/Screens/InfoBarGenerics.py
+index fc97ca2..d756818 100644
+--- a/lib/python/Screens/InfoBarGenerics.py
++++ b/lib/python/Screens/InfoBarGenerics.py
+@@ -618,9 +618,22 @@ class InfoBarMenu:
+ 		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
+ 			{
+ 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
++				"openSoftcam": (self.openSoftcam, _("Open Softcam...")),
++				"openPluginBrowser": (self.openPluginBrowser, _("Open PluginBrowser...")),
+ 			})
+ 		self.session.infobar = None
+ 
++	def openPluginBrowser(self):
++		from Screens.PluginBrowser import PluginBrowser
++		self.session.openWithCallback(self.mainMenuClosed, PluginBrowser)
++		self.session.infobar = None
++
++	def openSoftcam(self):
++		from Components.ConfigList import ConfigListScreen
++		from Screens.SoftcamSetup import SoftcamSetup
++		self.session.openWithCallback(self.mainMenuClosed, SoftcamSetup)
++		self.session.infobar = None
++
+ 	def mainMenu(self):
+ 		print "loading mainmenu XML..."
+ 		menu = mdom.getroot()
+-- 
+1.7.10.4
+

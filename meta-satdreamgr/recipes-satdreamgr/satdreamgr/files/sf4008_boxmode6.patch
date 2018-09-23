@@ -1,0 +1,40 @@
+diff --git a/lib/python/Components/AVSwitch.py b/lib/python/Components/AVSwitch.py
+index 89cad3f..e3e6700 100644
+--- a/lib/python/Components/AVSwitch.py
++++ b/lib/python/Components/AVSwitch.py
+@@ -271,3 +271,9 @@ def InitAVSwitch():
+ 		eDVBVolumecontrol.getInstance().setVolumeSteps(int(configElement.value))
+ 	config.av.volume_stepsize = ConfigSelectionNumber(1, 10, 1, default = 5)
+ 	config.av.volume_stepsize.addNotifier(setVolumeStepsize)
++
++	if SystemInfo["HasBoxMode"]:
++		def setBoxMode(configElement):
++			open(SystemInfo["HasBoxMode"], "w").write(configElement.value)
++		config.av.boxmode = ConfigSelection(choices={"12":_("enable PIP no HDR"), "1": _("12bit 4:2:0/4:2:2 no PIP")}, default="12")
++		config.av.boxmode.addNotifier(setBoxMode)
+diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
+index 90a7fe2..34aee9c 100644
+--- a/lib/python/Components/SystemInfo.py
++++ b/lib/python/Components/SystemInfo.py
+@@ -26,6 +26,7 @@ for cislot in range (0, SystemInfo["CommonInterface"]):
+ 	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk"  % cislot)
+ 	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing"  % cislot)
+ 
++SystemInfo["HasBoxMode"] = fileCheck("/proc/stb/info/boxmode")
+ SystemInfo["HasSoftcamInstalled"] = hassoftcaminstalled()
+ SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
+ SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
+diff --git a/lib/python/Plugins/SystemPlugins/Videomode/plugin.py b/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
+index 45d0430..1e5168b 100644
+--- a/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
++++ b/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
+@@ -143,6 +143,9 @@ class VideoSetup(Screen, ConfigListScreen):
+ 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
+ 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
+ 
++		if SystemInfo["HasBoxMode"]:
++			self.list.append(getConfigListEntry(_("Control Hardware Chip Modes"), config.av.boxmode,_("Switch Mode to enable HDR or PIP Functions")))
++
+ 		self["config"].list = self.list
+ 		self["config"].l.setList(self.list)
+ 

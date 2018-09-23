@@ -1,0 +1,19 @@
+Subject: [PATCH] Satdreamgr Devices with Spaces
+
+
+diff --git a/lib/python/Tools/HardwareInfo.py b/lib/python/Tools/HardwareInfo.py
+index bb58648..e698610 100644
+--- a/lib/python/Tools/HardwareInfo.py
++++ b/lib/python/Tools/HardwareInfo.py
+@@ -44,7 +44,7 @@ class HardwareInfo:
+ 					infoFname = l
+ 					prefix = ""
+ 				try:
+-					self.device_model = prefix + open("/proc/stb/info/" + infoFname).read().strip()
++					self.device_model = prefix + open("/proc/stb/info/" + infoFname).read().strip().lower().replace(" ", "")
+ 					break
+ 				except:
+ 					pass
+-- 
+1.7.10.4
+
