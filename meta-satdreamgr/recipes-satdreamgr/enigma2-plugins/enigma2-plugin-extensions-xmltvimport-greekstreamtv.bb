@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${OPENPLI_BASE}/LICENSE;md5=eb723b61539feef013de476e6
 
 inherit allarch
 
-PV = "1.1"
+PV = "1.2"
 PACKAGES = "${PN}"
 RDEPENDS_${PN} = "enigma2-plugin-extensions-epgimport livestreamersrv"
 
@@ -14,7 +14,7 @@ do_compile() {
 	echo '<?xml version="1.0" encoding="latin-1"?>' > ${S}/${sysconfdir}/epgimport/greekstreamtv.sources.xml
 	#echo '<sources>' >> ${S}/${sysconfdir}/epgimport/greekstreamtv.sources.xml
 	echo '<sourcecat sourcename="EPG GR (greekstreamtv)">' >> ${S}/${sysconfdir}/epgimport/greekstreamtv.sources.xml
-	echo '<source type="gen_xmltv" channels="http://sgcpm.com/epg/stream.channels.xml.gz">' >> ${S}/${sysconfdir}/epgimport/greekstreamtv.sources.xml
+	echo '<source type="gen_xmltv" nocheck="1" channels="http://sgcpm.com/epg/stream.channels.xml.gz">' >> ${S}/${sysconfdir}/epgimport/greekstreamtv.sources.xml
 	echo '   <description>EPG GR (greekstreamtv)</description>' >> ${S}/${sysconfdir}/epgimport/greekstreamtv.sources.xml
 	echo '   <url>http://sgcpm.com/epg/greekstreamtvepg.gz</url>' >> ${S}/${sysconfdir}/epgimport/greekstreamtv.sources.xml
 	echo '</source>' >> ${S}/${sysconfdir}/epgimport/greekstreamtv.sources.xml
