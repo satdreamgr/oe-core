@@ -1,7 +1,7 @@
 From 426da57b92b4a05d3f8edc21a3f3605ef634b13d Mon Sep 17 00:00:00 2001
 From: Stephan Reichholf <reichi@opendreambox.org>
 Date: Tue, 17 May 2016 13:53:39 +0200
-Subject: Enable NPAPI for Qt without X11
+Subject: [PATCH 4/5] - Enable NPAPI for Qt without X11
 
 Change-Id: Iad02f66e8698e0ee5db7b0e485f504c72fb3abd9
 ---
