@@ -13,6 +13,7 @@ SRC_URI += " \
 	file://vh2.patch \
 	file://pos.patch \
 	file://sdgjson.patch \
+	file://sdg_about.patch \
 	"
 
 SRC_URI_append_ixusszero = " file://0001-Ixuss-disable-blending-issues.patch "

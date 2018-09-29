@@ -1,0 +1,55 @@
+diff --git a/lib/dvb/frontend.cpp b/lib/dvb/frontend.cpp
+index 30918be..9c57e1b 100644
+--- a/lib/dvb/frontend.cpp
++++ b/lib/dvb/frontend.cpp
+@@ -1665,6 +1665,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
+ 			{
+ 				int enableEvents = (m_sec_sequence.current()++)->val;
+ 				eDebugNoSimulate("[eDVBFrontend] setFrontend %d", enableEvents);
++				eSingleLocker s(lock);
+ 				setFrontend(enableEvents);
+ 				break;
+ 			}
+@@ -2324,6 +2325,7 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm,
+ 		eWarning("[eDVBFrontend] no SEC module active!");
+ 		return -ENOENT;
+ 	}
++	eSingleLocker s(lock);
+ 	res = m_sec->prepare(*this, feparm, satfrequency, 1 << m_slotid, tunetimeout);
+ 	if (!res)
+ 	{
+diff --git a/lib/dvb/frontend.h b/lib/dvb/frontend.h
+index 46228c1..d64fe1a 100644
+--- a/lib/dvb/frontend.h
++++ b/lib/dvb/frontend.h
+@@ -6,6 +6,7 @@
+ #endif
+ 
+ #include <map>
++#include <lib/base/elock.h>
+ #include <lib/dvb/idvb.h>
+ #include <lib/dvb/frontendparms.h>
+ 
+@@ -127,6 +128,8 @@ private:
+ 
+ 	static int PriorityOrder;
+ 	static int PreferredFrontendIndex;
++
++	eSingleLock lock;
+ public:
+ 	eDVBFrontend(const char *devidenodename, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
+ 	virtual ~eDVBFrontend();
+diff --git a/lib/python/Screens/About.py b/lib/python/Screens/About.py
+index 55563c2..28afe64 100644
+--- a/lib/python/Screens/About.py
++++ b/lib/python/Screens/About.py
+@@ -192,7 +192,8 @@ class CommitInfo(Screen):
+ 		self.project = 0
+ 		self.projects = [
+ 			("https://api.github.com/repos/openpli/enigma2/commits" + branch, "Enigma2"),
+-			("https://api.github.com/repos/openpli/openpli-oe-core/commits" + branch, "Openpli Oe Core"),
++			("https://api.github.com/repos/satdreamgr/oe-core/commits", "SatDreamGR OE Core"),
++			("https://api.github.com/repos/satdreamgr/Satdreamgr-HD-TranspBA/commits", "Skin TransBA"),
+ 			("https://api.github.com/repos/openpli/enigma2-plugins/commits", "Enigma2 Plugins"),
+ 			("https://api.github.com/repos/openpli/aio-grab/commits", "Aio Grab"),
+ 			("https://api.github.com/repos/openpli/enigma2-plugin-extensions-epgimport/commits", "Plugin EPGImport"),
