@@ -11,7 +11,7 @@ RDEPENDS_${PN} += "showiframe"
 RREPLACES_${PN} = "openpli-bootlogo"
 RCONFLICTS_${PN} = "openpli-bootlogo"
 
-PV = "5"
+PV = "6"
 
 S = "${WORKDIR}/"
 
