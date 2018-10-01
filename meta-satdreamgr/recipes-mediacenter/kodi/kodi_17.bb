@@ -1,9 +1,9 @@
 SUMMARY = "Kodi Media Center"
 
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE.GPL;md5=930e2a5f63425d8dd72dbd7391c43c46"
-
-FILESPATH =. "${FILE_DIRNAME}/kodi-17:"
 
 DEPENDS = " \
             cmake-native \
@@ -12,7 +12,6 @@ DEPENDS = " \
             jsonschemabuilder-native \
             nasm-native \
             swig-native \
-            unzip-native \
             yasm-native \
             zip-native \
             avahi \
@@ -47,6 +46,7 @@ DEPENDS = " \
             mpeg2dec \
             python \
             samba \
+            mysql5 \
             sqlite3 \
             taglib \
             virtual/egl \
@@ -54,32 +54,58 @@ DEPENDS = " \
             yajl \
             zlib \
             ${@enable_glew(bb, d)} \
+            libbluray \
+            nfs-utils \
+            libupnp \
+            libshairport \
+            libnfs \
+            alsa-lib \
+            alsa-plugins \
+            gstreamer1.0 \
+            gstreamer1.0-plugins-base \
           "
 
 PROVIDES = "xbmc"
 
-inherit gitpkgv
-PV = "17.5+gitr${SRCPV}"
-PKGV = "17.5+gitr${GITPKGV}"
+SRCREV = "7e52c1d94d0cbc3f8ace57b1fc74ae1582c5a869"
+
+PV = "17.6+git${SRCPV}"
+PKGV = "17.6+git${GITPKGV}"
 
 SRC_URI = "git://github.com/xbmc/xbmc.git;branch=Krypton \
            file://0003-configure-don-t-try-to-run-stuff-to-find-tinyxml.patch \
-           file://0004-handle-SIGTERM.patch;apply=no \
-           file://0005-add-support-to-read-frequency-output-if-using-intel-.patch \
            file://0006-Disable-DVD-support.patch \
            file://0007-Always-compile-libcpluff-as-PIC.patch \
            file://0008-kodi-config.cmake-use-CMAKE_FIND_ROOT_PATH-to-fix-cr.patch \
            file://0009-build-Add-support-for-musl-triplets.patch \
            file://0010-RssReader-Fix-compiler-warning-comparing-pointer-to-.patch \
            file://0011-Let-configure-pass-on-unknown-architectures-setting-.patch \
+           file://0013-VideoPlayer-Fix-build-with-FFmpeg-3.0.patch \
+           file://stb-platform.patch \
+           file://stb-settings.patch \
+           file://e2player.patch \
+           file://add-gstplayer-support.patch \
+           file://0001-fix-multilib-build.patch \
+           file://visualization.patch \
+           file://visualizations.zip \
 "
+
+SRC_URI_append_u5 = " file://eglwrapper.patch"
+SRC_URI_append_u51 = " file://eglwrapper.patch"
+SRC_URI_append_u52 = " file://eglwrapper.patch"
+SRC_URI_append_u53 = " file://eglwrapper.patch"
+SRC_URI_append_u5pvr = " file://eglwrapper.patch"
+
+SRC_URI_append_AML8726 = " file://amlogic-codec-krypton-fixes.patch"
+SRC_URI_append_AMLS905 = " file://amlogic-codec-krypton-fixes.patch"
+SRC_URI_append_AML905D = " file://amlogic-codec-krypton-fixes.patch"
 
 SRC_URI_append_libc-musl = " \
            file://0001-Fix-file_Emu-on-musl.patch \
            file://0002-Remove-FILEWRAP.patch \
 "
 
-inherit autotools-brokensep gettext pythonnative
+inherit autotools-brokensep gettext gitpkgv pythonnative
 
 S = "${WORKDIR}/git"
 
@@ -90,12 +116,12 @@ ACCEL ?= ""
 ACCEL_x86 = "vaapi vdpau"
 ACCEL_x86-64 = "vaapi vdpau"
 
-PACKAGECONFIG ??= "${ACCEL}"
-PACKAGECONFIG_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'x11', ' x11', '', d)}"
-PACKAGECONFIG_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', ' opengl', ' openglesv2', d)}"
+PACKAGECONFIG ??= "${ACCEL} mysql \
+                   ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)} \
+                   ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'opengl', 'openglesv2', d)}"
 
-PACKAGECONFIG[opengl] = "--enable-gl,--enable-gles,"
-PACKAGECONFIG[openglesv2] = "--enable-gles,--enable-gl,virtual/egl"
+PACKAGECONFIG[opengl] = "--enable-gl,--disable-gl,"
+PACKAGECONFIG[openglesv2] = "--enable-gles,--disable-gles,virtual/egl"
 PACKAGECONFIG[vaapi] = "--enable-vaapi,--disable-vaapi,libva"
 PACKAGECONFIG[vdpau] = "--enable-vdpau,--disable-vdpau,libvdpau"
 PACKAGECONFIG[mysql] = "--enable-mysql,--disable-mysql,mysql5"
@@ -112,7 +138,6 @@ EXTRA_OECONF = " \
     --enable-alsa \
     --enable-airplay \
     --disable-optical-drive \
-    --with-ffmpeg=shared \
     --enable-texturepacker=no \
     --disable-lirc \
     --disable-dbus \
@@ -137,6 +162,10 @@ def enable_glew(bb, d):
     return ""
 
 do_configure() {
+    cp -a ${WORKDIR}/visualization.glspectrum ${WORKDIR}/git/addons/
+    cp -a ${WORKDIR}/visualization.waveform ${WORKDIR}/git/addons/
+    cp -a ${WORKDIR}/visualizations ${WORKDIR}/git/xbmc/
+    cp -a ${WORKDIR}/include ${WORKDIR}/git/xbmc/addons/
     ( for i in $(find ${S} -name "configure.*" ) ; do
        cd $(dirname $i) && gnu-configize --force || true
     done )
@@ -159,34 +188,80 @@ do_compile_prepend() {
 
 INSANE_SKIP_${PN} = "rpaths"
 
-FILES_${PN} += "${datadir}/xsessions ${datadir}/icons ${libdir}/xbmc ${datadir}/xbmc"
-FILES_${PN}-dbg += "${libdir}/kodi/.debug ${libdir}/kodi/*/.debug ${libdir}/kodi/*/*/.debug ${libdir}/kodi/*/*/*/.debug"
+FILES_${PN} = "${libdir}/kodi ${libdir}/xbmc"
+FILES_${PN} += "${bindir}/kodi ${bindir}/xbmc"
+FILES_${PN} += "${datadir}/icons ${datadir}/kodi ${datadir}/xbmc"
+FILES_${PN} += "${bindir}/kodi-standalone ${bindir}/xbmc-standalone ${datadir}/xsessions"
+FILES_${PN}-dev = "${includedir}"
+FILES_${PN}-dbg += "${libdir}/kodi/.debug ${libdir}/kodi/*/.debug ${libdir}/kodi/*/*/.debug ${libdir}/kodi/*/*/*/.debug ${datadir}/applications"
 
 # kodi uses some kind of dlopen() method for libcec so we need to add it manually
 # OpenGL builds need glxinfo, that's in mesa-demos
-RRECOMMENDS_${PN}_append = " libcec \
-                             python \
-                             python-ctypes \
-                             python-lang \
-                             python-re \
-                             python-netclient \
-                             python-html \
-                             python-difflib \
-                             python-json \
-                             python-zlib \
-                             python-shell \
-                             python-sqlite3 \
-                             python-compression \
-                             libcurl \
-                             ${@bb.utils.contains('PACKAGECONFIG', 'x11', 'xrandr xdpyinfo', '', d)} \
+RRECOMMENDS_${PN}_append = " \
+   libcec \
+   python \
+   python-ctypes \
+   python-lang \
+   python-re \
+   python-netclient \
+   python-html \
+   python-difflib \
+   python-json \
+   python-zlib \
+   python-shell \
+   python-sqlite3 \
+   python-compression \
+   python-profile \
+   python-mmap \
+   libcurl \
+   os-release \
+   ${@bb.utils.contains('PACKAGECONFIG', 'x11', 'xrandr xdpyinfo', '', d)} \
+   \
+    python-distutils \
+    python-subprocess \
+    python-robotparser \
+    python-mechanize \
+    python-threading \
+    python-xml \
+    python-netserver \
+    python-misc \
+    python-pygobject \
+    python-textutils \
+    python-simplejson \
+    python-xmlrpc   \
+    python-pprint \
+    python-email \
+    python-compile \
+    python-compiler \
+    python-numbers \
+    python-pkgutil \
+    python-pycurl \
+    python-async \
+    python-docutils \
+    python-iniparse \
+    python-hotshot \
+    python-importlib \
+    python-curses \
+    python-pycrypto \
+    python-db \
+    python-argparse \
+    python-doctest \
+    python-plistlib\
+    python-mailbox \
+    python-terminal \
+    python-smtpd \
+    python-pydoc \
+    python-syslog \
+    python-resource \
 "
-RRECOMMENDS_${PN}_append_libc-glibc = " glibc-charmap-ibm850 \
-                                        glibc-gconv-ibm850 \
-					glibc-gconv-unicode \
-                                        glibc-gconv-utf-32 \
-					glibc-charmap-utf-8 \
-					glibc-localedata-en-us \
-                                      "
+RRECOMMENDS_${PN}_append_libc-glibc = " \
+    glibc-charmap-ibm850 \
+    glibc-gconv-ibm850 \
+    glibc-gconv-unicode \
+    glibc-gconv-utf-32 \
+    glibc-charmap-utf-8 \
+    glibc-localedata-en-us \
+"
 
 RPROVIDES_${PN} += "xbmc"
 
