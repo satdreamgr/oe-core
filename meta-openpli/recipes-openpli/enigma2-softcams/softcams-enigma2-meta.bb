@@ -13,7 +13,7 @@ DEPENDS_append_mipsel = "\
 	enigma2-plugin-softcams-rqcamd \
 	"
 
-DEPENDS_append_armv7ahf-neon += " \
+DEPENDS_append_armv7a += " \
 	enigma2-plugin-softcams-cccam \
 	"
 
