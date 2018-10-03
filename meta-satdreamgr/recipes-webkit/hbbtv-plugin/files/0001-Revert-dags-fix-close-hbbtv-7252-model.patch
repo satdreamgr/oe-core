@@ -1,0 +1,90 @@
+Subject: [PATCH] Revert "[dags] fix close hbbtv 7252 model"
+
+This reverts commit 812c3e4d136fd6b785e4d496ff0e42d86e5838c4.
+---
+ HbbTV/hbbtv.py  | 21 +++++----------------
+ HbbTV/plugin.py | 15 +++++----------
+ 2 files changed, 10 insertions(+), 26 deletions(-)
+
+diff --git a/HbbTV/hbbtv.py b/HbbTV/hbbtv.py
+index 84006fd..df031f1 100644
+--- a/HbbTV/hbbtv.py
++++ b/HbbTV/hbbtv.py
+@@ -1,8 +1,6 @@
+ from Screens.Screen import Screen
+-from Screens.ChannelSelection import ChannelSelection
+ from Components.ActionMap import ActionMap
+-from enigma import eTimer, eServiceReference
+-from boxbranding import getMachineBuild
++from enigma import eTimer
+ 
+ import os, struct, vbcfg
+ 
+@@ -35,10 +33,7 @@ class HbbTVWindow(Screen):
+ 
+ 		self._url = url
+ 		self._info = app_info
+-
+-		if getMachineBuild() in ('dags7252'):
+-			self.servicelist = self.session.instantiateDialog(ChannelSelection)
+-
++		
+ 		self.onLayoutFinish.append(self.start_hbbtv_application)
+ 
+ 		self._close_timer = eTimer()
+@@ -115,16 +110,10 @@ class HbbTVWindow(Screen):
+ 		vbcfg.osd_unlock()
+ 		dsk.paint()
+ 
+-		if getMachineBuild() not in ('dags7252'):
+-			vbcfg.set_bgcolor("0")
++		vbcfg.set_bgcolor("0")
+ 		vbcfg.DEBUG("Stop HbbTV")
+-
++		
+ 		os.system("run.sh stop")
+-
+-		if getMachineBuild() in ('dags7252'):
+-			cur_channel = self.servicelist.getCurrentSelection()
+-			cur_channel = cur_channel.toString()
+-			self.session.nav.playService(eServiceReference(cur_channel))
+-
++		
+ 		self.close()
+ 
+diff --git a/HbbTV/plugin.py b/HbbTV/plugin.py
+index f3db5f3..51ddf15 100644
+--- a/HbbTV/plugin.py
++++ b/HbbTV/plugin.py
+@@ -10,7 +10,6 @@ from Components.Language import language
+ from Components.ServiceEventTracker import ServiceEventTracker
+ from Components.VolumeControl import VolumeControl
+ from Tools.Directories import fileExists
+-from boxbranding import getMachineBuild
+ 
+ from enigma import eTimer, iServiceInformation, iPlayableService
+ 
+@@ -98,15 +97,11 @@ class VBHandler(VBHandlers):
+ 					if x in self.onCloseCB:
+ 						self.onCloseCB.remove(x)
+ 		#print "============== self.videobackend_activate: ", self.videobackend_activate, "   =============="
+-		if getMachineBuild() in ('dags7252'):
+-			if self.videobackend_activate is False:
+-				self._session.nav.stopService()
+-				if vbcfg.g_service is not None:
+-					self._session.nav.playService(vbcfg.g_service)
+-		else:
+-			if self.videobackend_activate is True:
+-				if vbcfg.g_service is not None:
+-					self._session.nav.playService(vbcfg.g_service)
++		#if self.videobackend_activate is False:
++		if self.videobackend_activate is True:
++			#self._session.nav.stopService()
++			if vbcfg.g_service is not None:
++				self._session.nav.playService(vbcfg.g_service)
+ 		return (True, None)
+ 
+ 	def _CB_CONTROL_TITLE(self, result, packet):
+-- 
+2.1.4
+
