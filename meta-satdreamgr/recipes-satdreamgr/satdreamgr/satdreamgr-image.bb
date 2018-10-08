@@ -15,6 +15,7 @@ IMAGE_INSTALL_remove = "enigma2-plugin-extensions-ppanel"
 IMAGE_INSTALL_remove = "enigma2-plugin-softcams-oscam"
 
 IMAGE_INSTALL += " \
+	dabstreamer \
 	enigma2-plugin-extensions-backupsuite \
 	enigma2-plugin-extensions-devicemanager \
 	enigma2-plugin-extensions-epgimport \
@@ -66,6 +67,7 @@ DEPENDS += " \
 	enigma2-plugin-skins-pli-hd-fullnight \
 	enigma2-plugin-skins-satdreamgr-hd \
 	enigma2-plugin-softcams-oscam-emu \
+	enigma2-plugin-systemplugins-crossepg \
 	enigma2-plugins \
 	eti-tools \
 	evtest \
