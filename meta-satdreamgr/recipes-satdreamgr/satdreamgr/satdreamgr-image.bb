@@ -44,6 +44,7 @@ DEPENDS += " \
 	${@bb.utils.contains('MACHINE_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi', '', d)} \
 	${@bb.utils.contains('OPENPLI_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi', '', d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "webkithbbtv", "enigma2-plugin-extensions-webkithbbtv", "", d)} \
+	${@bb.utils.contains('TARGET_FPU', 'soft', '', 'nodejs', d)} \
 	\
 	astra-sm \
 	bluez-hidd \
@@ -54,23 +55,32 @@ DEPENDS += " \
 	dvbsnoop \
 	enigma2-plugin-extensions-bitrate \
 	enigma2-plugin-extensions-btdevicesmanager \
+	enigma2-plugin-extensions-dlnaserver \
 	enigma2-plugin-extensions-hdmitest \
 	enigma2-plugin-extensions-historyzapselector \
 	enigma2-plugin-extensions-iptvplayer \
 	enigma2-plugin-extensions-openmultiboot \
 	enigma2-plugin-extensions-oscamstatus \
+	enigma2-plugin-extensions-permanentvfdclock \
+	enigma2-plugin-extensions-ppanel \
 	enigma2-plugin-extensions-subssupport \
+	enigma2-plugin-extensions-tmbd \
 	enigma2-plugin-extensions-weathermsn \
 	enigma2-plugin-skins-glamouraurafhd \
 	enigma2-plugin-skins-octagoneightfhd \
 	enigma2-plugin-skins-pli-hd \
 	enigma2-plugin-skins-pli-hd-fullnight \
 	enigma2-plugin-skins-satdreamgr-hd \
+	enigma2-plugin-skins-simple-gray-hd \
 	enigma2-plugin-softcams-oscam-emu \
 	enigma2-plugin-systemplugins-crossepg \
+	enigma2-plugin-systemplugins-quadpip \
+	enigma2-plugin-systemplugins-serviceapp \
 	enigma2-plugins \
 	eti-tools \
 	evtest \
+	exteplayer3 \
+	gstplayer \
 	htop \
 	inadyn-mt \
 	iptables \
@@ -82,6 +92,7 @@ DEPENDS += " \
 	oe-satipclient \
 	ofgwrite \
 	openvpn \
+	p7zip \
 	pointercal \
 	python-bluetool \
 	python-cfscrape \
