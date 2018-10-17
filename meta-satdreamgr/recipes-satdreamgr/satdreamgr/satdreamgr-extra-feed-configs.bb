@@ -1,12 +1,10 @@
 DESCRIPTION = "Configuration files for satdreamgr-extra feeds"
-PR = "r4"
+PR = "r5"
 
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://${OPENPLI_BASE}/LICENSE;md5=eb723b61539feef013de476e68b5c50a"
 
-FEEDS = "satdreamgr-extra satdreamgr-extra-${MACHINE}"
-FEEDS_xp1000 = "satdreamgr-extra-${MACHINE}"
-FEEDS_et4x00 = "satdreamgr-extra-${MACHINE}"
+FEEDS = "satdreamgr-extra satdreamgr-extra-${MACHINE} picons"
 
 do_compile() {
     [ ! -d ${S}/${sysconfdir}/opkg ] && mkdir -p ${S}/${sysconfdir}/opkg
