@@ -10,4 +10,5 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/qtwebkit-git:"
 INSANE_SKIP_${PN} += "file-rdeps ldflags"
 
 # Qt packages are machine specific
-QT_PACKAGES_ARCH = "${MACHINE_ARCH}"
+#QT_PACKAGES_ARCH = "${MACHINE_ARCH}"
+PACKAGE_ARCH := "${MACHINE_ARCH}"
