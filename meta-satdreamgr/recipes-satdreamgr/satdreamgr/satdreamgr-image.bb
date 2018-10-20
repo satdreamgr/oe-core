@@ -56,9 +56,9 @@ DEPENDS += " \
 	enigma2-plugin-extensions-bitrate \
 	enigma2-plugin-extensions-btdevicesmanager \
 	enigma2-plugin-extensions-dlnaserver \
+	enigma2-plugin-extensions-e2iplayer \
 	enigma2-plugin-extensions-hdmitest \
 	enigma2-plugin-extensions-historyzapselector \
-	enigma2-plugin-extensions-e2iplayer \
 	enigma2-plugin-extensions-openmultiboot \
 	enigma2-plugin-extensions-oscamstatus \
 	enigma2-plugin-extensions-permanentvfdclock \
