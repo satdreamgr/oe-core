@@ -10,11 +10,13 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=18ae25f7669ddc31f5fa4bf04fd598f2"
 inherit setuptools
 
 RDEPENDS_${PN} = "python \
+	python-argparse \
 	python-backports-shutil-which \
 	python-ctypes \
 	python-futures \
 	python-iso3166 \
 	python-iso639 \
+	python-isodate \
 	python-misc \
 	python-pkgutil \
 	python-pycrypto \
@@ -26,8 +28,14 @@ RDEPENDS_${PN} = "python \
 	"
 
 SRC_URI = "git://github.com/streamlink/streamlink.git;protocol=git"
-SRCREV = "${PV}"
+SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git/"
+
+inherit gitpkgv
+
+PV = "0.15+git${SRCPV}"
+PKGV = "0.15+git${GITPKGV}"
+PR = "r0"
 
 do_install_append() {
 	rm -rf ${D}${bindir}
@@ -43,7 +51,7 @@ FILES_${PN} = " \
 	"
 
 FILES_${PN}-src = " \
-	${libdir}/${PYTHON_DIR}/site-packages/streamlink-${PV}-*.egg-info/* \
+	${libdir}/${PYTHON_DIR}/site-packages/streamlink-*.egg-info/* \
 	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.py \
 	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.py \
 	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.py \
