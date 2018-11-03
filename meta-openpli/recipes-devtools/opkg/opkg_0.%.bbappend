@@ -2,11 +2,12 @@
 # that has been fixed. Just to be on the safe side, specify the package config
 # explicitly here so we don't get future surprises.
 PACKAGECONFIG = ""
-
+PR = "r1"
 SRC_URI += "\
 	file://sanity-check-provides.patch;apply=no \
 	file://0001-reuse-the-installed_files-list-when-possible.patch;apply=no \
 	file://ifmod.patch;apply=no \
+	file://0001-Speed-up-file_hash_set_file_owner.patch \
 	file://modprobe \
 	file://opkg-wget \
 	"
