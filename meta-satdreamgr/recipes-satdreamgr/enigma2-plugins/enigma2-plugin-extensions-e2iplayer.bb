@@ -3,7 +3,7 @@ DESCRIPTION = "Watch Videos Online"
 HOMEPAGE = "https://gitlab.com/iptvplayer-for-e2/"
 SECTION = "multimedia"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://README.md;md5=a24c062f9ee8c413a0711e99e6a6132e"
+LIC_FILES_CHKSUM = "file://README.md;md5=29a7ab3c9d30ff0d47902f79cb3aa846"
 SRC_URI = "git://gitlab.com/iptvplayer-for-e2/iptvplayer-for-e2.git;protocol=http"
 S = "${WORKDIR}/git"
 
