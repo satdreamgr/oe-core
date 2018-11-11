@@ -14,6 +14,8 @@ dist_install_DATA = \
 	edision2.xml \
 	edision3.png \
 	edision3.xml \
+	edision4.png \
+	edision4.xml \
 	et4x00.png \
 	et4x00.xml \
 	et6x00.png \
