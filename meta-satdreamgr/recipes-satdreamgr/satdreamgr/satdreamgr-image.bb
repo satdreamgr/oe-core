@@ -112,6 +112,7 @@ DEPENDS += " \
 	softcams-enigma2-meta \
 	strace \
 	tcpdump \
+	tsduck \
 	tsniv2ni \
 	v4l-utils \
 	wscan \
