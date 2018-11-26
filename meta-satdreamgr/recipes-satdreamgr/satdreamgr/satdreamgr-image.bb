@@ -87,6 +87,7 @@ DEPENDS += " \
 	iptables \
 	libcec \
 	ltrace \
+	megatools \
 	meta-enigma2-dvdburn \
 	minisatip \
 	net-tools \
