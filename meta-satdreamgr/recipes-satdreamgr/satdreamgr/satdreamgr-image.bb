@@ -85,6 +85,7 @@ DEPENDS += " \
 	htop \
 	inadyn-mt \
 	iptables \
+	iw \
 	libcec \
 	ltrace \
 	megatools \
