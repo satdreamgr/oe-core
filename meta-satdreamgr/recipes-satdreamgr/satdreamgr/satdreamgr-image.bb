@@ -117,5 +117,6 @@ DEPENDS += " \
 	tsduck \
 	tsniv2ni \
 	v4l-utils \
+	udpxy \
 	wscan \
 "
