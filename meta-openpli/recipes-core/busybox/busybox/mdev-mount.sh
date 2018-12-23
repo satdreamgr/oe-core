@@ -29,6 +29,10 @@ case "$ACTION" in
 			# blocked
 			exit 0
 		fi
+		# blacklisted internal mmc when no /dev/root exists
+		if grep -q "root=/dev/${DEVBASE}" /proc/cmdline ; then
+			exit 0
+		fi
 		# run the result of blkid as a shell command
 		eval `blkid /dev/${MDEV} | grep ${MDEV} | cut -d ':' -f 2`
 		if [ -z "$TYPE" ] ; then
