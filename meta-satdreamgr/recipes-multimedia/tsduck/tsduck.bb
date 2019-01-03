@@ -3,7 +3,7 @@ DESCRIPTION = "TSDuck is an extensible toolkit for MPEG/DVB transport streams.\
 	TSDuck is used in digital television systems for test, monitoring, integration, debug, lab, demo."
 MAINTAINER = "https://tsduck.io/"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=cd9752bb95f52810fa1e609da531fa48"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;beginline=1;endline=3;md5=b09fb1a844dc6c73c0bcda8f93defcca"
 
 SRC_URI = "git://github.com/tsduck/tsduck.git"
 SRCREV = "${AUTOREV}"
