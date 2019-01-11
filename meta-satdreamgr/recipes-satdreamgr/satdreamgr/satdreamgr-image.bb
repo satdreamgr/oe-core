@@ -4,7 +4,7 @@
 
 require ../../../meta-openpli/recipes-openpli/images/openpli-enigma2-image.bb
 
-#PR = "r20180912"
+#PR = "r20180111"
 #PR = "r${DATE}"
 #PR[vardepsexclude] = "DATE"
 
@@ -60,6 +60,7 @@ DEPENDS += " \
 	enigma2-plugin-extensions-e2iplayer \
 	enigma2-plugin-extensions-hdmitest \
 	enigma2-plugin-extensions-historyzapselector \
+	enigma2-plugin-extensions-lcd4linux \
 	enigma2-plugin-extensions-openmultiboot \
 	enigma2-plugin-extensions-oscamstatus \
 	enigma2-plugin-extensions-permanentvfdclock \
