@@ -15,6 +15,7 @@ IMAGE_INSTALL_remove = "enigma2-plugin-extensions-ppanel"
 IMAGE_INSTALL_remove = "enigma2-plugin-softcams-oscam"
 
 IMAGE_INSTALL += " \
+	${@bb.utils.contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-blindscan" , "", d)} \
 	dabstreamer \
 	enigma2-plugin-extensions-backupsuite \
 	enigma2-plugin-extensions-devicemanager \
