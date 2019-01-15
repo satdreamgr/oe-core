@@ -13,6 +13,7 @@ ENIGMA2_PLUGINS_remove = "enigma2-plugin-softcams-oscam"
 IMAGE_INSTALL_remove = "openpli-bootlogo"
 IMAGE_INSTALL_remove = "enigma2-plugin-extensions-ppanel"
 IMAGE_INSTALL_remove = "enigma2-plugin-softcams-oscam"
+IMAGE_INSTALL_remove = "3rd-party-feed-configs"
 
 IMAGE_INSTALL += " \
 	${@bb.utils.contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-blindscan" , "", d)} \
