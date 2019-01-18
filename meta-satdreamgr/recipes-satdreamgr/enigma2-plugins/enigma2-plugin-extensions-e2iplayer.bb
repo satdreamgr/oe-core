@@ -19,7 +19,7 @@ RCONFLICTS_${PN} = "enigma2-plugin-extensions-iptvplayer"
 RREPLACES_${PN} = "enigma2-plugin-extensions-iptvplayer"
 
 RDEPENDS_${PN} = " \
-	enigma2-plugin-extensions-iptvplayer-deps \
+	enigma2-plugin-extensions-e2iplayer-deps \
 	python-compression \
 	python-core \
 	python-html \
