@@ -11,6 +11,7 @@ inherit gitpkgv
 SRCREV = "${AUTOREV}"
 PV = "1+git${SRCPV}"
 PKGV = "1+git${GITPKGV}"
+PR = "r3"
 
 inherit distutils-openplugins
 
@@ -22,6 +23,7 @@ RDEPENDS_${PN} = " \
 	enigma2-plugin-extensions-e2iplayer-deps \
 	python-compression \
 	python-core \
+	python-e2icjson \
 	python-html \
 	python-json \
 	python-shell \
