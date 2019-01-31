@@ -5,7 +5,7 @@ SECTION = "devel/python"
 LICENSE = "BSD"
 PACKAGE_ARCH = "all"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=18ae25f7669ddc31f5fa4bf04fd598f2"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=67e73aa1a18a474a727af66319626ed4"
 
 inherit setuptools
 
