@@ -5,16 +5,16 @@ require conf/license/openpli-gplv2.inc
 
 inherit gitpkgv
 
-PV = "1.0+git${SRCPV}"
-PKGV = "1.0+git${GITPKGV}"
+PV = "1.1+git${SRCPV}"
+PKGV = "1.1+git${GITPKGV}"
 PR = "r0"
 
-SRC_URI = "git://github.com/e2iplayer/lsdir.git;protocol=git"
+SRC_URI = "git://github.com/e2iplayer/e2ibox.git;protocol=git"
 SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git/"
 
-SOURCE_FILES = "src/lsdir.c"
+SOURCE_FILES = "src/lsdir.c src/lsdir.h src/main.c src/cmdwrapper.h src/cmdwrapper.c"
 
 do_compile() {
     ${CC} ${SOURCE_FILES} -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE=1 -D_LARGEFILE_SOURCE -I${S}/src -I${D}/${libdir} -I${D}/${includedir} -o lsdir ${LDFLAGS}
