@@ -1,5 +1,5 @@
 diff --git a/tools/enigma2.sh.in b/tools/enigma2.sh.in
-index f0990ae..ed27555 100755
+index d27f76f..e34bf27 100755
 --- a/tools/enigma2.sh.in
 +++ b/tools/enigma2.sh.in
 @@ -4,6 +4,11 @@ prefix=@prefix@
@@ -11,6 +11,6 @@ index f0990ae..ed27555 100755
 +	cp /usr/share/enigma2/Satdreamgr-HD-TranspBA/skinconfig/skin_user_Satdreamgr-HD-TranspBA.xml /etc/enigma2/
 +fi
 +
- if [ -x @bindir@/showiframe ]; then
- 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
- 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
+ if [ -d /home/root ]; then
+ 	export HOME=/home/root
+ 	cd
