@@ -33,8 +33,8 @@ S = "${WORKDIR}/git/"
 
 inherit gitpkgv
 
-PV = "0.15+git${SRCPV}"
-PKGV = "0.15+git${GITPKGV}"
+PV = "1.0.0+git${SRCPV}"
+PKGV = "1.0.0+git${GITPKGV}"
 PR = "r0"
 
 do_install_append() {
