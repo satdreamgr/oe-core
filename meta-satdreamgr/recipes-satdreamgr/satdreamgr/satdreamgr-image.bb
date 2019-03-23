@@ -57,6 +57,7 @@ DEPENDS += " \
 	dvbsnoop \
 	edid-decode \
 	enigma2-plugin-extensions-bitrate \
+	enigma2-plugin-extensions-blackoutblind \
 	enigma2-plugin-extensions-btdevicesmanager \
 	enigma2-plugin-extensions-dlnaserver \
 	enigma2-plugin-extensions-e2iplayer \
