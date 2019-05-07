@@ -1,5 +1,5 @@
 diff --git a/lib/python/Screens/FlashImage.py b/lib/python/Screens/FlashImage.py
-index 907c68b..7970b72 100644
+index f7da2d3..44069e4 100644
 --- a/lib/python/Screens/FlashImage.py
 +++ b/lib/python/Screens/FlashImage.py
 @@ -76,7 +76,7 @@ class SelectImage(Screen):
@@ -7,7 +7,7 @@ index 907c68b..7970b72 100644
  			if not self.jsonlist:
  				try:
 -					self.jsonlist = dict(json.load(urllib2.urlopen('http://downloads.openpli.org/json/%s' % model)))
-+					self.jsonlist = dict(json.load(urllib2.urlopen('http://sgcpm.com/json/%s' % model)))
++					self.jsonlist = dict(json.load(urllib2.urlopen(urllib2.Request('http://sgcpm.com/json/%s' % model, headers={'User-Agent': 'Enigma2 SDG'}))))
  					if config.usage.alternative_imagefeed.value:
  						self.jsonlist.update(dict(json.load(urllib2.urlopen('%s%s' % (config.usage.alternative_imagefeed.value, model)))))
  				except:
