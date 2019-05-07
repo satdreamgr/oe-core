@@ -50,6 +50,7 @@ DEPENDS += " \
 	\
 	astra-sm \
 	bluez-hidd \
+	ccextractor \
 	dreambox-buildimage \
 	dvb-apps \
 	dvb-usb-drivers-meta \
