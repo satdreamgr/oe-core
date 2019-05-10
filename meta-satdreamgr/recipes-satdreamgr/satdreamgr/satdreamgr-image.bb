@@ -102,6 +102,7 @@ DEPENDS += " \
 	ofgwrite \
 	openvpn \
 	p7zip \
+	pcsc-lite \
 	pointercal \
 	python-bluetool \
 	python-cfscrape \
