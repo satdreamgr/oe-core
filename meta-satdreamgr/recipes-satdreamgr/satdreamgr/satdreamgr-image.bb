@@ -115,6 +115,7 @@ DEPENDS += " \
 	python-tcpbridge \
 	redsea \
 	rt8812au \
+	rt8814au \
 	rtl-sdr \
 	satipclient \
 	softcams-enigma2-meta \
