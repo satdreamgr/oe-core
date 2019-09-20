@@ -15,12 +15,13 @@ SRC_URI += " \
 	file://sdgjson.patch \
 	file://sdg_about.patch \
 	file://sdg_mb_date.patch \
+	file://sdg_hdmicec.patch \
 	"
 
 SRC_URI_append_ixusszero = " file://0001-Ixuss-disable-blending-issues.patch "
 SRC_URI_append_ixussone = " file://0001-Ixuss-disable-blending-issues.patch "
 SRC_URI_append_sf4008 = " file://sf4008_boxmode6.patch file://sf4008rc2.patch file://sdg_vtuner_msg2.patch "
-SRC_URI_append_sf8008 = " file://sf8008_e2.patch file://sf8008_nosignal_stats.patch file://sdg_vtuner_msg2.patch "
+SRC_URI_append_sf8008 = " file://sf8008_e2.patch file://sf8008_nosignal_stats.patch file://sdg_vtuner_msg2.patch file://sf8008_led.patch "
 
 RRECOMMENDS_${PN} = " \
 	tzdata enigma2-plugin-skins-satdreamgr-hd-transpba \

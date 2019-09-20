@@ -1,0 +1,26 @@
+diff --git a/lib/python/Components/HdmiCec.py b/lib/python/Components/HdmiCec.py
+index c8f8a7e..a5d53ba 100644
+--- a/lib/python/Components/HdmiCec.py
++++ b/lib/python/Components/HdmiCec.py
+@@ -92,6 +92,7 @@ class HdmiCec:
+ 		assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
+ 		HdmiCec.instance = self
+ 
++		self.lastCmd = -1
+ 		self.wait = eTimer()
+ 		self.wait.timeout.get().append(self.sendCmd)
+ 		self.waitKeyEvent = eTimer()
+@@ -312,6 +313,13 @@ class HdmiCec:
+ 
+ 			if config.hdmicec.debug.value != "0":
+ 				self.debugRx(length, cmd, data)
++
++			if cmd == self.lastCmd:
++				print "eHdmiCec: ignore duplicate cmd %02X" % cmd
++				return
++			else:
++				self.lastCmd = cmd
++
+ 			if cmd == 0x00:
+ 				if length == 0: # only polling message ( it's some as ping )
+ 					print "eHdmiCec: received polling message"
