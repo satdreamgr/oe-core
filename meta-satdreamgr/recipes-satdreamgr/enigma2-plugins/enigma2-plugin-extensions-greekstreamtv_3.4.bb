@@ -20,7 +20,7 @@ SRC_URI = " \
 	file://0001-Satdreamgr-Changes.patch \
 	"
 
-SRCREV = "d5817a2f332a838ef5f5311c664a081664221610"
+SRCREV = "3a8ad96a3f16437ddc013ffdf736ec0e068bfe9a"
 
 inherit distutils-openplugins
 
