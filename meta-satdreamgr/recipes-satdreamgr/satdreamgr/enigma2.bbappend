@@ -14,7 +14,6 @@ SRC_URI += " \
 	file://pos.patch \
 	file://sdgjson.patch \
 	file://sdg_about.patch \
-	file://sdg_mb_date.patch \
 	file://sdg_hdmicec.patch \
 	"
 
