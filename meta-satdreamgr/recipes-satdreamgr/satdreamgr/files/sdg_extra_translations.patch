@@ -2,7 +2,7 @@ diff --git a/po/el.po b/po/el.po
 index a8a41cb84..5e0378976 100644
 --- a/po/el.po
 +++ b/po/el.po
-@@ -11668,3 +11668,9 @@ msgstr "έγινε μετάβαση"
+@@ -11668,3 +11668,12 @@ msgstr "έγινε μετάβαση"
 
  msgid "®"
  msgstr "®"
