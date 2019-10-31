@@ -26,7 +26,6 @@ IMAGE_INSTALL += " \
 	enigma2-plugin-extensions-greekstreamtv \
 	enigma2-plugin-extensions-sdgradio \
 	enigma2-plugin-extensions-xmltvimport-greekepg \
-	enigma2-plugin-extensions-xmltvimport-greekstreamtv \
 	enigma2-plugin-extensions-youtube \
 	enigma2-plugin-skins-satdreamgr-hd-transpba \
 	enigma2-plugin-systemplugins-mphelp \
