@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://${OPENPLI_BASE}/LICENSE;md5=eb723b61539feef013de476e6
 
 inherit allarch
 
-PV = "1.5"
+PV = "1.6"
 PACKAGES = "${PN}"
 RDEPENDS_${PN} = "enigma2-plugin-extensions-epgimport"
 
