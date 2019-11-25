@@ -1,8 +1,8 @@
 diff --git a/data/setup.xml b/data/setup.xml
-index ae7b2b4..7cf0204 100644
+index a05fcc9..579c373 100644
 --- a/data/setup.xml
 +++ b/data/setup.xml
-@@ -216,6 +216,12 @@
+@@ -217,6 +217,12 @@
  		<item level="0" text="Power LED" description="Turn on the power LED." requires="PowerLED">config.usage.powerLED</item>
  		<item level="0" text="Standby LED" description="Turn on the power LED during standby." requires="StandbyLED">config.usage.standbyLED</item>
  		<item level="0" text="Deep Standby LED" description="Turn on the power LED during deep standby." requires="SuspendLED">config.usage.suspendLED</item>
@@ -69,10 +69,10 @@ index d30a20f..c173bc2 100644
  			def lcdLiveTvChanged(configElement):
  				setLCDLiveTv(configElement.value)
 diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
-index 28b47df..7742303 100644
+index 1d0a5ae..27bf10c 100644
 --- a/lib/python/Components/SystemInfo.py
 +++ b/lib/python/Components/SystemInfo.py
-@@ -49,6 +49,12 @@ SystemInfo["PowerLED"] = fileCheck("/proc/stb/power/powerled")
+@@ -54,6 +54,12 @@ SystemInfo["PowerLED"] = fileCheck("/proc/stb/power/powerled")
  SystemInfo["StandbyLED"] = fileCheck("/proc/stb/power/standbyled")
  SystemInfo["SuspendLED"] = fileCheck("/proc/stb/power/suspendled")
  SystemInfo["Display"] = SystemInfo["FrontpanelDisplay"] or SystemInfo["StandbyLED"]
@@ -82,6 +82,6 @@ index 28b47df..7742303 100644
 +SystemInfo["Power4x7On"] = fileCheck("/proc/stb/fp/power4x7on")
 +SystemInfo["Power4x7Standby"] = fileCheck("/proc/stb/fp/power4x7standby")
 +SystemInfo["Power4x7Suspend"] = fileCheck("/proc/stb/fp/power4x7suspend")
- SystemInfo["PowerOffDisplay"] = HardwareInfo().get_device_model() not in "formuler1" and fileCheck("/proc/stb/power/vfd") or fileCheck("/proc/stb/lcd/vfd")
- SystemInfo["WakeOnLAN"] = not HardwareInfo().get_device_model().startswith("et8000") and fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
- SystemInfo["HasExternalPIP"] = not (HardwareInfo().get_device_model().startswith("et9") or HardwareInfo().get_device_model() in ('e4hd',)) and fileCheck("/proc/stb/vmpeg/1/external")
+ SystemInfo["PowerOffDisplay"] = model not in "formuler1" and fileCheck("/proc/stb/power/vfd") or fileCheck("/proc/stb/lcd/vfd")
+ SystemInfo["WakeOnLAN"] = not model.startswith("et8000") and fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
+ SystemInfo["HasExternalPIP"] = not (model.startswith("et9") or model in ('e4hd',)) and fileCheck("/proc/stb/vmpeg/1/external")
