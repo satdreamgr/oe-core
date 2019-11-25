@@ -11,16 +11,15 @@ RDEPENDS_${PN} = "livestreamer \
 	rtmpdump \
 	"
 
-PR = "r2"
+PR = "r3"
 
 S="${WORKDIR}/git"
 
 SRC_URI = " \
 	git://github.com/athoik/GreekStreamTV;protocol=git \
-	file://0001-Satdreamgr-Changes.patch \
 	"
 
-SRCREV = "3a8ad96a3f16437ddc013ffdf736ec0e068bfe9a"
+SRCREV = "663fdd40a98e724163bac03386c038d62844918c"
 
 inherit distutils-openplugins
 
