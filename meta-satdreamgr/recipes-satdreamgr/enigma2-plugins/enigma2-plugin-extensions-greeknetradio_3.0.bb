@@ -8,13 +8,13 @@ LIC_FILES_CHKSUM = "file://setup.py;md5=5d6dbd47e15611970ab1e4286f0acd22"
 
 RDEPENDS_${PN} = "python-core"
 
-PR = "r3"
+PR = "r0"
 
 S="${WORKDIR}/git"
 
 SRC_URI = "git://github.com/satdreamgr/GreekNetRadio;protocol=git"
 
-SRCREV = "264ad40f36a0a451651a229d506c7213be1fa85f"
+SRCREV = "845ce5867c2dae3f06e96f8f14e190090a058ec5"
 
 inherit distutils-openplugins
 
