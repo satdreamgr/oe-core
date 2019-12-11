@@ -16,6 +16,6 @@ PKGV = "2+git${GITPKGV}"
 
 inherit distutils-openplugins
 
-RPROVIDES_${PN} += "enigma2-plugin-extensions-devicemanager"
-RREPLACES_${PN} += "enigma2-plugin-extensions-devicemanager"
-RCONFLICTS_${PN} += "enigma2-plugin-extensions-devicemanager"
+RPROVIDES_${PN} += "enigma2-plugin-systemplugins-devicemanager"
+RREPLACES_${PN} += "enigma2-plugin-systemplugins-devicemanager"
+RCONFLICTS_${PN} += "enigma2-plugin-systemplugins-devicemanager"

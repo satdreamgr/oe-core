@@ -19,7 +19,6 @@ IMAGE_INSTALL += " \
 	${@bb.utils.contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-blindscan" , "", d)} \
 	dabstreamer \
 	enigma2-plugin-extensions-backupsuite \
-	enigma2-plugin-extensions-devicemanager \
 	enigma2-plugin-extensions-epgimport \
 	enigma2-plugin-extensions-foreca \
 	enigma2-plugin-extensions-greeknetradio \
@@ -28,6 +27,7 @@ IMAGE_INSTALL += " \
 	enigma2-plugin-extensions-xmltvimport-greekepg \
 	enigma2-plugin-extensions-youtube \
 	enigma2-plugin-skins-satdreamgr-hd-transpba \
+	enigma2-plugin-systemplugins-devicemanager \
 	enigma2-plugin-systemplugins-mphelp \
 	glibc-gconv-iso8859-7 \
 	glibc-gconv-utf-16 \
