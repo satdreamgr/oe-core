@@ -91,6 +91,7 @@ DEPENDS += " \
 	iptables \
 	iw \
 	libcec \
+	libtorrent \
 	ltrace \
 	megatools \
 	meta-enigma2-dvdburn \
