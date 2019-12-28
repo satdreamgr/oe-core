@@ -1,19 +1,13 @@
-Subject: [PATCH] Set default skin Satdreamgr-HD-TranspBA
-
----
- skin.py |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-Index: git/skin.py
-===================================================================
---- git.orig/skin.py
-+++ git/skin.py
-@@ -76,7 +76,7 @@ def skin_user_skinname():
+diff --git a/skin.py b/skin.py
+index 4f2b24f..b379e42 100644
+--- a/skin.py
++++ b/skin.py
+@@ -13,7 +13,7 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT
+ from Tools.Import import my_import
+ from Tools.LoadPixmap import LoadPixmap
  
- # example: loadSkin("nemesis_greenline/skin.xml")
- config.skin = ConfigSubsection()
--DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"
+-DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"  # On SD hardware PLi-HD will not be available.
 +DEFAULT_SKIN = "Satdreamgr-HD-TranspBA/skin.xml"
- # on SD hardware, PLi-HD will not be available
- if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
- 	# in that case, fallback to Magic (which is an SD skin)
+ DEFAULT_SD_SKIN = "Magic/skin.xml"
+ EMERGENCY_SKIN = "/usr/share/enigma2/skin.xml"
+ DEFAULT_DISPLAY_SKIN = "skin_display.xml"
