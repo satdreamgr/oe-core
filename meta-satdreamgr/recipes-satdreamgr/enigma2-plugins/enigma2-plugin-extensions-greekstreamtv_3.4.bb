@@ -4,14 +4,14 @@ SECTION = "multimedia"
 MAINTAINER = "SatDreamGR"
 HOMEPAGE = "http://satdreamgr.com"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://setup.py;md5=5bd6abbe16b24378e2f2a38aea9768d2"
+LIC_FILES_CHKSUM = "file://setup.py;md5=a965956149146efbbfd1e2d912e9d6d9"
 
 RDEPENDS_${PN} = "livestreamer \
 	python-requests \
 	rtmpdump \
 	"
 
-PR = "r3"
+PR = "r4"
 
 S="${WORKDIR}/git"
 
@@ -19,12 +19,12 @@ SRC_URI = " \
 	git://github.com/athoik/GreekStreamTV;protocol=git \
 	"
 
-SRCREV = "663fdd40a98e724163bac03386c038d62844918c"
+SRCREV = "${AUTOREV}"
 
 inherit distutils-openplugins
 
 do_install_append() {
-  chmod 755 ${D}${libdir}/enigma2/python/Plugins/Extensions/GreekStreamTV/*.sh
+	chmod 755 ${D}${libdir}/enigma2/python/Plugins/Extensions/GreekStreamTV/*.sh
 }
 
 PACKAGES =+ "${PN}-src"
