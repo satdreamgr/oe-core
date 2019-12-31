@@ -4,17 +4,19 @@ SECTION = "multimedia"
 MAINTAINER = "SatDreamGR"
 HOMEPAGE = "http://satdreamgr.com"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://setup.py;md5=5d6dbd47e15611970ab1e4286f0acd22"
+LIC_FILES_CHKSUM = "file://setup.py;md5=6d5bca82afc438b23c3eab2e725618d0"
 
 RDEPENDS_${PN} = "python-core"
 
+PV = "3.1+git${SRCPV}"
+PKGV = "3.1+git${GITPKGV}"
 PR = "r0"
 
 S="${WORKDIR}/git"
 
 SRC_URI = "git://github.com/satdreamgr/GreekNetRadio;protocol=git"
 
-SRCREV = "845ce5867c2dae3f06e96f8f14e190090a058ec5"
+SRCREV = "${AUTOREV}"
 
 inherit distutils-openplugins
 
