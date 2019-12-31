@@ -1,5 +1,5 @@
 diff --git a/skin.py b/skin.py
-index 4f2b24f..b379e42 100644
+index d06d270..85d03e2 100644
 --- a/skin.py
 +++ b/skin.py
 @@ -13,7 +13,7 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT
@@ -9,5 +9,5 @@ index 4f2b24f..b379e42 100644
 -DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"  # On SD hardware PLi-HD will not be available.
 +DEFAULT_SKIN = "Satdreamgr-HD-TranspBA/skin.xml"
  DEFAULT_SD_SKIN = "Magic/skin.xml"
- EMERGENCY_SKIN = "/usr/share/enigma2/skin.xml"
+ EMERGENCY_SKIN = "skin_default.xml"
  DEFAULT_DISPLAY_SKIN = "skin_display.xml"
