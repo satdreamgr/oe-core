@@ -18,7 +18,7 @@ SRC_URI = "git://github.com/satdreamgr/GreekNetRadio;protocol=git"
 
 SRCREV = "${AUTOREV}"
 
-inherit distutils-openplugins
+inherit distutils-openplugins gitpkgv
 
 do_install_append() {
   chmod 755 ${D}${libdir}/enigma2/python/Plugins/Extensions/GreekNetRadio/*.sh
