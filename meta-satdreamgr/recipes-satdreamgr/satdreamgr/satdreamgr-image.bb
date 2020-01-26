@@ -75,6 +75,7 @@ DEPENDS += " \
 	enigma2-plugin-skins-octagoneightfhd \
 	enigma2-plugin-skins-pli-hd \
 	enigma2-plugin-skins-pli-hd-fullnight \
+	enigma2-plugin-skins-proteusfhd \
 	enigma2-plugin-skins-satdreamgr-hd \
 	enigma2-plugin-skins-simple-gray-hd \
 	enigma2-plugin-softcams-oscam-emu \
