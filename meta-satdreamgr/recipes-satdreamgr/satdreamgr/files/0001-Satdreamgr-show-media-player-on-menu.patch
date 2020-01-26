@@ -1,20 +1,13 @@
-Subject: [PATCH] Satdreamgr show media player on menu
-
-
 diff --git a/lib/python/Plugins/Extensions/MediaPlayer/settings.py b/lib/python/Plugins/Extensions/MediaPlayer/settings.py
-index 0728dc0..a2ddabd 100644
+index bddda25..f4ae968 100644
 --- a/lib/python/Plugins/Extensions/MediaPlayer/settings.py
 +++ b/lib/python/Plugins/Extensions/MediaPlayer/settings.py
-@@ -16,7 +16,7 @@ config.mediaplayer.useAlternateUserAgent = ConfigYesNo(default=False)
- config.mediaplayer.alternateUserAgent = ConfigText(default="")
+@@ -13,7 +13,7 @@ config.mediaplayer.saveDirOnExit = ConfigYesNo(default=False)
+ config.mediaplayer.defaultDir = ConfigDirectory()
  config.mediaplayer.sortPlaylists = ConfigYesNo(default=False)
  config.mediaplayer.alwaysHideInfoBar = ConfigYesNo(default=True)
 -config.mediaplayer.onMainMenu = ConfigYesNo(default=False)
 +config.mediaplayer.onMainMenu = ConfigYesNo(default=True)
-
+ 
  class DirectoryBrowser(Screen, HelpableScreen):
-
-
--- 
-1.7.10.4
-
+ 
