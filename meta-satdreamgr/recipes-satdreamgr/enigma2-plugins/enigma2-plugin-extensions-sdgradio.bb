@@ -4,16 +4,15 @@ SECTION = "multimedia"
 MAINTAINER = "SatDreamGR"
 HOMEPAGE = "http://satdreamgr.com"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://setup.py;md5=20c8b7a2ce4bc55b0e068530ac3d3015"
+LIC_FILES_CHKSUM = "file://setup.py;beginline=4;endline=4;md5=a340145d59ca0aca0ff7ec9adccdb556"
 SRC_URI = "git://github.com/satdreamgr/SDGRadio.git;protocol=http"
 
 S = "${WORKDIR}/git"
 
 inherit gitpkgv
 SRCREV = "${AUTOREV}"
-PV = "1+git${SRCPV}"
-PKGV = "1+git${GITPKGV}"
-PR = "r1"
+PV = "2+git${SRCPV}"
+PKGV = "2+git${GITPKGV}"
 
 inherit distutils-openplugins
 
