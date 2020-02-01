@@ -1,0 +1,22 @@
+diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
+index 4818fc6..acb44b0 100644
+--- a/lib/python/Components/SystemInfo.py
++++ b/lib/python/Components/SystemInfo.py
+@@ -42,7 +42,7 @@ def getMultibootslots():
+ 		TMP_MOUNT = '/tmp/bootcheck'
+ 		if not os.path.isdir(TMP_MOUNT):
+ 			os.mkdir(TMP_MOUNT)
+-		Console().ePopen('mount %s %s' % (SystemInfo["MultibootStartupDevice"], TMP_MOUNT))
++		os.system('mount %s %s' % (SystemInfo["MultibootStartupDevice"], TMP_MOUNT))
+ 		for file in glob.glob('%s/STARTUP_*' % TMP_MOUNT):
+ 			slotnumber = file.rsplit('_', 3 if 'BOXMODE' in file else 1)[1]
+ 			if slotnumber.isdigit() and slotnumber not in bootslots:
+@@ -58,7 +58,7 @@ def getMultibootslots():
+ 						break
+ 				if slot:
+ 					bootslots[int(slotnumber)] = slot
+-		Console().ePopen('umount %s' % TMP_MOUNT)
++		os.system('umount %s' % TMP_MOUNT)
+ 		if not os.path.ismount(TMP_MOUNT):
+ 			os.rmdir(TMP_MOUNT)
+ 	return bootslots
