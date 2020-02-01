@@ -1,5 +1,5 @@
 diff --git a/skin.py b/skin.py
-index 347dac7..3908b47 100644
+index 8cc4ca1..c330fd2 100644
 --- a/skin.py
 +++ b/skin.py
 @@ -14,7 +14,7 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT
@@ -8,6 +8,6 @@ index 347dac7..3908b47 100644
  
 -DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"  # SD hardware is no longer supported by the default skin.
 +DEFAULT_SKIN = "Satdreamgr-HD-TranspBA/skin.xml"
- EMERGENCY_SKIN = "skin_default.xml"
- DEFAULT_DISPLAY_SKIN = "skin_display.xml"
+ EMERGENCY_SKIN = "skin_default/skin.xml"
+ DEFAULT_DISPLAY_SKIN = "skin_default/skin_display.xml"
  USER_SKIN = "skin_user.xml"
