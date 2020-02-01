@@ -15,7 +15,7 @@ SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git/linux"
 
-DEPENDS = "virtual/libiconv"
+DEPENDS = "virtual/libiconv libpng"
 
 inherit autotools-brokensep pkgconfig gettext
 
