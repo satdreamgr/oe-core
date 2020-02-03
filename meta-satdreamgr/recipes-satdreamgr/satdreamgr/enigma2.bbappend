@@ -16,7 +16,6 @@ SRC_URI += " \
 	file://sdg_extra_translations.patch \
 	file://sdg_hdmicec.patch \
 	file://sdg_sw.patch \
-	file://sdg_mb.patch \
 	"
 
 SRC_URI_append_ixusszero = " file://0001-Ixuss-disable-blending-issues.patch "
