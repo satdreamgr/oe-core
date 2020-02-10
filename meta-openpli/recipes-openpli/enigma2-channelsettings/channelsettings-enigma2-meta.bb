@@ -3,6 +3,9 @@ require conf/license/openpli-gplv2.inc
 DESCRIPTION = "meta file for settings"
 
 DEPENDS = "\
+	enigma2-plugin-settings-likra-motor \
+	enigma2-plugin-settings-vhannibal-motor \
+	\
 	enigma2-plugin-settings-ciefp-19e \
 	enigma2-plugin-settings-ciefp-19e.16e \
 	enigma2-plugin-settings-ciefp-19e.16e.13e \

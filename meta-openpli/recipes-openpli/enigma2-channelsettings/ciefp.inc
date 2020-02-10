@@ -7,6 +7,8 @@ SRCREV = "${AUTOREV}"
 SRC_URI = "git://github.com/ciefp/ciefpsettings-enigma2.git;protocol=git"
 S = "${WORKDIR}/git"
 
+PACKAGES = "${PN}"
+
 inherit gitpkgv allarch
 
 FILES_${PN} = "${sysconfdir}/enigma2/"
