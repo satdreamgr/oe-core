@@ -1,4 +1,4 @@
-DESCRIPTION = "Likra Motor channel settings"
+DESCRIPTION = "Likra Rotor channel settings"
 
 SETTINGS_FILENAME = "likra.rotor"
 
