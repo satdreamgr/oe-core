@@ -28,6 +28,7 @@
 [submodule "meta-edision"]
 	path = meta-edision
 	url = http://github.com/satdreamgr/meta-edision.git
+	branch = zeus
 [submodule "meta-ixuss"]
 	path = meta-ixuss
 	url = https://github.com/satdreamgr/meta-ixuss.git
