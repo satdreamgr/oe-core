@@ -4,7 +4,7 @@ SECTION = "multimedia"
 MAINTAINER = "SatDreamGR"
 HOMEPAGE = "http://satdreamgr.com"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://setup.py;md5=6d5bca82afc438b23c3eab2e725618d0"
+LIC_FILES_CHKSUM = "file://setup.py;beginline=1;endline=7;md5=3451c7d09e6a53ab08a8eb20a698a582"
 
 RDEPENDS_${PN} = "python-core"
 
@@ -19,10 +19,6 @@ SRC_URI = "git://github.com/satdreamgr/GreekNetRadio;protocol=git"
 SRCREV = "${AUTOREV}"
 
 inherit distutils-openplugins gitpkgv
-
-do_install_append() {
-  chmod 755 ${D}${libdir}/enigma2/python/Plugins/Extensions/GreekNetRadio/*.sh
-}
 
 PACKAGES =+ "${PN}-src"
 
