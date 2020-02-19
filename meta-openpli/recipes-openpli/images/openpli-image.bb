@@ -2,15 +2,9 @@ require conf/license/openpli-gplv2.inc
 
 inherit image
 
-# Delete the rootfs source before running do_rootfs,
-# not directly after. this leaves the rootfs directory
-# present for the different do_image tasks to use
-python do_rootfs_prepend() {
-    workdir = d.expand("${WORKDIR}/rootfs")
-    bb.utils.remove(workdir, True)
-    bb.utils.mkdirhier(workdir)
-}
-rm_work_rootfs[cleandirs] = ""
+DEPENDS += " \
+	zip-native \
+"
 
 IMAGE_INSTALL = "\
 	${ROOTFS_PKGMANAGE} \
@@ -23,12 +17,12 @@ IMAGE_INSTALL = "\
 	e2fsprogs-mke2fs \
 	e2fsprogs-tune2fs \
 	fakelocale \
+	fuse-exfat \
 	glibc-binary-localedata-en-gb \
 	kernel-params \
 	modutils-loadscript \
 	nfs-utils-client \
 	openpli-bootlogo \
-	openssh-sftp \
 	openssh-sftp-server \
 	opkg \
 	packagegroup-base \
@@ -37,6 +31,7 @@ IMAGE_INSTALL = "\
 	python-ipaddress  \
 	python-netifaces \
 	python-pysmb \
+	nfs-utils \
 	samba-base \
 	sdparm \
 	tuxbox-common \

@@ -21,4 +21,3 @@ inherit autotools-brokensep
 do_compile_prepend() {
         sed -i 's#/usr/local#/usr#' ${S}/Makefile
 }
-

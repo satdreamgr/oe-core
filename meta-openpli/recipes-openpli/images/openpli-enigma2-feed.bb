@@ -12,9 +12,40 @@ require conf/license/openpli-gplv2.inc
 # Depend on the image, so that it gets build
 DEPENDS = "openpli-enigma2-image"
 
-OPTIONAL_PACKAGES_BROKEN = "samba"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS ?= ""
+
 OPTIONAL_PACKAGES ?= ""
 OPTIONAL_BSP_PACKAGES ?= ""
+OPTIONAL_BSP_ENIGMA2_PACKAGES ?= ""
+
+# Get the kernel version for this image, we need it to build conditionally on kernel version
+# NB: this only works in the feed, as the kernel needs to be build before the headers are available
+
+inherit linux-kernel-base
+KERNEL_VERSION = "${@ get_kernelversion_headers('${STAGING_KERNEL_BUILDDIR}')}"
+
+# Out-of-tree wifi drivers, build conditionally based on kernel version
+OPTIONAL_WIFI_PACKAGES = "\
+	${@ 'kernel-module-mt7610u' if (bb.utils.vercmp_string("${KERNEL_VERSION}" or "0", '4.2') < 0) else '' } \
+	${@ 'kernel-module-mt7601usta' if (bb.utils.vercmp_string("${KERNEL_VERSION}" or "0", '4.2') < 0) else '' } \
+	${@ 'kernel-module-r8188eu' if (bb.utils.vercmp_string("${KERNEL_VERSION}" or "0", '3.12') < 0) else '' } \
+	${@ 'kernel-module-rt3573sta' if (bb.utils.vercmp_string("${KERNEL_VERSION}" or "0", '3.12') < 0) else '' } \
+	${@ 'kernel-module-rt5572sta' if (bb.utils.vercmp_string("${KERNEL_VERSION}" or "0", '3.10') < 0) else '' } \
+	kernel-module-8723a \
+	${@bb.utils.contains('MACHINE_ESSENTIAL_EXTRA_RDEPENDS', 'rtl8723bs', '', bb.utils.contains('MACHINE_ESSENTIAL_EXTRA_RDEPENDS', 'spycat-rtl8723bs', '', 'kernel-module-r8723bs' if (bb.utils.vercmp_string("${KERNEL_VERSION}" or "0", '4.12') < 0) else '', d), d)} \
+	kernel-module-8723bu \
+	kernel-module-8812au \
+	kernel-module-8814au \
+	kernel-module-88x2bu \
+	kernel-module-8189es \
+	kernel-module-8192eu \
+	firmware-rtl8723bu \
+	firmware-mt7601u \
+	"
+
+#	** TODO **
+#	rtl8723bt
+
 OPTIONAL_PACKAGES += " \
 	astra-sm \
 	autofs \
@@ -30,24 +61,27 @@ OPTIONAL_PACKAGES += " \
 	dvblast \
 	dvbsnoop \
 	dvdfs \
+	edid-decode \
 	evtest \
 	exfat-utils \
 	exteplayer3 \
-	fuse-exfat \
 	gdb \
+	grep \
 	gstplayer \
 	hddtemp \
 	hdparm \
 	inadyn-mt \
 	inetutils \
-	iperf \
+	iperf3 \
 	iproute2 \
 	iputils \
 	joe \
 	less \
 	libbluray \
+	libsdl2 \
 	libudfread \
 	mc \
+	mediainfo \
 	pv \
 	minisatip \
 	mtd-utils \
@@ -64,7 +98,6 @@ OPTIONAL_PACKAGES += " \
 	openmultiboot \
 	parted \
 	procps \
-	pyload \
 	python-ipaddress \
 	python-ntplib \
 	python-pip \
@@ -74,21 +107,29 @@ OPTIONAL_PACKAGES += " \
 	python-js2py \
 	python-pyexecjs \
 	python-beautifulsoup4 \
+	python-futures \
+	python-singledispatch \
+	python-websocket \
+	python-isodate \
+	python-iso3166 \
+	python-iso639 \
 	picocom \
 	ppp \
+	rclone \
 	rsync \
 	rtorrent \
 	sabnzbd \
 	satipclient \
 	screen \
+	sed \
 	sshpass \
 	smartmontools \
-	smbnetfs \
 	strace \
 	tcpdump \
 	tmux \
 	transmission \
 	udpxy \
+	unzip \
 	usb-modeswitch \
 	usb-modeswitch-data \
 	v4l-utils \
@@ -97,13 +138,14 @@ OPTIONAL_PACKAGES += " \
 	wscan \
 	yafc \
 	zeroconf \
+	zerotier \
 	zip \
 	zsh \
 	${OPTIONAL_BSP_PACKAGES} \
+	${OPTIONAL_WIFI_PACKAGES} \
 	"
 
-OPTIONAL_BSP_ENIGMA2_PACKAGES ?= ""
-ENIGMA2_OPTIONAL = " \
+OPTIONAL_ENIGMA2_PACKAGES = " \
 	channelsettings-enigma2-meta \
 	enigma2-pliplugins \
 	enigma2-plugin-extensions-automatic-fullbackup \
@@ -118,6 +160,7 @@ ENIGMA2_OPTIONAL = " \
 	enigma2-plugin-extensions-openmultiboot \
 	enigma2-plugin-extensions-modifyplifullhd \
 	enigma2-plugin-extensions-refreshbouquet \
+	enigma2-plugin-extensions-sdgradio \
 	enigma2-plugin-extensions-managerautofs \
 	enigma2-plugin-extensions-hdmitest \
 	enigma2-plugin-extensions-moviemanager \
@@ -129,6 +172,7 @@ ENIGMA2_OPTIONAL = " \
 	enigma2-plugin-systemplugins-hrtunerproxy \
 	enigma2-plugin-systemplugins-quadpip \
 	enigma2-plugin-systemplugins-extrafancontrol \
+	enigma2-plugin-systemplugins-radiotimesxmltvemulator \
 	enigma2-plugin-extensions-historyzapselector \
 	enigma2-plugin-extensions-lcd4linux \
 	enigma2-plugin-extensions-tmbd \
@@ -137,9 +181,11 @@ ENIGMA2_OPTIONAL = " \
 	enigma2-plugin-security-firewall \
 	enigma2-plugin-skins-pli-hd \
 	enigma2-plugin-skins-pli-hd-fullnight \
+	enigma2-plugin-skins-simple-gray-hd \
+	enigma2-plugin-skins-pd1loi-hd-night \
+	enigma2-plugin-skins-glamouraurafhd \
 	enigma2-plugins \
 	enigma2-skins \
-	picons-enigma2-meta \
 	softcams-enigma2-meta \
 	packagegroup-openplugins \
 	${@bb.utils.contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-satscan" , "", d)} \
@@ -147,11 +193,13 @@ ENIGMA2_OPTIONAL = " \
 	${@bb.utils.contains('EXTRA_IMAGEDEPENDS', 'vuplus-tuner-turbo', 'enigma2-plugin-drivers-dvb-usb-turbo', '', d)} \
 	${@bb.utils.contains('OPENPLI_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi', '', d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi', '', d)} \
-	${@bb.utils.contains('OPENPLI_FEATURES', 'qthbbtv', 'enigma2-plugin-extensions-qthbbtv', '', d)} \
+	${@bb.utils.contains('OPENPLI_FEATURES', 'qtplugins', 'enigma2-plugin-extensions-qthbbtv enigma2-plugin-extensions-qtstalker', '', d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "transcoding", "streamproxy", "", d)} \
+	libcrypto-compat \
 	dvb-usb-drivers-meta \
 	cdtextinfo \
 	meta-enigma2-dvdburn \
 	${OPTIONAL_BSP_ENIGMA2_PACKAGES} \
 	"
 
-DEPENDS += "${OPTIONAL_PACKAGES} ${ENIGMA2_OPTIONAL}"	
+DEPENDS += "${OPTIONAL_PACKAGES} ${OPTIONAL_ENIGMA2_PACKAGES}"

@@ -2,29 +2,29 @@ SRC_URI = "git://github.com/E2OpenPlugins/e2openplugin-${MODULE}.git;protocol=gi
 
 S="${WORKDIR}/git"
 
-PACKAGES =+ "${PN}-src"
+#PACKAGES =+ "${PN}-src"
 
 inherit pkgconfig
 
 FILES_${PN}-dbg += "\
-    /usr/lib/enigma2/python/Plugins/*/*/.debug \
-    /usr/lib/enigma2/python/Plugins/*/*/*/.debug \
-    /usr/lib/enigma2/python/Plugins/*/*/*/*/.debug \
-    /usr/lib/enigma2/python/Plugins/*/*/*/*/*/.debug \
-    /usr/lib/enigma2/python/Plugins/*/*/*/*/*/*/.debug \
+    ${libdir}/enigma2/python/Plugins/*/*/.debug \
+    ${libdir}/enigma2/python/Plugins/*/*/*/.debug \
+    ${libdir}/enigma2/python/Plugins/*/*/*/*/.debug \
+    ${libdir}/enigma2/python/Plugins/*/*/*/*/*/.debug \
+    ${libdir}/enigma2/python/Plugins/*/*/*/*/*/*/.debug \
     "
 
-FILES_${PN}-src = "\
-    /usr/lib/enigma2/python/*/*.py \
-    /usr/lib/enigma2/python/*/*/*.py \
-    /usr/lib/enigma2/python/*/*/*/*.py \
-    /usr/lib/enigma2/python/*/*/*/*/*.py \
-    /usr/lib/enigma2/python/*/*/*/*/*/*.py \
-    /usr/lib/enigma2/python/*/*/*/*/*/*/*.py \
-    /usr/lib/enigma2/python/*/*/*/*/*/*/*/*.py \
-    /usr/lib/enigma2/python/*/*/*/*/*/*/*/*/*.py \
-    /usr/lib/enigma2/python/*/*/*/*/*/*/*/*/*/*.py \
-    /usr/lib/enigma2/python/*/*/*/*/*/*/*/*/*/*/*.py \
+FILES_${PN}-src += "\
+    ${libdir}/enigma2/python/*/*.py \
+    ${libdir}/enigma2/python/*/*/*.py \
+    ${libdir}/enigma2/python/*/*/*/*.py \
+    ${libdir}/enigma2/python/*/*/*/*/*.py \
+    ${libdir}/enigma2/python/*/*/*/*/*/*.py \
+    ${libdir}/enigma2/python/*/*/*/*/*/*/*.py \
+    ${libdir}/enigma2/python/*/*/*/*/*/*/*/*.py \
+    ${libdir}/enigma2/python/*/*/*/*/*/*/*/*/*.py \
+    ${libdir}/enigma2/python/*/*/*/*/*/*/*/*/*/*.py \
+    ${libdir}/enigma2/python/*/*/*/*/*/*/*/*/*/*/*.py \
     "
 
 python populate_packages_prepend() {

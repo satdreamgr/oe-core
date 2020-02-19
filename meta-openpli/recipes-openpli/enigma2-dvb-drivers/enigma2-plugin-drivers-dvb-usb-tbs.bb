@@ -3,8 +3,6 @@ DESCRIPTION = "USB DVB driver for TBS Tuners"
 require dvb-usb-drivers-meta.inc
 
 RRECOMMENDS_${PN} = " \
-	kernel-module-dvb-usb-tbs5925 \
-	kernel-module-dvb-usb-tbsqbox2ci \
 	kernel-module-dvb-usb-tbsusb \
 	kernel-module-stv090x \
 	kernel-module-stb6100 \
@@ -17,4 +15,4 @@ RRECOMMENDS_${PN} = " \
 	firmware-dvb-usb-tbs5980 \
 	"
 
-PV = "1.2"
+PV = "1.1"

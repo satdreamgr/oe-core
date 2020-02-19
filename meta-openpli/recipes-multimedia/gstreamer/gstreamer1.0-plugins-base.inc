@@ -9,10 +9,16 @@ inherit gettext
 
 PACKAGES_DYNAMIC =+ "^libgst.*"
 
+# opengl packageconfig factored out to make it easy for distros
+# and BSP layers to pick either (desktop) opengl, gles2, or no GL
+PACKAGECONFIG_GL ?= "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'gles2', '', d)}"
+
 PACKAGECONFIG ??= " \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'alsa', 'alsa', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)} \
-    orc ivorbis ogg theora vorbis cdparanoia pango opus \
+    ${PACKAGECONFIG_GL} \
+    ${GSTREAMER_ORC} \
+    ${@bb.utils.filter('DISTRO_FEATURES', 'alsa x11', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland egl', '', d)} \
+    orc gio-unix-2.0 ivorbis ogg theora vorbis cdparanoia pango opus \
     "
 
 X11DEPENDS = "virtual/libx11 libsm libxrender libxv"
@@ -21,6 +27,7 @@ X11DISABLEOPTS = "--disable-x --disable-xvideo --disable-xshm"
 
 PACKAGECONFIG[alsa]         = "--enable-alsa,--disable-alsa,alsa-lib"
 PACKAGECONFIG[cdparanoia]   = "--enable-cdparanoia,--disable-cdparanoia,cdparanoia"
+PACKAGECONFIG[gio-unix-2.0] = "--enable-gio_unix_2_0,--disable-gio_unix_2_0,glib-2.0"
 PACKAGECONFIG[ivorbis]      = "--enable-ivorbis,--disable-ivorbis,tremor"
 PACKAGECONFIG[ogg]          = "--enable-ogg,--disable-ogg,libogg"
 PACKAGECONFIG[opus]         = "--enable-opus,--disable-opus,libopus"
@@ -29,6 +36,10 @@ PACKAGECONFIG[theora]       = "--enable-theora,--disable-theora,libtheora"
 PACKAGECONFIG[visual]       = "--enable-libvisual,--disable-libvisual,libvisual"
 PACKAGECONFIG[vorbis]       = "--enable-vorbis,--disable-vorbis,libvorbis"
 PACKAGECONFIG[x11]          = "${X11ENABLEOPTS},${X11DISABLEOPTS},${X11DEPENDS}"
+PACKAGECONFIG[gles2]        = "--enable-gles2,--disable-gles2,virtual/libgles2"
+PACKAGECONFIG[egl]          = "--enable-egl,--disable-egl,virtual/egl"
+PACKAGECONFIG[opengl]       = "--enable-opengl,--disable-opengl,virtual/libgl libglu"
+PACKAGECONFIG[wayland]      = "--enable-wayland,--disable-wayland,wayland-native wayland wayland-protocols"
 
 EXTRA_OECONF += " \
     --enable-zlib \

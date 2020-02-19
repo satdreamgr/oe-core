@@ -7,11 +7,11 @@ DEPENDS += "gstreamer1.0-plugins-base zlib bzip2 libcap"
 
 inherit gettext
 
-#cairo gdk-pixbuf gudev v4l2
+#cairo gdk-pixbuf gudev v4l2 vpx
 PACKAGECONFIG ??= " \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'pulseaudio', 'pulseaudio', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)} \
-    orc flac jpeg libpng soup speex taglib vpx wavpack libv4l2 v4l2 \
+    ${@bb.utils.filter('DISTRO_FEATURES', 'pulseaudio x11', d)} \
+    cairo flac gdk-pixbuf gudev jpeg libpng orc soup speex taglib wavpack libv4l2 v4l2 \
+    lame mpg123 \
     "
 
 X11DEPENDS = "virtual/libx11 libsm libxrender libxfixes libxdamage"
@@ -21,10 +21,13 @@ PACKAGECONFIG[dv1394]     = "--enable-dv1394,--disable-dv1394,libiec61883 libavc
 PACKAGECONFIG[flac]       = "--enable-flac,--disable-flac,flac"
 PACKAGECONFIG[gdk-pixbuf] = "--enable-gdk_pixbuf,--disable-gdk_pixbuf,gdk-pixbuf"
 PACKAGECONFIG[gudev]      = "--with-gudev,--without-gudev,libgudev"
+PACKAGECONFIG[gtk]        = "--enable-gtk3,--disable-gtk3,gtk+3"
 PACKAGECONFIG[jack]       = "--enable-jack,--disable-jack,jack"
 PACKAGECONFIG[jpeg]       = "--enable-jpeg,--disable-jpeg,jpeg"
+PACKAGECONFIG[lame]       = "--enable-lame,--disable-lame,lame"
 PACKAGECONFIG[libpng]     = "--enable-libpng,--disable-libpng,libpng"
 PACKAGECONFIG[libv4l2]    = "--with-libv4l2,--without-libv4l2,v4l-utils"
+PACKAGECONFIG[mpg123]     = "--enable-mpg123,--disable-mpg123,mpg123"
 PACKAGECONFIG[pulseaudio] = "--enable-pulse,--disable-pulse,pulseaudio"
 PACKAGECONFIG[soup]       = "--enable-soup,--disable-soup,libsoup-2.4"
 PACKAGECONFIG[speex]      = "--enable-speex,--disable-speex,speex"
@@ -41,7 +44,6 @@ EXTRA_OECONF += " \
     --disable-directsound \
     --disable-waveform \
     --disable-oss4 \
-    --disable-sunaudio \
     --disable-osx_audio \
     --disable-osx_video \
     --disable-aalib \
@@ -49,7 +51,9 @@ EXTRA_OECONF += " \
     --disable-libcaca \
     --disable-libdv \
     --disable-shout2 \
+    --disable-twolame \
     --disable-examples \
+    --disable-qt \
 "
 
 FILES_${PN}-equalizer += "${datadir}/gstreamer-1.0/presets/*.prs"

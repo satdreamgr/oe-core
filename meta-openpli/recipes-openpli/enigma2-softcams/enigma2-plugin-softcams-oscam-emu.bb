@@ -18,7 +18,7 @@ DEPENDS = "libusb openssl"
 S = "${WORKDIR}/git"
 B = "${S}"
 CAMNAME = "oscam-emu"
-CAMSTART = "/usr/bin/oscam-emu --config-dir /etc/tuxbox/config/oscam-emu --daemon --pidfile /tmp/oscam-emu.pid --restart 2 --utf8"
+CAMSTART = "/usr/bin/oscam-emu --wait 0 --config-dir /etc/tuxbox/config/oscam-emu --daemon --pidfile /tmp/oscam-emu.pid --restart 2 --utf8"
 CAMSTOP = "kill \`cat /tmp/oscam-emu.pid\` 2> /dev/null"
 
 SRC_URI += " \
@@ -37,7 +37,7 @@ EXTRA_OECMAKE += "\
 	-DWEBIF=1 \
 	-DWITH_STAPI=0 \
 	-DHAVE_LIBUSB=1 \
-	-DSTATIC_LIBUSB=1 \
+	-DSTATIC_LIBUSB=0 \
 	-DWITH_SSL=1 \
 	-DIPV6SUPPORT=1 \
 	-DCLOCKFIX=0 \
@@ -46,6 +46,7 @@ EXTRA_OECMAKE += "\
 	-DCARDREADER_PCSC=1 \
 	-DCW_CYCLE_CHECK=1 \
 	-DCS_CACHEEX=1 \
+	-DMODULE_CONSTCW=1 \	
 	"
 
 do_install() {

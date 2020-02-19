@@ -1,14 +1,17 @@
 require openpli-image.bb
 
-KERNEL_WIFI_DRIVERS = " \
+WIFI_DRIVERS = " \
 	firmware-carl9170 \
 	firmware-htc7010 \
 	firmware-htc9271 \
 	firmware-rt2870 \
 	firmware-rt73 \
 	firmware-rtl8712u \
+	firmware-rtl8188eu \
+	firmware-rtl8192cu \
 	firmware-zd1211 \
 	\
+	kernel-module-8192eu \
 	kernel-module-ath9k-htc \
 	kernel-module-carl9170 \
 	kernel-module-r8712u \
@@ -16,22 +19,8 @@ KERNEL_WIFI_DRIVERS = " \
 	kernel-module-rt2800usb \
 	kernel-module-rt73usb \
 	kernel-module-rtl8187 \
-	kernel-module-zd1211rw \
-	"
-
-EXTRA_KERNEL_WIFI_DRIVERS = " \
-	firmware-rtl8192cu \
-	\
-	kernel-module-r8188eu \
 	kernel-module-rtl8192cu \
-	"
-
-EXTERNAL_WIFI_DRIVERS = " \
-	firmware-rtl8192cu \
-	\
-	rtl8192cu \
-	rtl8188eu \
-	rtl8192eu \
+	kernel-module-zd1211rw \
 	"
 
 ENIGMA2_PLUGINS = " \
@@ -82,13 +71,18 @@ IMAGE_INSTALL += " \
 	ofgwrite \
 	${ENIGMA2_PLUGINS} \
 	\
+	${WIFI_DRIVERS} \
+	\
+	${@bb.utils.contains_any('MACHINE', 'vuuno vuduo vuultimo vusolo vusolo2 vuduo2 vusolose vuzero vuuno4k vuuno4kse vuzero4k vuultimo4k vusolo4k vuduo4k', 'vuplus-tuner-turbo', '', d)} \
+	${@bb.utils.contains_any('MACHINE', 'vuuno4kse vuultimo4k vuduo4k', 'vuplus-hdmi-in-helper', '', d)} \
+	\
+	${@bb.utils.contains_any('MACHINE', 'gbquad4k gbue4k', 'kernel-module-8812au', '', d)} \
+	${@bb.utils.contains_any('MACHINE', 'gbquad4k gbue4k', 'enigma2-plugin-systemplugins-wirelesslan', '', d)} \
+	\
+	${@bb.utils.contains("MACHINE_FEATURES", "chromium", "enigma2-plugin-extensions-chromium", "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "transcoding", "enigma2-plugin-systemplugins-transcodingsetup", "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "streamproxy", "streamproxy", "", d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'ctrlrc', "enigma2-plugin-systemplugins-remotecontrolcode", "", d)} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'colorlcd', "enigma2-plugin-extensions-lcd4linux", "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "kernelwifi", "${KERNEL_WIFI_DRIVERS}", "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "extrakernelwifi", "${EXTRA_KERNEL_WIFI_DRIVERS}", "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "externalwifi", "${EXTERNAL_WIFI_DRIVERS}", "", d)} \
 	\
 	${@bb.utils.contains('OPENPLI_FEATURES', 'dvd', 'cdtextinfo', '', d)} \
 	"

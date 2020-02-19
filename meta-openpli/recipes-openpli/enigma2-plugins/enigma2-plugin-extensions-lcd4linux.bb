@@ -5,7 +5,7 @@ MAINTAINER = "PLi team"
 LICENSE = "NPOSL-3.0"
 LIC_FILES_CHKSUM = "file://usr/lib/enigma2/python/Plugins/Extensions/LCD4linux/LICENSE;md5=a06300d1389bd32f84faeb97b6f6771f"
 
-PKGVERSION = "4.9-r0"
+PKGVERSION = "5.0-r4"
 PV = "${PKGVERSION}-${SRCPV}"
 PKGV = "${PKGVERSION}-${GITPKGV}"
 
@@ -18,6 +18,7 @@ RDEPENDS_${PN} += "\
 	python-ctypes \
 	python-datetime \
 	python-email \
+	python-image \
 	python-imaging \
 	python-mutagen \
 	python-pyusb \
@@ -30,15 +31,15 @@ RDEPENDS_${PN} += "\
 
 S = "${WORKDIR}/git"
 
-inherit gitpkgv pythonnative allarch
+inherit gitpkgv pythonnative
 
 do_compile() {
-	python -m compileall ${S}/usr/lib
+	python -m compileall ${S}${libdir}
 }
 
 do_install() {
-	cp -r --preserve=mode,links "${S}/usr" "${D}"
-	cp -r --preserve=mode,links "${S}/etc" "${D}"
+	cp -r --preserve=mode,links "${S}${prefix}" "${D}"
+	cp -r --preserve=mode,links "${S}${sysconfdir}" "${D}"
 }
 
 FILES_${PN} = "\

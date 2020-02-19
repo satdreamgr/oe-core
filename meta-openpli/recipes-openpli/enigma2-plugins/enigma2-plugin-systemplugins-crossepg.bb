@@ -3,12 +3,11 @@ HOMEPAGE = "https://github.com/oe-alliance/e2openplugin-CrossEPG"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=4fbd65380cdd255951079008b364516c"
 
-DEPENDS += "libxml2 zlib python swig-native curl python"
-RDEPENDS_${PN} += "libcurl enigma2 python-compression python-lzma xz"
+DEPENDS += "libxml2 zlib swig-native curl python"
+RDEPENDS_${PN} += "libcurl python-compression python-lzma xz python-core"
 
 inherit gitpkgv
 
-SRCREV = "${AUTOREV}"
 SRC_URI = "git://github.com/oe-alliance/e2openplugin-CrossEPG.git;protocol=git"
 SRC_URI_append = " file://add-dummy-boxbranding.patch"
 
@@ -47,7 +46,7 @@ do_compile_append() {
 
 python populate_packages_prepend() {
     enigma2_plugindir = bb.data.expand('${libdir}/enigma2/python/Plugins', d)
-    do_split_packages(d, enigma2_plugindir, '^(\w+/\w+)/[a-zA-Z0-9_]+.*$', 'enigma2-plugin-%s', '%s', recursive=True, match_path=True, prepend=True, extra_depends="enigma2")
+    do_split_packages(d, enigma2_plugindir, '^(\w+/\w+)/[a-zA-Z0-9_]+.*$', 'enigma2-plugin-%s', '%s', recursive=True, match_path=True, prepend=True, extra_depends='')
     do_split_packages(d, enigma2_plugindir, '^(\w+/\w+)/.*\.py$', 'enigma2-plugin-%s-src', '%s (source files)', recursive=True, match_path=True, prepend=True)
     do_split_packages(d, enigma2_plugindir, '^(\w+/\w+)/.*\.la$', 'enigma2-plugin-%s-dev', '%s (development)', recursive=True, match_path=True, prepend=True)
     do_split_packages(d, enigma2_plugindir, '^(\w+/\w+)/.*\.a$', 'enigma2-plugin-%s-staticdev', '%s (static development)', recursive=True, match_path=True, prepend=True)
@@ -55,7 +54,7 @@ python populate_packages_prepend() {
     do_split_packages(d, enigma2_plugindir, '^(\w+/\w+)/.*\/.*\.po$', 'enigma2-plugin-%s-po', '%s (translations)', recursive=True, match_path=True, prepend=True)
 }
 
-FILES_${PN}_append = " /usr/crossepg ${libdir}/python2.7"
+FILES_${PN}_append = " ${prefix}/crossepg ${libdir}/python2.7"
 FILES_${PN}-src_append = " ${libdir}/python2.7/crossepg.py"
-FILES_${PN}-dbg_append = " /usr/crossepg/scripts/mhw2epgdownloader/.debug"
-FILES_${PN}-dbg += "/usr/crossepg/scripts/mhw2epgdownloader/.debug"
+FILES_${PN}-dbg_append = " ${prefix}/crossepg/scripts/mhw2epgdownloader/.debug"
+FILES_${PN}-dbg += "${prefix}/crossepg/scripts/mhw2epgdownloader/.debug"
