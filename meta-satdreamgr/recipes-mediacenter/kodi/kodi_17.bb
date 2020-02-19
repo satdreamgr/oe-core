@@ -236,11 +236,9 @@ RRECOMMENDS_${PN}_append = " \
     python-numbers \
     python-pkgutil \
     python-pycurl \
-    python-async \
     python-docutils \
     python-iniparse \
     python-hotshot \
-    python-importlib \
     python-curses \
     python-pycrypto \
     python-db \

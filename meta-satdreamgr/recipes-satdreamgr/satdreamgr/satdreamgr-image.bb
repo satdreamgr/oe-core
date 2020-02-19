@@ -32,7 +32,7 @@ IMAGE_INSTALL += " \
 	glibc-gconv-iso8859-7 \
 	glibc-gconv-utf-16 \
 	livestreamersrv \
-	rtl8192eu \
+	kernel-module-8192eu \
 	satdreamgr-bootlogo \
 	satdreamgr-extra-feed-configs \
 	satdreamgr-panel \
@@ -115,6 +115,8 @@ DEPENDS += " \
 	python-pycurl \
 	python-pyexecjs \
 	python-tcpbridge \
+	python-pyric \
+	python-pyroute2 \
 	redsea \
 	rt8812au \
 	rt8814au \

@@ -3,7 +3,6 @@ DESCRIPTION = "Streamlink is a command-line utility that pipes video streams fro
 HOMEPAGE = "https://streamlink.github.io/"
 SECTION = "devel/python"
 LICENSE = "BSD"
-PACKAGE_ARCH = "all"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=6e2f7fbdd7536a59eed68a6b8e99dbf7"
 
@@ -31,7 +30,7 @@ SRC_URI = "git://github.com/streamlink/streamlink.git;protocol=git"
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git/"
 
-inherit gitpkgv
+inherit gitpkgv python-dir
 
 PV = "1.0.0+git${SRCPV}"
 PKGV = "1.0.0+git${GITPKGV}"
@@ -45,14 +44,15 @@ do_install_append() {
 PACKAGES = "${PN}-src ${PN}"
 
 FILES_${PN} = " \
-	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.pyo \
-	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.pyo \
-	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.pyo \
-	"
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.pyo \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.pyo \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.pyo \
+    "
 
-FILES_${PN}-src = " \
-	${libdir}/${PYTHON_DIR}/site-packages/streamlink-*.egg-info/* \
-	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.py \
-	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.py \
-	${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.py \
-	"
+FILES_${PN}-src += " \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink-*.egg-info/* \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.py \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.py \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.py \
+    "
+

@@ -20,7 +20,7 @@ S = "${WORKDIR}/git"
 
 FILES_${PN} = "${libdir}"
 
-PACKAGES =+ "${PN}-src"
+#PACKAGES =+ "${PN}-src"
 
 FILES_${PN}-src = "\
     ${libdir}/enigma2/python/Components/Converter/*.py \

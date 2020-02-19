@@ -8,7 +8,7 @@ require conf/license/openpli-gplv2.inc
 
 inherit autotools-brokensep gitpkgv pythonnative
 
-PACKAGES += " ${PN}-src"
+#PACKAGES += " ${PN}-src"
 
 SRCREV = "${AUTOREV}"
 PV = "2.3+git${SRCPV}"
@@ -122,7 +122,7 @@ do_install_prepend() {
    rm -rf ${S}/BoxBranding/remotes/
 }
 
-FILES_${PN}-src = "${libdir}/enigma2/python/Components/*.py"
+FILES_${PN}-src += "${libdir}/enigma2/python/Components/*.py"
 FILES_${PN} = "${libdir}/enigma2/python/*.so /usr/share ${libdir}/enigma2/python/Components/*.pyo ${libdir}/enigma2/python/Plugins"
 FILES_${PN}-dev += "${libdir}/enigma2/python/*.la"
 FILES_${PN}-staticdev += "${libdir}/enigma2/python/*.a"

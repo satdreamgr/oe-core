@@ -2,12 +2,11 @@ DESCRIPTION = "Livestreamersrv is a helper deamon for livestreamer"
 SECTION = "devel/python"
 MAINTAINER = "SatDreamGR"
 HOMEPAGE = "www.satdreamgr.com"
-inherit allarch
 
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-RDEPENDS_${PN} = "streamlink python-syslog"
+RDEPENDS_${PN} = "streamlink python-syslog python-core"
 
 SRC_URI = "git://github.com/athoik/livestreamersrv.git"
 S = "${WORKDIR}/git/"

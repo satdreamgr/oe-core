@@ -27,7 +27,7 @@ do_install_append() {
 	chmod 755 ${D}${libdir}/enigma2/python/Plugins/Extensions/GreekStreamTV/*.sh
 }
 
-PACKAGES =+ "${PN}-src"
+#PACKAGES =+ "${PN}-src"
 
 FILES_${PN} = "${libdir}/enigma2/python/Plugins/Extensions/GreekStreamTV/*"
 FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/Extensions/GreekStreamTV/*.py \
