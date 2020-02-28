@@ -11,7 +11,7 @@ PKGV = "1.0+git${GITPKGV}"
 PR = "r0"
 
 SRC_URI = "git://git.osmocom.org/rtl-sdr.git;protocol=git"
-SRCREV = "8985b45e1fe1a5d50c5e1dc4c7c306705e602445"
+SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"
 
