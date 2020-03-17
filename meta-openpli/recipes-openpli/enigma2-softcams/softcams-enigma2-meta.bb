@@ -5,7 +5,7 @@ require conf/license/openpli-gplv2.inc
 PROVIDES = "softcams"
 
 # mipsel only binary softcams (mips32el and mips32el-nf arch)
-DEPENDS_append_mipseldisabled = "\
+DEPENDS_append_mipsel = "\
 	enigma2-plugin-softcams-cccam \
 	enigma2-plugin-softcams-cccam209 \
 	enigma2-plugin-softcams-cccam221 \
@@ -26,9 +26,9 @@ DEPENDS_append_armv7ve = " \
 	"
 
 # aarch64 only binary softcams (aarch64 arch)
-#DEPENDS_append_aarch64 = " \
-#	enigma2-plugin-softcams-mgcamd135a \
-#	"
+DEPENDS_append_aarch64 = " \
+	enigma2-plugin-softcams-mgcamd135a \
+	"
 
 # softcams with source available
 DEPENDS += " \
