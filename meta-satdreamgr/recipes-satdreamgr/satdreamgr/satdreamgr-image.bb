@@ -45,6 +45,7 @@ DEPENDS += " \
 	${@bb.utils.contains('MACHINE_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi', '', d)} \
 	${@bb.utils.contains('OPENPLI_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi', '', d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "webkithbbtv", "enigma2-plugin-extensions-webkithbbtv", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "hbbtv-browser-webkit", "enigma2-plugin-extensions-hbbtv-webkit", "", d)} \
 	${@bb.utils.contains('TARGET_FPU', 'soft', '', 'nodejs', d)} \
 	\
 	astra-sm \
@@ -130,4 +131,5 @@ DEPENDS += " \
 	v4l-utils \
 	udpxy \
 	wscan \
+	gdb valgrind \
 "
