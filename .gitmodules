@@ -13,6 +13,7 @@
 [submodule "meta-vuplus"]
 	path = meta-vuplus
 	url = http://github.com/satdreamgr/meta-vuplus.git
+	branch = "zeus"
 [submodule "meta-xp"]
 	path = meta-xp
 	url = https://github.com/satdreamgr/meta-xp.git
