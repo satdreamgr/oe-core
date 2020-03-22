@@ -20,6 +20,7 @@
 [submodule "meta-xtrend"]
 	path = meta-xtrend
 	url = http://github.com/satdreamgr/meta-xtrend.git
+	branch = zeus
 [submodule "meta-qt5"]
 	path = meta-qt5
 	url = http://github.com/meta-qt5/meta-qt5.git
