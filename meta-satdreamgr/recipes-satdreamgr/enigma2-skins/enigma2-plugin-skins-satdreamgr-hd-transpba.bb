@@ -29,13 +29,3 @@ do_install() {
         chmod -R a+rX ${D}${libdir}/enigma2/
 }
 
-pkg_postinst_${PN}_append () {
-        if [ -z "$D" ]
-        then
-		cd ${datadir}/enigma2/Satdreamgr-HD-TranspBA
-		if [ ! -L infobar.xml ]
-		then
-			ln -s infobar_a.xml infobar.xml
-		fi
-        fi
-}
