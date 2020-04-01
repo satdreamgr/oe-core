@@ -13,7 +13,7 @@ PKGV = "1.0+git${GITPKGV}"
 SRCREV = "${AUTOREV}"
 QTVER ?= "${@bb.utils.contains('MACHINE_FEATURES', 'hisil', '-v2', '', d)}"
 
-RDEPENDS_${PN}  = "qtwebkit virtual/libgles2"
+RDEPENDS_${PN} = "qtwebkit"
 
 S = "${WORKDIR}/git/qthbbtv${QTVER}"
 
@@ -37,5 +37,5 @@ exit 0
 INHIBIT_PACKAGE_STRIP = "1"
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 
-INSANE_SKIP_${PN} += "already-stripped"
+INSANE_SKIP_${PN} += "already-stripped file-rdeps ldflags"
 
