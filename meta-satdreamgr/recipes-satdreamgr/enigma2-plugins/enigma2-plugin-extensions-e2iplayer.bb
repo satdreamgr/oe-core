@@ -1,10 +1,10 @@
-SUMMARY = "E2iPlayer"
+SUMMARY = "E2iPlayer zadmario fork"
 DESCRIPTION = "Watch Videos Online"
-HOMEPAGE = "https://gitlab.com/iptvplayer-for-e2/"
+HOMEPAGE = "https://gitlab.com/zadmario/e2iplayer"
 SECTION = "multimedia"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://README.md;md5=42fcd1c9f76d710e6c5862ac74cf4e19"
-SRC_URI = "git://gitlab.com/iptvplayer-for-e2/iptvplayer-for-e2.git;protocol=http file://e2i.patch"
+LIC_FILES_CHKSUM = "file://README.md;md5=02f735bad3e90ba91c281a94ae92a684"
+SRC_URI = "git://gitlab.com/zadmario/e2iplayer.git;protocol=http file://e2i.patch"
 S = "${WORKDIR}/git"
 
 inherit gitpkgv
