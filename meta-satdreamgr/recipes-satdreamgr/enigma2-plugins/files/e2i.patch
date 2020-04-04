@@ -1,0 +1,31 @@
+diff --git a/IPTVPlayer/setup/iptvsetupimpl.py b/IPTVPlayer/setup/iptvsetupimpl.py
+index 1cd7f13..f873dce 100644
+--- a/IPTVPlayer/setup/iptvsetupimpl.py
++++ b/IPTVPlayer/setup/iptvsetupimpl.py
+@@ -109,7 +109,7 @@ class IPTVSetupImpl:
+         
+         # cmdwrap
+         self.cmdwrapVersion = 2
+-        self.cmdwrapPaths = [resolveFilename(SCOPE_PLUGINS, 'Extensions/IPTVPlayer/bin/cmdwrap'), "/usr/bin/cmdwrap"]
++        self.cmdwrapPaths = [resolveFilename(SCOPE_PLUGINS, 'Extensions/IPTVPlayer/bin/cmdwrap'), "/usr/bin/cmdwrapper"]
+         
+         # duk
+         self.dukVersion = 5 # "2.1.99 [experimental]" # real version
+@@ -291,7 +291,7 @@ class IPTVSetupImpl:
+     def getOpensslVersionFinished(self, stsTab, dataTab):
+         printDBG("IPTVSetupImpl.getOpensslVersionFinished")
+         if len(stsTab) > 0 and True == stsTab[-1]:
+-            for ver in ['0.9.8', '1.0.0', '1.0.2']:
++            for ver in ['0.9.8', '1.0.0', '1.0.2', '1.1.1']:
+                 if ver in dataTab[-1]:
+                     self.openSSLVersion = '.' + ver
+                     break
+@@ -887,7 +887,7 @@ class IPTVSetupImpl:
+         printDBG("IPTVSetupImpl.cmdwrapStep")
+             
+         def _detectValidator(code, data):
+-            if 'cmdwrap input_file' in data:
++            if 'cmdwrapper input_file' in data:
+                 try:
+                     tmp = re.search("Version\:\s*?([0-9.]+?)[^0-9^.]", data).group(1)
+                     if float(tmp) >= self.cmdwrapVersion:
