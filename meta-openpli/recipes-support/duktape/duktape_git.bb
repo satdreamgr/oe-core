@@ -21,7 +21,6 @@ do_compile() {
 
 do_install() {
 	install -d ${D}${bindir}
-	#install -m 0755 ${S}/duk-low ${D}${bindir}/duk
 	install -m 0755 ${S}/duk ${D}${bindir}/duk
 }
 
