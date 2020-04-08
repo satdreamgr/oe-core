@@ -13,7 +13,7 @@ TARGET_CC_ARCH += "${LDFLAGS}"
 inherit gitpkgv pythonnative
 PV = "2.5.0+git${SRCPV}"
 PKGV = "2.5.0+git${GITPKGV}"
-PR = "r0"
+PR = "r1"
 
 do_compile() {
 	oe_runmake -f Makefile duk
