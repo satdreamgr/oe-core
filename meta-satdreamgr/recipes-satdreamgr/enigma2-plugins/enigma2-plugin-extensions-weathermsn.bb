@@ -3,7 +3,7 @@ SUMMARY = "Weather MSN"
 MAINTAINER = "Sirius"
 LICENSE = "GPLv3+"
 HOMEPAGE = "www.gisclub.tv"
-LIC_FILES_CHKSUM = "file://python/Plugins/Extensions/WeatherMSN/plugin.py;beginline=3;endline=19;md5=10bdcaaaec8041e55835067db0506e8d"
+LIC_FILES_CHKSUM = "file://python/Plugins/Extensions/WeatherMSN/plugin.py;beginline=3;endline=19;md5=ffc4a5bf0cc661f90242506d3c0fed50"
 
 inherit gitpkgv pythonnative allarch
 
@@ -15,7 +15,7 @@ PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"
 PACKAGES = "${PN}-src ${PN}"
 
 SRC_URI = "git://github.com/Sirius0103/enigma2-plugins.git;protocol=https"
-SRCREV = "ab75d3dd2ac6c26d91b52b237d3b5b55a360d93b"
+SRCREV = "c0553c0d5ea591750c1454b84cba394281680c4e"
 
 FILES_${PN}-src += "/usr/lib/enigma2/python/Plugins/Extensions/*/*.py /usr/lib/enigma2/python/Plugins/Extensions/*/*/*.py"
 FILES_${PN} = "/usr/lib/enigma2/"
