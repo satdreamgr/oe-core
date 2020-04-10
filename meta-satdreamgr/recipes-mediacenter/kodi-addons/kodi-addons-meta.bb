@@ -22,5 +22,6 @@ RDEPENDS_${PN} = " \
     kodi-addon-pvr-pctv \
     kodi-addon-pvr-stalker \
     kodi-addon-pvr-vdr.vnsi \
-    ${@bb.utils.contains("MACHINE_FEATURES", "kodi18", "kodi-addon-inputstream-adaptive kodi-addon-inputstream-rtmp", "", d)} \
+    kodi-addon-inputstream-adaptive \
+    kodi-addon-inputstream-rtmp \
     "

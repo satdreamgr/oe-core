@@ -5,6 +5,6 @@ PKGV = "3.28.9+git${GITPKGV}"
 
 KODIADDONPLUGIN = "vuplus"
 
-DEPENDS_append = "${@bb.utils.contains("MACHINE_FEATURES", "kodi18", "nlohmann-json", "", d)}"
+DEPENDS_append = "nlohmann-json"
 
 require kodi-addon-pvr.inc
