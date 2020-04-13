@@ -15,7 +15,6 @@ PKGV = "1+git${GITPKGV}"
 inherit distutils-openplugins
 
 RDEPENDS_${PN} = " \
-	python-core \
 	python-codecs \
 	python-json \
 	python-netclient \
