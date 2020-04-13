@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=6e2f7fbdd7536a59eed68a6b8e99dbf7"
 
 inherit setuptools
 
-RDEPENDS_${PN} = "python \
+RDEPENDS_${PN} = " \
 	python-argparse \
 	python-backports-shutil-which \
 	python-ctypes \
