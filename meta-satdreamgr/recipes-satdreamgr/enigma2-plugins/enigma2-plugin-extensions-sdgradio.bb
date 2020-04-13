@@ -16,7 +16,7 @@ PKGV = "2+git${GITPKGV}"
 
 inherit distutils-openplugins
 
-RDEPENDS_${PN} = "python-core rtl-sdr redsea dab-cmdline-sdgradio dab-cmdline-sdgradio-pcm dab-cmdline-sdgradio-wav"
+RDEPENDS_${PN} = "rtl-sdr redsea dab-cmdline-sdgradio dab-cmdline-sdgradio-pcm dab-cmdline-sdgradio-wav"
 
 #PACKAGES =+ "${PN}-src"
 RDEPENDS_{PN}-src = "${PN}"
