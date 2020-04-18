@@ -1,27 +1,26 @@
-SUMMARY = "DAB decoding library with example of its use"
-SECTION = "libs/multimedia"
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://../license;md5=427d5433a7bd7fc1e38dc15e93cbc645"
+DESCRIPTION = "meta file for dab-cmdline-sdgradio"
+require conf/license/openpli-gplv2.inc
 
-SRCREV = "${AUTOREV}"
+PV = "1.3"
 
-DEPENDS = "fftw libusb1 faad2 zlib rtl-sdr"
-RDEPENDS_${PN} = "rtl-sdr"
+inherit allarch
 
-inherit gitpkgv
+RDEPENDS_${PN} = "\
+	dab-cmdline-sdgradio-aac \
+	dab-cmdline-sdgradio-pcm \
+	dab-cmdline-sdgradio-raw-aac \
+	dab-cmdline-sdgradio-raw-pcm \
+	dab-cmdline-sdgradio-rtltcp-aac \
+	dab-cmdline-sdgradio-rtltcp-pcm \
+	"
 
-PV = "1.2+git${SRCPV}"
-PKGV = "1.2+git${GITPKGV}"
-PR = "r0"
+PACKAGES = "${PN}"
+ALLOW_EMPTY_${PN} = "1"
 
-SRC_URI = "git://github.com/satdreamgr/dab-cmdline.git;branch=sdgradio"
-
-EXTRA_OECMAKE = "-DAAC_OUT=ON -DRTLSDR=ON -DCMAKE_INSTALL_PREFIX=/usr/bin"
-
-S = "${WORKDIR}/git/sdgradio"
-
-inherit cmake pkgconfig
-
-do_configure_prepend() {
-	sed -i -e 's:librtlsdr.so:librtlsdr.so.0:g' ${WORKDIR}/git/devices/rtlsdr-handler/rtlsdr-handler.cpp
-}
+# We only need the packaging tasks - disable the rest
+do_fetch[noexec] = "1"
+do_unpack[noexec] = "1"
+do_patch[noexec] = "1"
+do_configure[noexec] = "1"
+do_compile[noexec] = "1"
+do_install[noexec] = "1"
