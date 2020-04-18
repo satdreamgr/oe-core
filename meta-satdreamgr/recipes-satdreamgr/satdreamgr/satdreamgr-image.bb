@@ -97,6 +97,7 @@ DEPENDS += " \
 	inadyn-mt \
 	iptables \
 	iw \
+	kalibrate \
 	libcec \
 	libtorrent \
 	ltrace \
