@@ -14,8 +14,7 @@ FILES_${PN} = "${datadir}/enigma2/"
 
 S = "${WORKDIR}/git"
 
-do_compile() {
-}
+do_compile[noexec] = "1"
 
 do_install() {
 	install -d ${D}${datadir}
