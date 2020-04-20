@@ -1,19 +1,20 @@
 require wireguard.inc
 
-inherit systemd pkgconfig
+SRC_URI = "https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-${PV}.tar.xz"
+SRC_URI[md5sum] = "36cd9411f56bc5dcaac29bbab6fd9c67"
+SRC_URI[sha256sum] = "757ed31d4d48d5fd7853bfd9bfa6a3a1b53c24a94fe617439948784a2c0ed987"
 
-DEPENDS = "wireguard-module libmnl"
+S = "${WORKDIR}/wireguard-tools-${PV}/src/"
 
-do_compile_prepend () {
-    cd ${S}/tools
-}
+inherit bash-completion systemd pkgconfig
+
+DEPENDS = "libmnl"
 
 do_install () {
-    cd ${S}/tools
     oe_runmake DESTDIR="${D}" PREFIX="${prefix}" SYSCONFDIR="${sysconfdir}" \
         SYSTEMDUNITDIR="${systemd_unitdir}" \
         WITH_SYSTEMDUNITS=${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'yes', '', d)} \
-        WITH_BASHCOMPLETION=no \
+        WITH_BASHCOMPLETION=yes \
         WITH_WGQUICK=yes \
         install
 }

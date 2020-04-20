@@ -9,9 +9,3 @@ HOMEPAGE = "https://www.wireguard.io/"
 LICENSE = "GPLv2"
 
 LIC_FILES_CHKSUM = "file://../COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
-
-SRC_URI = "https://git.zx2c4.com/WireGuard/snapshot/WireGuard-${PV}.tar.xz"
-SRC_URI[md5sum] = "b42c2b42f24a714cef56c4113b9b3a88"
-SRC_URI[sha256sum] = "a38ead72994a7db7cda2d0085f410df1111b4728db050a519883eda8f3fe38f1"
-
-S = "${WORKDIR}/WireGuard-${PV}/src/"
