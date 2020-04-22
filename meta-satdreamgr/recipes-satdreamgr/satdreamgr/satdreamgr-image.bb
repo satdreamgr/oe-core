@@ -41,7 +41,11 @@ IMAGE_INSTALL += " \
 	softcam-support \
 "
 
+inherit linux-kernel-base
+KERNEL_VERSION = "${@ get_kernelversion_headers('${STAGING_KERNEL_BUILDDIR}')}"
+
 DEPENDS += " \
+	${@ 'wireguard-tools' if (bb.utils.vercmp_string("${KERNEL_VERSION}" or "0", '3.14') >= 0) else '' } \
 	${@bb.utils.contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-satscan" , "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "chromiumos", "enigma2-plugin-extensions-chromium", "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "hbbtv-browser-webkit", "enigma2-plugin-extensions-hbbtv-webkit", "", d)} \
