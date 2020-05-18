@@ -18,7 +18,7 @@ PKGV = "1.1+git${GITPKGV}"
 VER ="1.1"
 PR = "r0"
 
-SRC_URI = "git://github.com/oe-alliance/webkit.org.git;protocol=https; file://s.patch"
+SRC_URI = "git://github.com/oe-alliance/webkit.org.git;protocol=https"
 
 inherit autotools lib_package gtk-doc pkgconfig perlnative pythonnative gitpkgv
 
