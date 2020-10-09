@@ -1212,18 +1212,117 @@ index 0000000..e0a788d
 +Greece/Zouzouli
 +Greece/Zoniana
 diff --git a/plugin/ui.py b/plugin/ui.py
-index f3d7488..75a12e9 100644
+index 5991c78..e16b160 100644
 --- a/plugin/ui.py
 +++ b/plugin/ui.py
-@@ -651,6 +651,7 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -13,7 +13,7 @@
+ #
+ from __future__ import absolute_import
+ from __future__ import print_function
+-VERSION = "3.2.6"
++VERSION = "3.2.6-gr.mod"
+ #
+ #                    04.10.2017
+ #
+@@ -141,7 +141,7 @@ from Components.ConfigList import ConfigList, ConfigListScreen
+ import os, sys, re, threading
+ 
+ # Enigma
+-from enigma import eListboxPythonMultiContent, ePicLoad, eServiceReference, eTimer, getDesktop, gFont, RT_HALIGN_RIGHT, RT_HALIGN_LEFT , RT_VALIGN_CENTER
++from enigma import eListboxPythonMultiContent, ePicLoad, eServiceReference, eTimer, getDesktop, gFont, RT_HALIGN_RIGHT, RT_HALIGN_LEFT, BT_SCALE , BT_KEEP_ASPECT_RATIO, RT_VALIGN_CENTER
+ 
+ # Plugin definition
+ from Plugins.Plugin import PluginDescriptor
+@@ -190,8 +190,6 @@ config.plugins.foreca.units = ConfigSelection(default="metrickmh", choices = [("
+ config.plugins.foreca.time = ConfigSelection(default="24h", choices = [("12h", _("12 h")), ("24h", _("24 h"))])
+ config.plugins.foreca.debug = ConfigEnableDisable(default=False)
+ 
+-
+-
+ HEADERS = {'User-Agent': 'Mozilla/5.0 (SmartHub; SMART-TV; U; Linux/SmartTV; Maple2012) AppleWebKit/534.7 (KHTML, like Gecko) SmartTV Safari/534.7'}
+ MAIN_PAGE = "http://www.foreca.net"
+ USR_PATH = resolveFilename(SCOPE_CONFIG)+"Foreca"
+@@ -269,7 +267,7 @@ class MainMenuList(MenuList):
+ 		self.font1 = gFont("Regular",24)
+ 		self.font2 = gFont("Regular",18)
+ 		self.font3 = gFont("Regular",22)
+-		self.itemHeight = 120
++		self.itemHeight = 90
+ 		self.valTime = 10,34,60,24
+ 		self.valPict = 70,10,70,70
+ 		self.valPictScale = 0
+@@ -422,6 +420,7 @@ class MainMenuList(MenuList):
+ 		else:
+ 			self.centigrades = int(self.x[2])
+ 			tempUnit = _(SIGN + "C")
++
+ 		if self.centigrades <= -20:
+ 			self.tempcolor = ddblau
+ 		elif self.centigrades <= -15:
+@@ -455,7 +454,10 @@ class MainMenuList(MenuList):
+ 		pngpic = LoadPixmap(self.thumb)
+ 		if pngpic is not None:
+ 			x, y, w, h = self.valPict
+-			self.res.append(MultiContentEntryPixmapAlphaTest(pos=(x, y), size=(w, h), png=pngpic))
++			flags = 0
++			if self.valPictScale:
++				flags = BT_SCALE | BT_KEEP_ASPECT_RATIO
++			self.res.append(MultiContentEntryPixmapAlphaTest(pos=(x, y), size=(w, h), png=pngpic, flags = flags ))
+ 
+ 		# Temp
+ 		x, y, w, h = self.valTemp
+@@ -467,7 +469,10 @@ class MainMenuList(MenuList):
+ 		pngpic = LoadPixmap(self.wind + ".png")
+ 		if pngpic is not None:
+ 			x, y, w, h = self.valWindPict
+-			self.res.append(MultiContentEntryPixmapAlphaTest(pos=(x, y), size=(w, h), png=pngpic))
++			flags = 0
++			if self.valWindPictScale:
++				flags = BT_SCALE | BT_KEEP_ASPECT_RATIO
++			self.res.append(MultiContentEntryPixmapAlphaTest(pos=(x, y), size=(w, h), png=pngpic, flags = flags))
+ 
+ 		# Wind
+ 		x, y, w, h = self.valWind
+@@ -477,7 +482,7 @@ class MainMenuList(MenuList):
+ 		
+ 		# Text
+ 		x, y, w, h = self.valText1
+-		self.res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=3, text=_(self.x[5]), color=weiss, color_sel=weiss))
++		self.res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=3, text=self.x[5], color=weiss, color_sel=weiss))
+ 		x, y, w, h = self.valText2
+ 		textsechs=self.x[6]
+ 		textsechs=textsechs.replace("&deg;", "") + tempUnit
+@@ -594,8 +599,8 @@ class ForecaPreview(Screen, HelpableScreen):
+ 
+ 		if HD:
+ 			self.skin = """
+-				<screen name="ForecaPreview" position="center,center" size="980,505" title="Foreca Weather Forecast" backgroundColor="#00000000" >
+-					<widget name="MainList" position="0,90" size="980,365" zPosition="3" backgroundColor="#00000000" enableWrapAround="1" scrollbarMode="showOnDemand" />
++				<screen name="ForecaPreview" position="center,center" size="980,505" title="Foreca Weather Forecast" backgroundColor="#40000000" >
++					<widget name="MainList" position="0,90" size="980,365" zPosition="3" backgroundColor="#40000000" enableWrapAround="1" scrollbarMode="showOnDemand" />
+ 					<widget source="Titel" render="Label" position="4,10" zPosition="3" size="978,60" font="Regular;24" valign="center" halign="left" transparent="1" foregroundColor="#ffffff"/>
+ 					<widget source="Titel2" render="Label" position="35,15" zPosition="2" size="900,60" font="Regular;26" valign="center" halign="center" transparent="1" foregroundColor="#f47d19"/>
+ 					<eLabel position="5,70" zPosition="2" size="970,2" foregroundColor="#c3c3c9" backgroundColor="#FFFFFF" />
+@@ -618,8 +623,8 @@ class ForecaPreview(Screen, HelpableScreen):
+ 				</screen>"""
+ 		else:
+ 			self.skin = """
+-				<screen name="ForecaPreview" position="center,65" size="720,480" title="Foreca Weather Forecast" backgroundColor="#00000000" >
+-					<widget name="MainList" position="0,65" size="720,363" zPosition="3" backgroundColor="#00000000" enableWrapAround="1" scrollbarMode="showOnDemand" />
++				<screen name="ForecaPreview" position="center,65" size="720,480" title="Foreca Weather Forecast" backgroundColor="#40000000" >
++					<widget name="MainList" position="0,65" size="720,363" zPosition="3" backgroundColor="#40000000" enableWrapAround="1" scrollbarMode="showOnDemand" />
+ 					<widget source="Titel" render="Label" position="20,3" zPosition="3" size="680,50" font="Regular;20" valign="center" halign="left" transparent="1" foregroundColor="#ffffff"/>
+ 					<widget source="Titel2" render="Label" position="40,5" zPosition="2" size="640,50" font="Regular;22" valign="center" halign="center" transparent="1" foregroundColor="#f47d19"/>
+ 					<eLabel position="5,55" zPosition="2" size="710,2" foregroundColor="#c3c3c9" backgroundColor="#FFFFFF" />
+@@ -656,6 +661,7 @@ class ForecaPreview(Screen, HelpableScreen):
  			self["key_blue"] = StaticText(_("Home"))
  		self["key_info"] = StaticText(_("Legend"))
  		self["key_menu"] = StaticText(_("Maps"))
 +		self["key_help"] = StaticText(_("International City"))
- 		self["Title"] = StaticText(_("Foreca Weather Forecast") + "   " + _("Version ") + VERSION)
+ 		self.setTitle(_("Foreca Weather Forecast") + "   " + _("Version ") + VERSION)
  
  		HelpableScreen.__init__(self)
-@@ -659,7 +660,8 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -664,7 +670,8 @@ class ForecaPreview(Screen, HelpableScreen):
  				"cancel": (self.exit, _("Exit - End")),
  				"menu": (self.Menu, _("Menu - Weather maps")),
  				"showEventInfo": (self.info, _("Info - Legend")),
@@ -1233,7 +1332,7 @@ index f3d7488..75a12e9 100644
  				"left": (self.left, _("Left - Previous day")),
  				"right": (self.right, _("Right - Next day")),
  				"up": (self.up, _("Up - Previous page")),
-@@ -847,7 +849,13 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -857,7 +864,13 @@ class ForecaPreview(Screen, HelpableScreen):
  
  	def OK(self):
  		global city
@@ -1248,7 +1347,7 @@ index f3d7488..75a12e9 100644
  		city = self.ort
  		self.session.openWithCallback(self.OKCallback, CityPanel,panelmenu)
  
-@@ -1115,6 +1123,7 @@ class CityPanel(Screen, HelpableScreen):
+@@ -1128,6 +1141,7 @@ class CityPanel(Screen, HelpableScreen):
  		self.setup_title = _("Select a city")
  		self.Mlist = []
  		self["Mlist"] = CityPanelList([])
@@ -1256,7 +1355,7 @@ index f3d7488..75a12e9 100644
  
  		self.onChangedEntry = []
  
-@@ -1146,8 +1155,8 @@ class CityPanel(Screen, HelpableScreen):
+@@ -1159,8 +1173,8 @@ class CityPanel(Screen, HelpableScreen):
  
  	def prepare(self):
  		self.maxidx = 0
@@ -1267,15 +1366,43 @@ index f3d7488..75a12e9 100644
  			for line in file:
  				text = line.strip()
  				self.maxidx += 1
+@@ -1498,7 +1512,10 @@ class SatPanel(Screen, HelpableScreen):
+ #------------------------------------------------------------------------------------------
+ 
+ 	def SatEntryItem(self,entry):
++		flags = 0
+ 		pict_scale = self["Mlist"].pictScale
++		if pict_scale:
++			flags = BT_SCALE # need stretch to height, due it is missing BT_KEEP_ASPECT_RATIO
+ 
+ 		ItemSkin = self["Mlist"].itemHeight
+ 
+@@ -1513,7 +1530,7 @@ class SatPanel(Screen, HelpableScreen):
+ 		thumb_width = 200
+ 		if pict_scale:
+ 			thumb_width = thumb.size().width()
+-		res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(thumb_width, ItemSkin-4), png=thumb))  # png vorn
++		res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(thumb_width, ItemSkin-4), png=thumb, flags=flags))  # png vorn
+ 		x,y,w,h = self["Mlist"].textPos
+ 		res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=entry[0], color=weiss, color_sel=mblau, backcolor_sel=grau, flags=RT_VALIGN_CENTER))
+ 		return res
+@@ -1554,7 +1571,6 @@ class SatPanel(Screen, HelpableScreen):
+ 				f.write(resp.read())
+ 
+ 			self.session.open(PicView, devicepath, 0, False)
+-
+ 		else:
+ 			# http://www.foreca.de/Austria/Linz?map=sat
+ 			devicepath = "/tmp/sat.html"
 diff --git a/setup.py b/setup.py
-index 24470d4..d6c46a4 100644
+index 38bffed..89439bb 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -8,6 +8,6 @@ setup (name = 'enigma2-plugin-extensions-foreca',
         packages = [pkg],
         package_dir = {pkg: 'plugin'},
         package_data = {pkg: ['*.png', '*.xml', '*/*.png', 'locale/*/LC_MESSAGES/*.mo']},
--       data_files = [('/etc/enigma2/Foreca', ['plugin/City.cfg', 'plugin/Filter.cfg'])],
-+       data_files = [('/etc/enigma2/Foreca', ['plugin/City.cfg', 'plugin/GreekCity.cfg', 'plugin/Filter.cfg'])],
+-       data_files = [('/etc/enigma2/Foreca', ['plugin/City.cfg', 'plugin/fav1.cfg', 'plugin/fav2.cfg', 'plugin/startservice.cfg', 'plugin/Filter.cfg'])],
++       data_files = [('/etc/enigma2/Foreca', ['plugin/City.cfg', 'plugin/GreekCity.cfg', 'plugin/fav1.cfg', 'plugin/fav2.cfg', 'plugin/startservice.cfg', 'plugin/Filter.cfg'])],
         cmdclass = setup_translate.cmdclass, # for translation
        )
