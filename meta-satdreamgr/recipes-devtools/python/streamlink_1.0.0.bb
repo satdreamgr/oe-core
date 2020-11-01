@@ -28,13 +28,13 @@ RDEPENDS_${PN} = " \
 	"
 
 SRC_URI = "git://github.com/streamlink/streamlink.git;protocol=git"
-SRCREV = "${AUTOREV}"
+SRCREV = "51916b88adadaab4e06ff1bc96a661ad2e5f2da5"
 S = "${WORKDIR}/git/"
 
 inherit gitpkgv python-dir
 
-PV = "1.0.0+git${SRCPV}"
-PKGV = "1.0.0+git${GITPKGV}"
+PV = "1.7.0+git${SRCPV}"
+PKGV = "1.7.0+git${GITPKGV}"
 PR = "r0"
 
 do_install_append() {
