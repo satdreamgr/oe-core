@@ -1,10 +1,10 @@
 diff --git a/lib/python/Plugins/SystemPlugins/SoftwareManager/plugin.py b/lib/python/Plugins/SystemPlugins/SoftwareManager/plugin.py
-index cba6f0a..af13e1e 100644
+index cfe483e5c9..60fafaa691 100644
 --- a/lib/python/Plugins/SystemPlugins/SoftwareManager/plugin.py
 +++ b/lib/python/Plugins/SystemPlugins/SoftwareManager/plugin.py
 @@ -47,7 +47,7 @@ config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
- 				 ("N", _("No, never")),
- 				 ("ask", _("Always ask"))
+ 					("N", _("No, never")),
+ 					("ask", _("Always ask"))
  				], "Y")
 -config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
 +config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=True)
