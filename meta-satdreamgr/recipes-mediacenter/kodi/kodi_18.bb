@@ -19,7 +19,7 @@ DEPENDS += " \
             rapidjson \
             crossguid \
             libdvdnav libdvdcss libdvdread \
-            ffmpeg-kodi-18 \
+            ffmpeg \
             git-native \
             curl-native \
             gperf-native \
@@ -80,14 +80,15 @@ DEPENDS += " \
 #SRCREV = "ded117bbd636fc88802599a590e26b1d0fd7c609" #18.3
 #SRCREV = "61d162be4091bf7154214c8422abd0fdf6cedc45" #18.4
 #SRCREV = "103415d16038a57f59842cac72d4929389f224a9" #18.5
-SRCREV = "8e967df9218279618bcbfa8a898d8f80f7b4e449"
+#SRCREV = "8e967df9218279618bcbfa8a898d8f80f7b4e449" #18.6
+SRCREV ="0655c2c71821567e4c21c1c5a508a39ab72f0ef1"
 
 # 'patch' doesn't support binary diffs
 PATCHTOOL = "git"
 
-PR = "r14"
+PR = "r0"
 
-PV = "18.6-gitr${SRCPV}"
+PV = "18.9-gitr${SRCPV}"
 SRC_URI = "git://github.com/xbmc/xbmc.git;protocol=https;branch=Leia \
            \
            file://0001-Add-support-for-musl-triplets.patch \
