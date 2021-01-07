@@ -126,6 +126,7 @@ DEPENDS += " \
 	python-tcpbridge \
 	python-pyric \
 	python-pyroute2 \
+	python-youtube-dl \
 	redsea \
 	rt8812au \
 	rt8814au \
