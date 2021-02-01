@@ -11,7 +11,7 @@ inherit gitpkgv
 PV = "63+gitr${SRCPV}"
 PKGV = "63+gitr${GITPKGV}"
 
-SRC_URI = "git://github.com/e2iplayer/exteplayer3.git;branch=master"
+SRC_URI = "git://github.com/technic/exteplayer3.git;branch=master"
 
 S = "${WORKDIR}/git/"
 
