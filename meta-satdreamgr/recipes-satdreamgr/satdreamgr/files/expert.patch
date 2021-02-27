@@ -1,13 +1,13 @@
 diff --git a/lib/python/Components/UsageConfig.py b/lib/python/Components/UsageConfig.py
-index 5293b6a..c1e3890 100644
+index ad8b530ef0..e65335aa8f 100644
 --- a/lib/python/Components/UsageConfig.py
 +++ b/lib/python/Components/UsageConfig.py
-@@ -131,7 +131,7 @@ def InitUsageConfig():
- 	config.usage.leave_movieplayer_onExit = ConfigSelection(default = "popup", choices = [
- 		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup")), ("movielist", _("Return to movie list")) ])
+@@ -134,7 +134,7 @@ def InitUsageConfig():
+ 	config.usage.leave_movieplayer_onExit = ConfigSelection(default="popup", choices=[
+ 		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup")), ("movielist", _("Return to movie list"))])
  
--	config.usage.setup_level = ConfigSelection(default = "simple", choices = [
-+	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
+-	config.usage.setup_level = ConfigSelection(default="simple", choices=[
++	config.usage.setup_level = ConfigSelection(default="expert", choices=[
  		("simple", _("Normal")),
  		("intermediate", _("Advanced")),
- 		("expert", _("Expert")) ])
+ 		("expert", _("Expert"))])
