@@ -4,7 +4,7 @@ HOMEPAGE = "https://streamlink.github.io/"
 SECTION = "devel/python"
 LICENSE = "BSD"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=6e2f7fbdd7536a59eed68a6b8e99dbf7"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=7c0be52291b7252b878da806d185b1d1"
 
 inherit setuptools
 
