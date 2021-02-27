@@ -27,14 +27,14 @@ RDEPENDS_${PN} = " \
 	python-websocket-client \
 	"
 
-SRC_URI = "git://github.com/streamlink/streamlink.git;protocol=git"
+SRC_URI = "git://github.com/Billy2011/streamlink-27.git;protocol=git"
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git/"
 
 inherit gitpkgv python-dir
 
-PV = "1.0.0+git${SRCPV}"
-PKGV = "1.0.0+git${GITPKGV}"
+PV = "2.0.0+git${SRCPV}"
+PKGV = "2.0.0+git${GITPKGV}"
 PR = "r0"
 
 do_install_append() {
