@@ -35,6 +35,7 @@ IMAGE_INSTALL += " \
 	livestreamersrv \
 	kernel-module-8192eu \
 	ntfs-3g \
+	ntpdate \
 	satdreamgr-bootlogo \
 	satdreamgr-extra-feed-configs \
 	satdreamgr-panel \
