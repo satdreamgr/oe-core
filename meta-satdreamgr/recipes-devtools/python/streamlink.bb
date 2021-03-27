@@ -10,6 +10,7 @@ inherit setuptools
 
 RDEPENDS_${PN} = " \
 	python-argparse \
+	python-backports-functools-lru-cache \
 	python-backports-shutil-which \
 	python-ctypes \
 	python-futures \
