@@ -1,18 +1,18 @@
 diff --git a/lib/python/Screens/InputDeviceSetup.py b/lib/python/Screens/InputDeviceSetup.py
-index 884e80b..eee4dc5 100644
+index a424efdb72..0a03afa15a 100644
 --- a/lib/python/Screens/InputDeviceSetup.py
 +++ b/lib/python/Screens/InputDeviceSetup.py
 @@ -314,7 +314,8 @@ class RemoteControlType(Screen, ConfigListScreen):
  			("21", _("Zgemma H.S/H.2S/H.2H/H5/H7(old model)")),
  			("25", _("Zgemma H9(old model)/I55Plus")),
- 			("27", _("HD60")),
--			("28", _("Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10"))
-+			("28", _("Zgemma H7(new model)/H9(new model)/H9COMBO/H9TWIN/H10")),
+ 			("27", _("HD60/Multibox/Multibox SE")),
+-			("28", _("I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"))
++			("28", _("I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10")),
 +			("501", _("Octagon SF4008")),
  		]
  
  	defaultRcList = [
-@@ -354,7 +355,8 @@ class RemoteControlType(Screen, ConfigListScreen):
+@@ -360,7 +361,8 @@ class RemoteControlType(Screen, ConfigListScreen):
  			("h7", 28), # new model /old 21
  			("h9", 28), # new model /old 25
  			("h9combo", 28),
