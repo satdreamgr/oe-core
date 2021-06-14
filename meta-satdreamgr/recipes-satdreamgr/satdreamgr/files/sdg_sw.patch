@@ -1,8 +1,8 @@
 diff --git a/lib/python/Screens/SoftwareUpdate.py b/lib/python/Screens/SoftwareUpdate.py
-index 10c92a0..15ccc8f 100644
+index 672e0ddf00..d3853ea3d3 100644
 --- a/lib/python/Screens/SoftwareUpdate.py
 +++ b/lib/python/Screens/SoftwareUpdate.py
-@@ -77,71 +77,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
+@@ -82,71 +82,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
  	def checkTraficLight(self):
  		self.activityTimer.callback.remove(self.checkTraficLight)
  		self.activityTimer.start(100, False)
@@ -50,11 +50,11 @@ index 10c92a0..15ccc8f 100644
 -					elif 'en_EN' in message:
 -						message = message['en_EN']
 -					else:
--						message =  _("The current image might not be stable.\nFor more information see %s.") % ("openpli.org")
+-						message = _("The current image might not be stable.\nFor more information see %s.") % ("openpli.org")
 -
 -			except Exception, e:
 -				print "[SoftwareUpdate] status error: ", str(e)
--				message =  _("The current image might not be stable.\nFor more information see %s.") % ("openpli.org")
+-				message = _("The current image might not be stable.\nFor more information see %s.") % ("openpli.org")
 -
 -		# or display a generic warning if fetching failed
 -		else:
@@ -63,10 +63,10 @@ index 10c92a0..15ccc8f 100644
 -		# show the user the message first
 -		if message is not None:
 -			if abort:
--				self.session.openWithCallback(self.close, MessageBox, message, type=MessageBox.TYPE_ERROR, picon = picon)
+-				self.session.openWithCallback(self.close, MessageBox, message, type=MessageBox.TYPE_ERROR, picon=picon)
 -			else:
 -				message += "\n\n" + _("Do you want to update your receiver?")
--				self.session.openWithCallback(self.startActualUpdate, MessageBox, message, picon = picon)
+-				self.session.openWithCallback(self.startActualUpdate, MessageBox, message, picon=picon)
 -
 -		# no message, continue with the update
 -		else:

@@ -1,18 +1,20 @@
 diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
-index 4818fc6..329cd68 100644
+index a1528f51e9..1eb0d0cb18 100644
 --- a/lib/python/Components/SystemInfo.py
 +++ b/lib/python/Components/SystemInfo.py
-@@ -151,4 +151,5 @@ SystemInfo["CanDownmixAC3"] = fileHas("/proc/stb/audio/ac3_choices", "downmix")
+@@ -131,6 +131,7 @@ SystemInfo["CanDownmixAC3"] = fileHas("/proc/stb/audio/ac3_choices", "downmix")
  SystemInfo["CanDownmixDTS"] = fileHas("/proc/stb/audio/dts_choices", "downmix")
  SystemInfo["CanDownmixAAC"] = fileHas("/proc/stb/audio/aac_choices", "downmix")
  SystemInfo["HDMIAudioSource"] = fileCheck("/proc/stb/hdmi/audio_source")
 +SystemInfo["HDMIOutput"] = fileCheck("/proc/stb/hdmi/output")
  SystemInfo["BootDevice"] = getBootdevice()
+ SystemInfo["FbcTunerPowerAlwaysOn"] = model in ("vusolo4k", "vuduo4k", "vuduo4kse", "vuultimo4k", "vuuno4k", "vuuno4kse", "gbquad4k", "gbue4k")
+ SystemInfo["HasPhysicalLoopthrough"] = ["Vuplus DVB-S NIM(AVL2108)", "GIGA DVB-S2 NIM (Internal)"]
 diff --git a/lib/python/Screens/Standby.py b/lib/python/Screens/Standby.py
-index b71cde5..7bc7850 100644
+index 587a2a6f39..8bdf8648ac 100644
 --- a/lib/python/Screens/Standby.py
 +++ b/lib/python/Screens/Standby.py
-@@ -51,6 +51,12 @@ class Standby(Screen):
+@@ -57,6 +57,12 @@ class StandbyScreen(Screen):
  		if os.path.exists("/usr/script/standby_enter.sh"):
  			Console().ePopen("/usr/script/standby_enter.sh")
  
@@ -22,18 +24,20 @@ index b71cde5..7bc7850 100644
 +			except:
 +				pass
 +
- 		self["actions"] = ActionMap( [ "StandbyActions" ],
+ 		self["actions"] = ActionMap(["StandbyActions"],
  		{
  			"power": self.Power,
-@@ -143,6 +149,11 @@ class Standby(Screen):
+@@ -148,6 +154,13 @@ class StandbyScreen(Screen):
  		self.leaveMute()
  		if os.path.exists("/usr/script/standby_leave.sh"):
  			Console().ePopen("/usr/script/standby_leave.sh")
++
 +		if SystemInfo["HDMIOutput"]:
 +			try:
 +				open(SystemInfo["HDMIOutput"], "w").write("on")
 +			except:
 +				pass
++
  		if config.usage.remote_fallback_import_standby.value:
  			ImportChannels()
  

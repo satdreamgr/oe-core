@@ -1,7 +1,7 @@
-diff --git a/skin.py b/skin.py
-index 86f41087e6..49a9111fc0 100644
---- a/skin.py
-+++ b/skin.py
+diff --git a/lib/python/skin.py b/lib/python/skin.py
+index 3e2f1212c5..6543d95424 100644
+--- a/lib/python/skin.py
++++ b/lib/python/skin.py
 @@ -12,7 +12,7 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT
  from Tools.Import import my_import
  from Tools.LoadPixmap import LoadPixmap
