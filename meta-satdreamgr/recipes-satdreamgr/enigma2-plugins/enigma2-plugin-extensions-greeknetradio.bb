@@ -4,7 +4,7 @@ SECTION = "multimedia"
 MAINTAINER = "SatDreamGR"
 HOMEPAGE = "http://satdreamgr.com"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://setup.py;beginline=1;endline=7;md5=3451c7d09e6a53ab08a8eb20a698a582"
+LIC_FILES_CHKSUM = "file://setup.py;beginline=1;endline=7;md5=13b35882afe77ccd62fe14f78592f409"
 
 RDEPENDS_${PN} = "python-core"
 
