@@ -6,8 +6,8 @@ LIC_FILES_CHKSUM = "file://../LICENSE.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 inherit gitpkgv
 
-PV = "0.87+git${SRCPV}"
-PKGV = "0.87+git${GITPKGV}"
+PV = "0.94+git${SRCPV}"
+PKGV = "0.94+git${GITPKGV}"
 PR = "r0"
 
 SRC_URI = "git://github.com/ccextractor/ccextractor.git;protocol=http"
@@ -23,5 +23,6 @@ do_configure_prepend() {
 	./pre-build.sh
 }
 
+EXTRA_OECONF_append = " --with-rust=no "
 CPPFLAGS_append = " -DPNG_ARM_NEON_OPT=0"
 INSANE_SKIP_${PN} = "already-stripped"
