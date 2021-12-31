@@ -8,13 +8,13 @@ inherit autotools-brokensep pkgconfig gitpkgv
 SRCREV = "${AUTOREV}"
 PV = "git${SRCPV}"
 PKGV = "git${GITPKGV}"
-PR = "r0"
+PR = "r1"
 
 #PACKAGES += " ${PN}-src"
 
 DEPENDS = "libdvbsi++"
 
-SRC_URI = "git://github.com/oe-alliance/dumpait-legacy.git;protocol=https "
+SRC_URI = "git://github.com/oe-alliance/dumpait-legacy.git;protocol=https file://ert.patch"
 
 
 S = "${WORKDIR}/git"

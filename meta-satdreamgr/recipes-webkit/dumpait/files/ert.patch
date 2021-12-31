@@ -1,0 +1,14 @@
+diff --git a/src/scanner.cpp b/src/scanner.cpp
+index ef36c59..e8f9241 100644
+--- a/src/scanner.cpp
++++ b/src/scanner.cpp
+@@ -359,6 +359,9 @@ void ParseAIT(ApplicationInformationSectionMultiVector &ait_vector, AITInfoVecto
+ 					}
+ 				}
+ 				hbbtvUrl = TPDescPath + SALDescPath;
++				if (hbbtvUrl.find("ert.gr") != std::string::npos) {
++					hbbtvUrl = "http://hbbtvapp.ert.gr/pub/smarttv/ert/ert1.php?sd=anixe";
++				}
+ 			}
+ 
+ 			DA_DEBUG("\n"\
