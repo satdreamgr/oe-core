@@ -1,24 +1,20 @@
 diff --git a/lib/python/Screens/InputDeviceSetup.py b/lib/python/Screens/InputDeviceSetup.py
-index a424efdb72..0a03afa15a 100644
+index 68c1391859..e89de95553 100644
 --- a/lib/python/Screens/InputDeviceSetup.py
 +++ b/lib/python/Screens/InputDeviceSetup.py
-@@ -314,7 +314,8 @@ class RemoteControlType(Screen, ConfigListScreen):
- 			("21", _("Zgemma H.S/H.2S/H.2H/H5/H7(old model)")),
- 			("25", _("Zgemma H9(old model)/I55Plus")),
- 			("27", _("HD60/Multibox/Multibox SE")),
--			("28", _("I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10"))
-+			("28", _("I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10")),
+@@ -293,6 +293,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
+ class RemoteControlType(Screen, ConfigListScreen):
+ 	rcList = [
+ 			("0", _("Default")),
 +			("501", _("Octagon SF4008")),
+ 			("4", _("DMM normal")),
+ 			("5", _("et9000/et9100")),
+ 			("6", _("DMM advanced")),
+@@ -314,6 +315,7 @@ class RemoteControlType(Screen, ConfigListScreen):
  		]
  
  	defaultRcList = [
-@@ -360,7 +361,8 @@ class RemoteControlType(Screen, ConfigListScreen):
- 			("h7", 28), # new model /old 21
- 			("h9", 28), # new model /old 25
- 			("h9combo", 28),
--			("h10", 28)
-+			("h10", 28),
 +			("sf4008", 501),
- 		]
- 
- 	def __init__(self, session):
+ 			("et4000", 13),
+ 			("et5000", 7),
+ 			("et6000", 7),

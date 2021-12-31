@@ -1,10 +1,10 @@
 diff --git a/lib/python/Components/AVSwitch.py b/lib/python/Components/AVSwitch.py
-index 1e5f9ef..a1960a1 100644
+index 7ee5e1650f..6b82cea026 100644
 --- a/lib/python/Components/AVSwitch.py
 +++ b/lib/python/Components/AVSwitch.py
-@@ -266,3 +266,9 @@ def InitAVSwitch():
+@@ -268,3 +268,9 @@ def InitAVSwitch():
  		eDVBVolumecontrol.getInstance().setVolumeSteps(int(configElement.value))
- 	config.av.volume_stepsize = ConfigSelectionNumber(1, 10, 1, default = 5)
+ 	config.av.volume_stepsize = ConfigSelectionNumber(1, 10, 1, default=5)
  	config.av.volume_stepsize.addNotifier(setVolumeStepsize)
 +
 +	if SystemInfo["HasBoxMode"]:
@@ -13,10 +13,10 @@ index 1e5f9ef..a1960a1 100644
 +		config.av.boxmode = ConfigSelection(choices={"12":_("enable PIP no HDR"), "1": _("12bit 4:2:0/4:2:2 no PIP")}, default="12")
 +		config.av.boxmode.addNotifier(setBoxMode)
 diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
-index a9b8ecd..ab491aa 100644
+index 5cda407cf4..fa6bfcdfa1 100644
 --- a/lib/python/Components/SystemInfo.py
 +++ b/lib/python/Components/SystemInfo.py
-@@ -46,6 +46,7 @@ SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
+@@ -48,6 +48,7 @@ SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
  for cislot in range(0, SystemInfo["CommonInterface"]):
  	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot)
  	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot)
@@ -25,10 +25,10 @@ index a9b8ecd..ab491aa 100644
  SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
  SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
 diff --git a/lib/python/Plugins/SystemPlugins/Videomode/plugin.py b/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
-index 6d118ad..637e29e 100644
+index 922583dcdd..696fca72a4 100644
 --- a/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
 +++ b/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
-@@ -148,6 +148,9 @@ class VideoSetup(Screen, ConfigListScreen):
+@@ -144,6 +144,9 @@ class VideoSetup(Screen, ConfigListScreen):
  		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
  			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
  
