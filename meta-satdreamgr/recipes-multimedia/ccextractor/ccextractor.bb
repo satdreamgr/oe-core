@@ -10,7 +10,7 @@ PV = "0.94+git${SRCPV}"
 PKGV = "0.94+git${GITPKGV}"
 PR = "r0"
 
-SRC_URI = "git://github.com/ccextractor/ccextractor.git;protocol=http"
+SRC_URI = "git://github.com/ccextractor/ccextractor.git;protocol=https"
 SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git/linux"

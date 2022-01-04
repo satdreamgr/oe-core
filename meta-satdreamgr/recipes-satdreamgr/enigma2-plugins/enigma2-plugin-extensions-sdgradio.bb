@@ -5,7 +5,7 @@ MAINTAINER = "SatDreamGR"
 HOMEPAGE = "http://satdreamgr.com"
 LICENSE = "PD"
 LIC_FILES_CHKSUM = "file://setup.py;beginline=4;endline=4;md5=a340145d59ca0aca0ff7ec9adccdb556"
-SRC_URI = "git://github.com/satdreamgr/SDGRadio.git;protocol=http"
+SRC_URI = "git://github.com/satdreamgr/SDGRadio.git;protocol=https"
 
 S = "${WORKDIR}/git"
 

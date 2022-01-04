@@ -14,7 +14,7 @@ PV = "1.3+git${SRCPV}"
 PKGV = "1.3+git${GITPKGV}"
 PR = "r0"
 
-SRC_URI = "git://github.com/satdreamgr/dab-cmdline.git;branch=sdgradio"
+SRC_URI = "git://github.com/satdreamgr/dab-cmdline.git;protocol=https;branch=sdgradio"
 
 FULL_OPTIMIZATION = "-O3 -fexpensive-optimizations -fomit-frame-pointer -funroll-loops -ffast-math -pipe ${DEBUG_FLAGS}"
 

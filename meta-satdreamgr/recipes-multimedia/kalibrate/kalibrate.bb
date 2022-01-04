@@ -8,7 +8,7 @@ inherit gitpkgv
 PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
 
-SRC_URI = "git://github.com/steve-m/kalibrate-rtl.git"
+SRC_URI = "git://github.com/steve-m/kalibrate-rtl.git;protocol=https"
 SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"

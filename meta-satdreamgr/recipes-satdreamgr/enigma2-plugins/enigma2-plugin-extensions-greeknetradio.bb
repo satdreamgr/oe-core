@@ -14,7 +14,7 @@ PR = "r0"
 
 S="${WORKDIR}/git"
 
-SRC_URI = "git://github.com/satdreamgr/GreekNetRadio;protocol=git"
+SRC_URI = "git://github.com/satdreamgr/GreekNetRadio;protocol=https"
 
 SRCREV = "${AUTOREV}"
 

@@ -4,7 +4,7 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://JsonSchemaBuilder.cpp;beginline=2;endline=18;md5=1f67721215c03f66545390f6e45b99c7"
 
 PV = "16.0+gitr${SRCPV}"
-SRC_URI = "git://github.com/xbmc/xbmc.git;branch=Jarvis"
+SRC_URI = "git://github.com/xbmc/xbmc.git;protocol=https;branch=Jarvis"
 
 inherit autotools-brokensep gettext native
 

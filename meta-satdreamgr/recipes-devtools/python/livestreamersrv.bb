@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425
 
 RDEPENDS_${PN} = "streamlink python-syslog python-core"
 
-SRC_URI = "git://github.com/athoik/livestreamersrv.git"
+SRC_URI = "git://github.com/athoik/livestreamersrv.git;protocol=https"
 S = "${WORKDIR}/git/"
 
 inherit gitpkgv

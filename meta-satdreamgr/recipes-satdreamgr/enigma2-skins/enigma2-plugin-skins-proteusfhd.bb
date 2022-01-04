@@ -8,7 +8,7 @@ inherit gitpkgv
 PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
 
-SRC_URI = "git://github.com/nautilus7/skin-ProteusFHD.git;protocol=git"
+SRC_URI = "git://github.com/nautilus7/skin-ProteusFHD.git;protocol=https"
 SRCREV = "${AUTOREV}"
 
 FILES_${PN} = "${datadir}/enigma2/ ${libdir}/enigma2/"

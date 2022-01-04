@@ -15,7 +15,7 @@ PV = "2.3+git${SRCPV}"
 PKGV = "2.3+git${GITPKGV}"
 PR = "r17"
 
-SRC_URI="git://github.com/oe-alliance/branding-module.git;protocol=git"
+SRC_URI="git://github.com/oe-alliance/branding-module.git;protocol=https"
 
 S = "${WORKDIR}/git"
 

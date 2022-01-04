@@ -8,7 +8,7 @@ RDEPENDS_${PN} = "python-xmlrpc python-compression python-codecs python-zlib pyt
 
 inherit gitpkgv autotools-brokensep gettext
 
-SRC_URI = "git://github.com/mx3L/subssupport;protocol=git;branch=master"
+SRC_URI = "git://github.com/mx3L/subssupport;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 

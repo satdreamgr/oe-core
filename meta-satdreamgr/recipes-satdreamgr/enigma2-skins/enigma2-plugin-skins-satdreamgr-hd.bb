@@ -9,7 +9,7 @@ PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
 PR = "r0"
 
-SRC_URI = "git://github.com/satdreamgr/Satdreamgr-HD.git;protocol=git"
+SRC_URI = "git://github.com/satdreamgr/Satdreamgr-HD.git;protocol=https"
 SRCREV = "${AUTOREV}"
 
 FILES_${PN} = "/usr/share/enigma2/ /usr/lib/enigma2/"

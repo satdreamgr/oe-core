@@ -28,7 +28,7 @@ RDEPENDS_${PN} = " \
 	python-websocket-client \
 	"
 
-SRC_URI = "git://github.com/Billy2011/streamlink-27.git;protocol=git"
+SRC_URI = "git://github.com/Billy2011/streamlink-27.git;protocol=https"
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git/"
 

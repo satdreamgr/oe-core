@@ -13,7 +13,7 @@ PACKAGES = "${PN}"
 
 #RRECOMMENDS_${PN} = "enigma2-plugin-extensions-weathermsn"
 
-SRC_URI = "git://github.com/MCelliotG/GlamourAuraFHD-skin.git;protocol=git"
+SRC_URI = "git://github.com/MCelliotG/GlamourAuraFHD-skin.git;protocol=https"
 SRCREV = "${AUTOREV}"
 
 FILES_${PN} = "/usr/share/enigma2/ /usr/lib/enigma2/"

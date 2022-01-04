@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425
 
 RDEPENDS_${PN} = "eti-tools python-core tsniv2ni"
 
-SRC_URI = "git://github.com/satdreamgr/dabstreamer.git"
+SRC_URI = "git://github.com/satdreamgr/dabstreamer.git;protocol=https"
 S = "${WORKDIR}/git/"
 
 inherit gitpkgv

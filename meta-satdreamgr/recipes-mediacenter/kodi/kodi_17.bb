@@ -72,7 +72,7 @@ SRCREV = "7e52c1d94d0cbc3f8ace57b1fc74ae1582c5a869"
 PV = "17.6+git${SRCPV}"
 PKGV = "17.6+git${GITPKGV}"
 
-SRC_URI = "git://github.com/xbmc/xbmc.git;branch=Krypton \
+SRC_URI = "git://github.com/xbmc/xbmc.git;protocol=https;branch=Krypton \
            file://0003-configure-don-t-try-to-run-stuff-to-find-tinyxml.patch \
            file://0006-Disable-DVD-support.patch \
            file://0007-Always-compile-libcpluff-as-PIC.patch \

@@ -16,7 +16,7 @@ RDEPENDS_${PN} = "\
 S="${WORKDIR}/git"
 
 SRC_URI = " \
-	git://github.com/athoik/GreekStreamTV;protocol=git \
+	git://github.com/athoik/GreekStreamTV;protocol=https \
 	"
 
 inherit distutils-openplugins gitpkgv

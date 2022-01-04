@@ -13,7 +13,7 @@ PV = "1.1+git${SRCPV}"
 PKGV = "1.1+git${GITPKGV}"
 PR = "r0"
 
-SRC_URI = "git://github.com/satdreamgr/Panel.git"
+SRC_URI = "git://github.com/satdreamgr/Panel.git;protocol=https"
 SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"

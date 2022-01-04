@@ -9,7 +9,7 @@ PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "git://github.com/satdreamgr/BTDevicesManager.git"
+SRC_URI = "git://github.com/satdreamgr/BTDevicesManager.git;protocol=https"
 S = "${WORKDIR}/git"
 
 RDEPENDS_${PN} = "bluez5 python-bluetool"
