@@ -7,4 +7,4 @@ PV = "5.0.4"
 
 inherit autotools pkgconfig git-project
 
-SRC_URI = "git://github.com/mirror/libdvdnav"
+SRC_URI = "git://github.com/mirror/libdvdnav;protocol=https"

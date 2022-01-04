@@ -10,7 +10,7 @@ inherit gitpkgv
 PV = "3.x+git${SRCPV}"
 PKGV = "3.x+git${GITPKGV}"
 
-SRC_URI = "git://github.com/oe-alliance/ofgwrite.git"
+SRC_URI = "git://github.com/oe-alliance/ofgwrite.git;protocol=https"
 
 S = "${WORKDIR}/git"
 EXTRA_OEMAKE=""

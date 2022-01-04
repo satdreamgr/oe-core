@@ -8,5 +8,5 @@ inherit setuptools gitpkgv
 PV = "0.57.0+git${SRCPV}"
 PKGV = "0.57.0+git${GITPKGV}"
 
-SRC_URI = "git://github.com/websocket-client/websocket-client.git"
+SRC_URI = "git://github.com/websocket-client/websocket-client.git;protocol=https"
 S = "${WORKDIR}/git"

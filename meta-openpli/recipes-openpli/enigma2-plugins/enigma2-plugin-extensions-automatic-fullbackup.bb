@@ -2,7 +2,7 @@ DESCRIPTION = "Automatic full backup and manual flashing image"
 HOMEPAGE = "https://github.com/Dima73/automatic-full-backup"
 LICENSE = "PD"
 LIC_FILES_CHKSUM = "file://README;md5=f521231b9317995c51bdc211746b2802"
-SRC_URI = "git://github.com/Dima73/automatic-full-backup.git"
+SRC_URI = "git://github.com/Dima73/automatic-full-backup.git;protocol=https"
 S = "${WORKDIR}/git"
 
 inherit gitpkgv

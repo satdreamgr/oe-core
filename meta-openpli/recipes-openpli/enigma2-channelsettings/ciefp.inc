@@ -4,7 +4,7 @@ PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "git://github.com/ciefp/ciefpsettings-enigma2.git;protocol=git"
+SRC_URI = "git://github.com/ciefp/ciefpsettings-enigma2.git;protocol=https"
 S = "${WORKDIR}/git"
 
 PACKAGES = "${PN}"

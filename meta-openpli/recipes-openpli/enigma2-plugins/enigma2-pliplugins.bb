@@ -10,7 +10,7 @@ PV = "2+git${SRCPV}"
 PKGV = "2+git${GITPKGV}"
 
 GITHUB_URI ?= "git://github.com"
-SRC_URI = "${GITHUB_URI}/OpenPLi/${BPN}.git"
+SRC_URI = "${GITHUB_URI}/OpenPLi/${BPN}.git;protocol=https"
 
 S = "${WORKDIR}/git"
 

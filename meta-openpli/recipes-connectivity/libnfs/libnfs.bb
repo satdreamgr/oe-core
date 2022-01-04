@@ -9,6 +9,6 @@ PR = "r1"
 
 SRCREV="libnfs-1.9.2"
 
-SRC_URI = "git://github.com/sahlberg/libnfs;protocol=git;branch=master;tag=${SRCREV} \
+SRC_URI = "git://github.com/sahlberg/libnfs;protocol=https;branch=master;tag=${SRCREV} \
 "
 S = "${WORKDIR}/git"

@@ -9,7 +9,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 RRECOMMENDS_${PN} = "enigma2-plugin-extensions-subssupport virtual/kodi"
 
-SRC_URI = "git://github.com/mx3L/kodiext;protocol=git;branch=master \
+SRC_URI = "git://github.com/mx3L/kodiext;protocol=https;branch=master \
 	file://0001-make-transparant.patch \
 	file://advancedsettings.xml \
 	file://advancedsettings-empty.xml \

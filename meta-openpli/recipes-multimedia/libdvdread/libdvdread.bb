@@ -7,4 +7,4 @@ PR = "r0"
 
 inherit autotools pkgconfig git-project
 
-SRC_URI = "git://github.com/mirror/libdvdread"
+SRC_URI = "git://github.com/mirror/libdvdread;protocol=https"
