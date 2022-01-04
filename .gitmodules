@@ -12,14 +12,14 @@
 	ignore = dirty
 [submodule "meta-vuplus"]
 	path = meta-vuplus
-	url = http://github.com/satdreamgr/meta-vuplus.git
+	url = https://github.com/satdreamgr/meta-vuplus.git
 	branch = "zeus"
 [submodule "meta-xp"]
 	path = meta-xp
 	url = https://github.com/satdreamgr/meta-xp.git
 [submodule "meta-xtrend"]
 	path = meta-xtrend
-	url = http://github.com/satdreamgr/meta-xtrend.git
+	url = https://github.com/satdreamgr/meta-xtrend.git
 	branch = zeus
 [submodule "meta-qt5"]
 	path = meta-qt5
@@ -30,7 +30,7 @@
 	url = https://github.com/satdreamgr/meta-gigablue.git
 [submodule "meta-edision"]
 	path = meta-edision
-	url = http://github.com/satdreamgr/meta-edision.git
+	url = https://github.com/satdreamgr/meta-edision.git
 	branch = zeus
 [submodule "meta-ixuss"]
 	path = meta-ixuss
