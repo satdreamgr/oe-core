@@ -2,14 +2,17 @@
 	path = openembedded-core
 	url = git://git.openembedded.org/openembedded-core
 	ignore = dirty
+	branch = hardknott
 [submodule "meta-openembedded"]
 	path = meta-openembedded
 	url = git://git.openembedded.org/meta-openembedded
 	ignore = dirty
+	branch = hardknott
 [submodule "bitbake"]
 	path = bitbake
 	url = git://git.openembedded.org/bitbake
 	ignore = dirty
+	branch = 1.50
 [submodule "meta-vuplus"]
 	path = meta-vuplus
 	url = https://github.com/satdreamgr/meta-vuplus.git
