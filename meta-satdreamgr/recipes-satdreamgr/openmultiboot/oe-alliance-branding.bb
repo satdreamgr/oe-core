@@ -2,13 +2,11 @@ DESCRIPTION = "OE-A Branding Lib for OE-A 2.0"
 MAINTAINER = "oe-alliance team"
 PACKAGE_ARCH = "${MACHINE}"
 
-DEPENDS = "python"
+DEPENDS = "${PYTHON_PN}"
 
 require conf/license/openpli-gplv2.inc
 
-inherit autotools-brokensep gitpkgv pythonnative
-
-#PACKAGES += " ${PN}-src"
+inherit autotools-brokensep gitpkgv ${PYTHON_PN}native
 
 SRCREV = "${AUTOREV}"
 PV = "2.3+git${SRCPV}"
@@ -86,7 +84,7 @@ EXTRA_OECONF = " \
     HOST_SYS=${HOST_SYS} \
     STAGING_INCDIR=${STAGING_INCDIR} \
     STAGING_LIBDIR=${STAGING_LIBDIR} \
-    --with-oever="SatDreamGR 5" \
+    --with-oever="SatDreamGR 10" \
     --with-distro="satdreamgr" \
     --with-boxtype="${MACHINE}" \
     --with-brandoem="${MACHINE}" \
