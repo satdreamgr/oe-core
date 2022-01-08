@@ -2,7 +2,7 @@ SUMMARY = "Python Radio Interface Controller"
 LICENSE = "GPL-3.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=a756f433cda3b32df08555bc02207cc1"
 
-inherit pypi setuptools
+inherit pypi setuptools3
 
 PYPI_PACKAGE = "PyRIC"
 
