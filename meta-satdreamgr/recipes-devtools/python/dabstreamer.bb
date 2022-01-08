@@ -5,12 +5,12 @@ HOMEPAGE = "www.satdreamgr.com"
 inherit allarch
 
 LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
 
-RDEPENDS_${PN} = "eti-tools python-core tsniv2ni"
+RDEPENDS_${PN} = "eti-tools ${PYTHON_PN}-core tsniv2ni"
 
 SRC_URI = "git://github.com/satdreamgr/dabstreamer.git;protocol=https"
-S = "${WORKDIR}/git/"
+S = "${WORKDIR}/git"
 
 inherit gitpkgv
 SRCREV = "${AUTOREV}"

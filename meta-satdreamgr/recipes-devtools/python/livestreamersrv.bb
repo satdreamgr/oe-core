@@ -4,12 +4,12 @@ MAINTAINER = "SatDreamGR"
 HOMEPAGE = "www.satdreamgr.com"
 
 LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
 
-RDEPENDS_${PN} = "streamlink python-syslog python-core"
+RDEPENDS_${PN} = "streamlink ${PYTHON_PN}-syslog ${PYTHON_PN}-core"
 
 SRC_URI = "git://github.com/athoik/livestreamersrv.git;protocol=https"
-S = "${WORKDIR}/git/"
+S = "${WORKDIR}/git"
 
 inherit gitpkgv
 SRCREV = "${AUTOREV}"
