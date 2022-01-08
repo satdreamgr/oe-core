@@ -20,8 +20,6 @@ S = "${WORKDIR}/git"
 
 FILES_${PN} = "${libdir}"
 
-#PACKAGES =+ "${PN}-src"
-
 FILES_${PN}-src = "\
     ${libdir}/enigma2/python/Components/Converter/*.py \
     ${libdir}/enigma2/python/Plugins/Satdreamgr/*.py \
@@ -31,6 +29,6 @@ FILES_${PN}-src = "\
 do_install() {
    install -d ${D}${libdir}
    cp -r --preserve=mode,links ${S}/usr/lib/enigma2 ${D}${libdir}/
-   python -O -m compileall -d ${libdir}/enigma2/python/ ${D}${libdir}/enigma2/python/
+   ${PYTHON_PN} -O -m compileall -d ${libdir}/enigma2/python/ ${D}${libdir}/enigma2/python/
 }
 
