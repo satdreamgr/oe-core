@@ -16,7 +16,6 @@ DEPENDS = "\
 	enigma2-plugin-settings-ciefp-39e.23e.19e.16e.13e.4.8e.1.9e.0.8w \
 	enigma2-plugin-settings-ciefp-motor.68e.30w.vod \
 	\
-	enigma2-plugin-settings-ziggo-casema-west \
 	enigma2-plugin-settings-hans-19e-23e \
 	enigma2-plugin-settings-hans-19e-23e-basis \
 	enigma2-plugin-settings-hans-19e-23e-28e \
