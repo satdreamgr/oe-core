@@ -13,7 +13,7 @@ RCONFLICTS_${PN} = "openpli-bootlogo"
 
 PV = "7.990"
 
-S = "${WORKDIR}/"
+S = "${WORKDIR}"
 
 INITSCRIPT_NAME = "bootlogo"
 INITSCRIPT_PARAMS = "start 21 S ."
