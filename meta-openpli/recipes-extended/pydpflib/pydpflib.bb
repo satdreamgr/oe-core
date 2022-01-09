@@ -9,12 +9,12 @@ DEPENDS = "libusb"
 
 S = "${WORKDIR}/git"
 
-inherit gitpkgv setuptools
+inherit gitpkgv ${@bb.utils.contains("PYTHON_PN", "python", "setuptools", "setuptools3", d)}
 
 PV = "0.14+git${SRCPV}"
 PKGV = "0.14+git${GITPKGV}"
 PR = "r0"
 
 do_compile_prepend() {
-    $MAKE -C ./dpf-ax/dpflib all
+    $MAKE -C ${S}/dpf-ax/dpflib all
 }
