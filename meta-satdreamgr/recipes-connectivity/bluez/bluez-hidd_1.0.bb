@@ -3,9 +3,7 @@ SECTION = "console"
 LICENSE = "GPLv2+"
 require conf/license/license-gplv2.inc
 
-inherit bluetooth
-
-DEPENDS = "glib-2.0 ${BLUEZ}"
+DEPENDS = "glib-2.0 bluez5"
 
 PR = "r5"
 
