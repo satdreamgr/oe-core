@@ -11,14 +11,14 @@ SRC_URI_IGNORED += " \
 			file://0002-Create-and-use-our-own-copy-of-linux-ext2_fs.h.patch \
 			file://0003-Drop-include-bb_linux_ext2_fs.h-use-existing-e2fspro.patch \
 			file://0001-nandwrite-add-OOB-support.patch \
-			file://0001-Revert-ip-fix-ip-oneline-a.patch \	
+			file://0001-Revert-ip-fix-ip-oneline-a.patch \
 			"
 
 SRC_URI += " \
 			file://mount_single_uuid.patch \
-			file://mdev-mount.sh \
 			file://inetd \
 			file://inetd.conf \
+			file://busybox-cron \
 			"
 
 # we do not really depend on mtd-utils, but as mtd-utils replaces 
@@ -40,7 +40,7 @@ INITSCRIPT_NAME_${PN}-cron = "${BPN}-cron"
 FILES_${PN}-cron = "${sysconfdir}/cron ${sysconfdir}/init.d/${BPN}-cron"
 RDEPENDS_${PN}-cron += "${PN}"
 
-pkg_postinst_ontarget_${PN}_append () {
+pkg_postinst_${PN}_append () {
 	update-alternatives --install /bin/sh sh /bin/busybox.nosuid 50
 }
 
@@ -50,10 +50,8 @@ pkg_prerm_${PN}_append () {
 
 do_install_append() {
 	if grep -q "CONFIG_CRONTAB=y" ${WORKDIR}/defconfig; then
-		install -d ${D}${sysconfdir}/cron/crontabs
+		install -d ${D}${localstatedir}/spool/cron/crontabs
 	fi
-	install -d ${D}${sysconfdir}/mdev
-	install -m 0755 ${WORKDIR}/mdev-mount.sh ${D}${sysconfdir}/mdev
 	sed -i "/[/][s][h]*$/d" ${D}${sysconfdir}/busybox.links.nosuid
 }
 
