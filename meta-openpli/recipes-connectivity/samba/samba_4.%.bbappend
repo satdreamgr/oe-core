@@ -7,73 +7,74 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 PACKAGECONFIG_remove = "acl cups"
 
 EXTRA_OECONF += " \
-			--without-cluster-support \
-			--without-profiling-data \
-			--with-sockets-dir=${localstatedir}/run \
-			--with-logfilebase=${localstatedir}/log/samba \
-			--with-pam \
-			--with-pam_smbpass \
-			--nopyc \
-			--disable-iprint \
-			--without-ads \
-			--without-dnsupdate \
-			--without-quotas \
-			--without-winbind \
-			--without-syslog \
-			--disable-python \
-			--without-ad-dc \
-			"
+                 --without-cluster-support \
+                 --without-profiling-data \
+                 --with-lockdir=${@bb.utils.contains('IMAGE_FSTYPES','jffs2','${localstatedir}/run/samba','${localstatedir}/lib/samba',d)} \
+                 --with-cachedir=${localstatedir}/lib/samba \
+                 --with-sockets-dir=${localstatedir}/run \
+                 --with-logfilebase=${localstatedir}/log/samba \
+                 --with-pam \
+                 --with-pam_smbpass \
+                 --nopyc \
+                 --disable-iprint \
+                 --without-ad-dc \
+                 --without-dnsupdate \
+                 --without-quotas \
+                 --without-winbind \
+                 --without-syslog \
+                 --disable-python \
+                "
 
 EXTRA_OECONF_remove = " \
-			--with-cluster-support \
-			--with-profiling-data \
-			--with-sockets-dir=/run/samba \
+                       --with-cluster-support \
+                       --with-profiling-data \
+                       --with-sockets-dir=/run/samba \
                       "
 
 SRC_URI += " \
-			file://smb.conf \
-			file://smb-secure.conf \
-			file://smb-user.conf \
-			file://pam.config \
-			file://samba.sh \
-			file://users.map \
-			file://smbpasswd \
-			file://share.template \
-			file://0017-Revert-pam_smbpass-REMOVE-this-PAM-module.patch \
-			file://0018-Revert-source3-wscript-remove-pam_smbpass-option-as-it-was-removed.patch \
-			file://0019-dynamically-create-a-samba-account-if-needed.patch \
-			"
+           file://smb.conf \
+           file://smb-secure.conf \
+           file://smb-user.conf \
+           file://pam.config \
+           file://samba.sh \
+           file://users.map \
+           file://smbpasswd \
+           file://share.template \
+           file://0017-Revert-pam_smbpass-REMOVE-this-PAM-module.patch \
+           file://0018-Revert-source3-wscript-remove-pam_smbpass-option-as-it-was-removed.patch \
+           file://0019-dynamically-create-a-samba-account-if-needed.patch \
+           "
 
 FILES_${PN}-base += " \
-			${sysconfdir}/samba/smb.conf \
-			${sysconfdir}/samba/smb-secure.conf \
-			${sysconfdir}/samba/shares/share.template \
-			${sysconfdir}/init.d/samba.sh \
-			${bindir}/testparm \
-			${bindir}/smbpasswd \
-			${bindir}/smbstatus \
-			"
+                    ${sysconfdir}/samba/smb.conf \
+                    ${sysconfdir}/samba/smb-secure.conf \
+                    ${sysconfdir}/samba/shares/share.template \
+                    ${sysconfdir}/init.d/samba.sh \
+                    ${bindir}/testparm \
+                    ${bindir}/smbpasswd \
+                    ${bindir}/smbstatus \
+                    "
 
 CONFFILES_${PN}-base += " \
-						${sysconfdir}/samba/smb.user.conf \
-						${sysconfdir}/samba/shares/share.template \
-						"
+                        ${sysconfdir}/samba/smb-user.conf \
+                        ${sysconfdir}/samba/shares/share.template \
+                        "
 
 # move smbpass config files to samba-common
 FILES_${BPN}-common += " \
-						${sysconfdir}/pam.d/samba \
-						${sysconfdir}/samba/private/users.map \
-						${sysconfdir}/samba/private/smbpasswd \
-						"
+                      ${sysconfdir}/pam.d/samba \
+                      ${sysconfdir}/samba/private/users.map \
+                      ${sysconfdir}/samba/private/smbpasswd \
+                      "
 
 CONFFILES_${BPN}-common += " \
-						${sysconfdir}/pam.d/samba \
-						${sysconfdir}/samba/private/users.map \
-						${sysconfdir}/samba/private/smbpasswd \
-						"
+                          ${sysconfdir}/pam.d/samba \
+                          ${sysconfdir}/samba/private/users.map \
+                          ${sysconfdir}/samba/private/smbpasswd \
+                          "
 
-RPROVIDES_${PN} += "pam-pluginsmbpass"
-RRECOMMENDS_${PN}-base+= "wsdd pam-pluginsmbpass"
+PACKAGES_DYNAMIC += "pam-pluginsmbpass"
+RRECOMMENDS_${PN}-base += "wsdd pam-pluginsmbpass"
 
 do_install_prepend() {
 	install -d ${D}${sysconfdir}/sudoers.d
@@ -84,11 +85,14 @@ do_configure_prepend() {
 }
 
 do_install_append() {
-	rm -fR ${D}/var
+	rm -fR ${D}${localstatedir}
 	rm -fR ${D}/run
 	rm -fR ${D}${sysconfdir}/tmpfiles.d
 	rm -fR ${D}${sysconfdir}/sysconfig
 	rm -f ${D}${sysconfdir}/init.d/samba
+    if ${@bb.utils.contains('IMAGE_FSTYPES','jffs2','true','false',d)}; then
+		rm -rf ${D}${localstatedir}/run/samba
+    fi
 	install -d ${D}${sysconfdir}/pam.d
 	install -m 644 ${WORKDIR}/pam.config ${D}${sysconfdir}/pam.d/samba
 	install -d ${D}${sysconfdir}/samba
@@ -146,8 +150,8 @@ FILES_lib${PN}-base += "\
 					"
 
 # move some libraries from libsamba-base to libwbclient to fix circular dependencies
-FILES_libwbclient ="${libdir}/libwbclient.so.* \
-					${libdir}/samba/libwinbind-client.so \
-					${libdir}/samba/libwinbind-client-samba4.so \
-					${libdir}/samba/libreplace-samba4.so \
-					"
+FILES_libwbclient = "${libdir}/libwbclient.so.* \
+                     ${libdir}/samba/libwinbind-client.so \
+                     ${libdir}/samba/libwinbind-client-samba4.so \
+                     ${libdir}/samba/libreplace-samba4.so \
+"
