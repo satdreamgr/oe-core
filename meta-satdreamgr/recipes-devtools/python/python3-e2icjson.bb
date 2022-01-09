@@ -4,16 +4,15 @@ HOMEPAGE = "https://github.com/e2iplayer/python-cjson"
 LICENSE = "LGPLv2+"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0816bf71e8b244e6de5618a54522e845"
 
-SRC_URI = "git://github.com/e2iplayer/python-cjson.git;protocol=https"
+SRC_URI = "git://github.com/oe-mirrors/python-cjson.git;protocol=https;branch=master"
 SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"
 
-inherit distutils gitpkgv
+inherit distutils3 gitpkgv
 
-PV = "1.2.1+git${SRCPV}"
-PKGV = "1.2.1+git${GITPKGV}"
-PR = "r0"
+PV = "1.2.2+git${SRCPV}"
+PKGV = "1.2.2+git${GITPKGV}"
 
 DISTUTILS_INSTALL_ARGS = "\
     --root=${D} \
