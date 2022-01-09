@@ -10,7 +10,7 @@ DEPENDS += "gstreamer1.0-plugins-base"
 
 GST_PLUGIN_SET_HAS_EXAMPLES = "0"
 
-SRC_URI = "git://gitlab.freedesktop.org/gstreamer/gst-plugins-ugly.git;protocol=https;branch=1.18;name=gst_plugins_ugly"
+SRC_URI = "git://github.com/GStreamer/gst-plugins-ugly.git;protocol=https;branch=master;name=gst_plugins_ugly"
 
 PACKAGECONFIG ??= " \
     ${GSTREAMER_ORC} \
@@ -27,6 +27,7 @@ PACKAGECONFIG[mpeg2dec] = "-Dmpeg2dec=enabled,-Dmpeg2dec=disabled,mpeg2dec"
 PACKAGECONFIG[x264]     = "-Dx264=enabled,-Dx264=disabled,x264"
 
 EXTRA_OEMESON += " \
+    -Ddoc=disabled \
     -Dsidplay=disabled \
 "
 

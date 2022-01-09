@@ -2,18 +2,19 @@ SUMMARY = "exteplayer3 - media player for E2"
 DESCRIPTION = "Core of movie player for E2 based on the libeplayer using the ffmpeg solution"
 SECTION = "multimedia"
 LICENSE = "GPL-2.0"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
 
-DEPENDS = "ffmpeg"
+DEPENDS = "ffmpeg libbluray"
+RDEPENDS_${PN} = "ffmpeg libbluray"
 
 inherit gitpkgv
 
-PV = "63+gitr${SRCPV}"
-PKGV = "63+gitr${GITPKGV}"
+PV = "68+gitr${SRCPV}"
+PKGV = "68+gitr${GITPKGV}"
 
 SRC_URI = "git://github.com/technic/exteplayer3.git;protocol=https;branch=master"
 
-S = "${WORKDIR}/git/"
+S = "${WORKDIR}/git"
 
 
 SOURCE_FILES = "main/exteplayer.c"

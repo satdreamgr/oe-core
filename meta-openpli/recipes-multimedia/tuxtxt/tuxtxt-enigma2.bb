@@ -6,8 +6,7 @@ DESCRIPTION = "tuxbox tuxtxt for enigma2"
 
 inherit gitpkgv
 
-GITHUB_URI ?= "git://github.com"
-SRC_URI = "${GITHUB_URI}/OpenPLi/tuxtxt.git;protocol=https"
+SRC_URI = "git://github.com/OpenPLi/tuxtxt.git;protocol=https"
 
 S = "${WORKDIR}/git/tuxtxt"
 
@@ -15,9 +14,8 @@ PV = "2.0+git${SRCPV}"
 PKGV = "2.0+git${GITPKGV}"
 PR = "r3"
 
-PACKAGES = "${PN}-src ${PN}-dbg ${PN}-dev ${PN}"
-FILES_${PN}-src = "/usr/src ${libdir}/enigma2/python/Plugins/Extensions/Tuxtxt/*.py"
-FILES_${PN} = "${libdir}/libtuxtxt32bpp.so.* ${datadir}/fonts ${libdir}/enigma2/python/Plugins/Extensions/Tuxtxt/*.pyo ${sysconfdir}/tuxtxt"
+PACKAGES = "${PN}-src ${PN}-dbg ${PN}"
+FILES_${PN} = "${libdir}/libtuxtxt32bpp.so.* ${datadir}/fonts ${libdir}/enigma2/python/Plugins/Extensions/Tuxtxt/*.py ${sysconfdir}/tuxtxt"
 CONFFILES_${PN} = "${sysconfdir}/tuxtxt/tuxtxt2.conf"
 
 inherit autotools pkgconfig

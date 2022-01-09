@@ -2,17 +2,16 @@ DESCRIPTION = "Python module for text subtitles parsing"
 MAINTAINER = "samsamsam"
 require conf/license/openpli-gplv2.inc
 
-DEPENDS = "python"
+DEPENDS = "${PYTHON_PN}"
 
 inherit gitpkgv
 
 PV = "1.1+git${SRCPV}"
 PKGV = "1.1+git${GITPKGV}"
-PR = "r0"
 
-SRC_URI = "git://github.com/e2iplayer/e2isubparser.git;protocol=https"
+SRC_URI = "git://github.com/OpenVisionE2/e2isubparser.git;protocol=https"
 
-S = "${WORKDIR}/git/"
+S = "${WORKDIR}/git"
 
 SOURCE_FILES = "src/subparsermodule.c"
 SOURCE_FILES =+ "src/vlc/src/subtitle.c"
