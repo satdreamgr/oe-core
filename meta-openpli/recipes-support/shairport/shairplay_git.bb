@@ -7,7 +7,7 @@ PR = "r1"
 
 inherit autotools pkgconfig
 
-SRC_URI = "git://github.com/juhovh/shairplay.git;protocol=https"
+SRC_URI = "git://github.com/juhovh/shairplay.git"
 
 S = "${WORKDIR}/git"
 
