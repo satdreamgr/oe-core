@@ -1,8 +1,8 @@
 diff --git a/lib/python/Screens/SoftwareUpdate.py b/lib/python/Screens/SoftwareUpdate.py
-index 4a5a80729a..eb8c8748aa 100644
+index a99c5380d2..20a6dba3f2 100644
 --- a/lib/python/Screens/SoftwareUpdate.py
 +++ b/lib/python/Screens/SoftwareUpdate.py
-@@ -82,72 +82,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
+@@ -83,72 +83,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
  	def checkTraficLight(self):
  		self.activityTimer.callback.remove(self.checkTraficLight)
  		self.activityTimer.start(100, False)
@@ -15,7 +15,7 @@ index 4a5a80729a..eb8c8748aa 100644
 -		# try to fetch the trafficlight json from the website
 -		try:
 -			status = dict(json.load(urlopen(url, timeout=5)))
--			print "[SoftwareUpdate] status is: ", status
+-			print("[SoftwareUpdate] status is: ", status)
 -		except:
 -			pass
 -
@@ -53,8 +53,8 @@ index 4a5a80729a..eb8c8748aa 100644
 -					else:
 -						message = _("The current image might not be stable.\nFor more information see %s.") % ("https://forums.openpli.org")
 -
--			except Exception, e:
--				print "[SoftwareUpdate] status error: ", str(e)
+-			except Exception as e:
+-				print("[SoftwareUpdate] status error: ", str(e))
 -				message = _("The current image might not be stable.\nFor more information see %s.") % ("https://forums.openpli.org")
 -
 -		# or display a generic warning if fetching failed

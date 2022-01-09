@@ -1,7 +1,8 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI += " \
-	file://0001-Set-default-skin-Satdreamgr-HD-TranspBA.patch \
+	file://0001-Set-default-skin-ProteusFHD.patch \
+	file://0001-Set-default-skin-Satdreamgr-HD-TranspBA.patch;apply=false \
 	file://0002-Satdreamgr-InfoBarGenerics-changes.patch \
 	file://0001-Satdreamgr-show-softwaremanger-on-setupmenu.patch \
 	file://0001-Satdreamgr-tempfancontrol-add-support-for-dmv2.patch \
@@ -18,8 +19,6 @@ SRC_URI += " \
 	file://sdg_sw.patch \
 	"
 
-SRC_URI_append_ixusszero = " file://0001-Ixuss-disable-blending-issues.patch "
-SRC_URI_append_ixussone = " file://0001-Ixuss-disable-blending-issues.patch "
 SRC_URI_append_sf4008 = " file://sf4008_boxmode6.patch file://sf4008rc2.patch file://sdg_vtuner_msg2.patch "
 SRC_URI_append_sf8008 = " file://sf8008_e2.patch;apply=no file://sdg_vtuner_msg2.patch file://sdg_hdmioutput.patch "
 
@@ -28,17 +27,11 @@ RRECOMMENDS_${PN} = " \
 	glib-networking \
 	hotplug-e2-helper \
 	glibc-gconv-utf-16 \
-	python-sendfile \
+	${PYTHON_PN}-sendfile \
 	virtual/enigma2-mediaservice \
+	enigma2-plugin-skins-proteusfhd \
+	ofgwrite \
 	"
-
-do_install_append() {
-	if [ "${base_libdir}" = "/lib64" ] ; then
-		install -d ${D}/usr/lib
-		ln -s ${libdir}/enigma2 ${D}/usr/lib/enigma2
-		ln -s ${libdir}/python2.7 ${D}/usr/lib/python2.7
-	fi
-}
 
 FILES_${PN} += "/usr/lib"
 
