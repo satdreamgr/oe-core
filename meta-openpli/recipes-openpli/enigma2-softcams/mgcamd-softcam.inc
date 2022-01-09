@@ -18,8 +18,8 @@ INSANE_SKIP_${PN} += "already-stripped"
 CAMLINK = "/etc/init.d/softcam"
 CAMPATH = "/etc/init.d/softcam.${CAMNAME}"
 
-CAMSTART ?= "exec start-stop-daemon -S -x /usr/bin/${CAMNAME}"
-CAMSTOP  ?= "exec start-stop-daemon -K -o -R TERM/5/KILL/2 -x /usr/bin/${CAMNAME}"
+CAMSTART ?= "exec start-stop-daemon -S -b -x /usr/bin/${CAMNAME}"
+CAMSTOP  ?= "exec start-stop-daemon -K -o -R 2 -x /usr/bin/${CAMNAME}"
 
 # Generate a simplistic standard init script
 do_compile_append () {
@@ -30,12 +30,16 @@ do_compile_append () {
 case "\$1" in
 start)
 	ulimit -s 1024
+	rm -rf /tmp/ecm0.info /tmp/ecm.info /tmp/ecm1.info
+	sleep 2
 	${CAMSTART}
 	;;
 stop)
 	${CAMSTOP}
+	sleep 1
 	# in case a normal stop failed
-	killall /usr/bin/${CAMNAME}
+	kill -9 /usr/bin/${CAMNAME}
+	rm -rf /tmp/ecm0.info /tmp/ecm.info /tmp/ecm1.info
 	;;
 restart|reload)
 	\$0 stop

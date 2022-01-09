@@ -14,7 +14,7 @@ S = "${WORKDIR}"
 
 require softcam.inc
 
-RDEPENDS_${PN} += "libcrypto-compat libxcrypt-compat"
+RDEPENDS_${PN} += "libxcrypt-compat"
 
 INHIBIT_PACKAGE_STRIP = "1"
 

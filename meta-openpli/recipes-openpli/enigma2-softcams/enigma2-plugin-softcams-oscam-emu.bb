@@ -14,11 +14,12 @@ PKGV = "git${GITPKGV}"
 SRC_URI = "git://github.com/oscam-emu/oscam-patched.git;protocol=https"
 
 DEPENDS = "libusb openssl"
+RDEPENDS_${PN} += "enigma2-plugin-extensions-oscamstatus"
 
 S = "${WORKDIR}/git"
 B = "${S}"
 CAMNAME = "oscam-emu"
-CAMSTART = "/usr/bin/oscam-emu --wait 0 --config-dir /etc/tuxbox/config/oscam-emu --daemon --pidfile /tmp/oscam-emu.pid --restart 2 --utf8"
+CAMSTART = "/usr/bin/oscam-emu --wait 60 --config-dir /etc/tuxbox/config/oscam-emu --daemon --pidfile /tmp/oscam-emu.pid --restart 2 --utf8"
 CAMSTOP = "kill \`cat /tmp/oscam-emu.pid\` 2> /dev/null"
 
 SRC_URI += " \
@@ -26,9 +27,10 @@ SRC_URI += " \
 	file://oscam.server \
 	file://oscam.srvid \
 	file://oscam.user \
+	file://oscam.dvbapi \
 	file://oscam.provid"
 
-CONFFILES = "${sysconfdir}/tuxbox/config/oscam-emu/oscam.conf ${sysconfdir}/tuxbox/config/oscam-emu/oscam.server ${sysconfdir}/tuxbox/config/oscam-emu/oscam.srvid ${sysconfdir}/tuxbox/config/oscam-emu/oscam.user ${sysconfdir}/tuxbox/config/oscam-emu/oscam.provid"
+CONFFILES = "${sysconfdir}/tuxbox/config/oscam-emu/oscam.conf ${sysconfdir}/tuxbox/config/oscam-emu/oscam.server ${sysconfdir}/tuxbox/config/oscam-emu/oscam.srvid ${sysconfdir}/tuxbox/config/oscam-emu/oscam.user ${sysconfdir}/tuxbox/config/oscam-emu/oscam.dvbapi ${sysconfdir}/tuxbox/config/oscam-emu/oscam.provid"
 
 FILES_${PN} = "${bindir}/oscam-emu ${sysconfdir}/tuxbox/config/oscam-emu/* ${sysconfdir}/init.d/softcam.oscam-emu"
 
@@ -40,13 +42,14 @@ EXTRA_OECMAKE += "\
 	-DSTATIC_LIBUSB=0 \
 	-DWITH_SSL=1 \
 	-DIPV6SUPPORT=1 \
-	-DCLOCKFIX=0 \
+	-DCLOCKFIX=1 \
 	-DHAVE_PCSC=1 \
 	-DCARDREADER_SMARGO=1 \
 	-DCARDREADER_PCSC=1 \
 	-DCW_CYCLE_CHECK=1 \
 	-DCS_CACHEEX=1 \
 	-DMODULE_CONSTCW=1 \	
+	-DLCDSUPPORT=1 \
 	"
 
 do_install() {
