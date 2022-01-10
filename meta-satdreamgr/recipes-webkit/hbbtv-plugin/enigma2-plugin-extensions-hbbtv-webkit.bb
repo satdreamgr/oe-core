@@ -17,7 +17,7 @@ PR = "r1"
 
 INSANE_SKIP_${PN} += "already-stripped arch"
 
-SRC_URI = "git://github.com/oe-alliance/enigma2-plugin-extensions-hbbtv-webkit.git;protocol=https \
+SRC_URI = "git://github.com/oe-alliance/enigma2-plugin-extensions-hbbtv-webkit.git;protocol=https;branch=dev \
 	file://0001-Revert-dags-fix-close-hbbtv-7252-model.patch \
 "
 
@@ -33,8 +33,7 @@ do_install_append() {
     
     # Python Files
     cp -aRf ${S}/HbbTV/* ${D}${libdir}/${DESTDIR}
-    python -O -m compileall ${D}${libdir}/${DESTDIR}
-    rm -rf ${D}${libdir}/${DESTDIR}/*.py
+    ${PYTHON_PN} -O -m compileall ${D}${libdir}/${DESTDIR}
 }
 
 FILES_${PN} = "/"
