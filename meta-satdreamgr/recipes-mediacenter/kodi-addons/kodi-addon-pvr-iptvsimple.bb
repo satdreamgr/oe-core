@@ -2,6 +2,8 @@ SUMMARY = "Kodi Media Center PVR plugins"
 
 PKGV = "${PV}"
 
-KODIADDONPLUGIN = "wmc"
+KODIADDONPLUGIN = "iptvsimple"
+
+DEPENDS_append = "pugixml"
 
 require kodi-addon-pvr.inc

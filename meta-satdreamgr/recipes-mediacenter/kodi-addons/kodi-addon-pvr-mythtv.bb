@@ -1,8 +1,9 @@
 SUMMARY = "Kodi Media Center PVR plugins"
 
-PV = "5.10.15+git${SRCPV}"
-PKGV = "5.10.15+git${GITPKGV}"
+PKGV = "${PV}"
 
 KODIADDONPLUGIN = "mythtv"
 
 require kodi-addon-pvr.inc
+
+#SRC_URI_append = " file://pvr-mythtv-fix-build-using-not-merged-upstream-commit.patch"
