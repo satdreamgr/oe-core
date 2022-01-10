@@ -10,6 +10,7 @@ IMAGE_INSTALL = "\
 	${ROOTFS_PKGMANAGE} \
 	3rd-party-feed-configs \
 	avahi-daemon \
+	busybox-cron \
 	ca-certificates \
 	distro-feed-configs \
 	dropbear \
@@ -18,20 +19,21 @@ IMAGE_INSTALL = "\
 	e2fsprogs-tune2fs \
 	fakelocale \
 	fuse-exfat \
-	glibc-binary-localedata-en-gb \
 	kernel-params \
 	modutils-loadscript \
+	cifs-utils \
+	nfs-utils \
 	nfs-utils-client \
 	openpli-bootlogo \
 	openssh-sftp-server \
 	opkg \
+	util-linux-mount \
 	packagegroup-base \
 	packagegroup-core-boot \
 	parted \
-	python-ipaddress  \
-	python-netifaces \
-	python-pysmb \
-	nfs-utils \
+	${PYTHON_PN}-ipaddress  \
+	${PYTHON_PN}-netifaces \
+	${PYTHON_PN}-pysmb \
 	samba-base \
 	sdparm \
 	tuxbox-common \
@@ -39,6 +41,8 @@ IMAGE_INSTALL = "\
 	volatile-media \
 	vsftpd \
 "
+
+IMAGE_INSTALL_append_libc-glibc = " glibc-binary-localedata-en-gb"
 
 export IMAGE_BASENAME = "openpli"
 IMAGE_LINGUAS = ""
@@ -49,13 +53,6 @@ IMAGE_FEATURES += "package-management"
 # rootfs_remove_opkg_leftovers but that fails to parse.
 rootfs_removeopkgleftovers() {
 	rm -r ${IMAGE_ROOTFS}/var/lib/opkg/lists
-}
-
-# Speedup boot by reducing the host key size. The time it takes grows
-# exponentially by key size, the default is 2k which takes several
-# seconds on most boxes.
-rootfs_speedup_dropbearkey() {
-	echo 'DROPBEAR_RSAKEY_ARGS="-s 1024"' >> ${IMAGE_ROOTFS}${sysconfdir}/default/dropbear
 }
 
 # Some features in image.bbclass we do NOT want, so override them
@@ -72,4 +69,4 @@ ssh_allow_empty_password () {
 license_create_manifest() {
 }
 
-ROOTFS_POSTPROCESS_COMMAND += "rootfs_removeopkgleftovers; rootfs_speedup_dropbearkey; "
+ROOTFS_POSTPROCESS_COMMAND += "rootfs_removeopkgleftovers; "
