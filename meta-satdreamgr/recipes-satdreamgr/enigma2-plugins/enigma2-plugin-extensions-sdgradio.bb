@@ -17,7 +17,3 @@ PKGV = "2+git${GITPKGV}"
 inherit distutils-openplugins
 
 RDEPENDS_${PN} = "dab-cmdline-sdgradio redsea rtl-sdr"
-
-#PACKAGES =+ "${PN}-src"
-RDEPENDS_{PN}-src = "${PN}"
-FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/Extensions/SDGRadio/*.py"

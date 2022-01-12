@@ -27,5 +27,3 @@ do_install_append() {
 }
 
 FILES_${PN} = "${libdir}/enigma2/python/Plugins/Extensions/GreekStreamTV/*"
-FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/Extensions/GreekStreamTV/*.py \
-	${libdir}/enigma2/python/Plugins/*.egg-info ${PYTHON_SITEPACKAGES_DIR}"

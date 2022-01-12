@@ -13,5 +13,3 @@ SRC_URI = "git://github.com/satdreamgr/BTDevicesManager.git;protocol=https"
 S = "${WORKDIR}/git"
 
 RDEPENDS_${PN} = "bluez5 ${PYTHON_PN}-bluetool"
-
-FILES_${PN}-src += "${libdir}/enigma2/python/Plugins/Extensions/BTDevicesManager/*.py"

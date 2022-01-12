@@ -21,5 +21,5 @@ SRCREV = "${AUTOREV}"
 inherit distutils-openplugins gitpkgv
 
 FILES_${PN} = "${libdir}/enigma2/python/Plugins/Extensions/GreekNetRadio/*"
-FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/Extensions/GreekNetRadio/*.py \
-       ${libdir}/enigma2/python/Plugins/*.egg-info ${PYTHON_SITEPACKAGES_DIR}"
+FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/*.egg-info ${PYTHON_SITEPACKAGES_DIR}"
+
