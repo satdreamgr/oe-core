@@ -1,7 +1,7 @@
 DESCRIPTION = "Satdreamgr HD TransBA skin"
 MAINTAINER = "SatDreamGR"
 LICENSE = "Proprietary"
-LIC_FILES_CHKSUM = "file://README.md;md5=9befd2c8b72c31c1f2506e19fbfd03e0"
+LIC_FILES_CHKSUM = "file://README.md;md5=d45edae0ac431443693414b991365f14"
 
 inherit gitpkgv
 
