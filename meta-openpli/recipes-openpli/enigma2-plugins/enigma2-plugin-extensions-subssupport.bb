@@ -2,18 +2,18 @@ SUMMARY = "Collection of enigma2 subtitles plugins"
 HOMEPAGE = "https://github.com/mx3L/subssupport"
 AUTHOR = "Maroš Ondrášek <mx3ldev@gmail.com>"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-RDEPENDS_${PN} = "python-xmlrpc python-compression python-codecs python-zlib python-difflib unrar"
+RDEPENDS_${PN} = "${PYTHON_PN}-requests ${PYTHON_PN}-xmlrpc ${PYTHON_PN}-compression ${PYTHON_PN}-codecs ${PYTHON_PN}-difflib unrar"
 
-inherit gitpkgv autotools-brokensep gettext
+inherit autotools-brokensep gettext gittag
 
 SRC_URI = "git://github.com/mx3L/subssupport;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 
-PV = "1.5.7+git${SRCPV}"
-PKGV = "1.5.7+git${GITPKGV}"
+PV = "git${SRCPV}"
+PKGV = "${GITPKGVTAG}"
 
 FILES_${PN} = "${libdir}/enigma2/python/Plugins/Extensions/SubsSupport \
 ${localstatedir}/lib/subssupport"
