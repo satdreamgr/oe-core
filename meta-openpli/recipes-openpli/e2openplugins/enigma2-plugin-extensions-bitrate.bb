@@ -8,9 +8,9 @@ PR="r1"
 
 require openplugins.inc
 
-inherit autotools gettext pythonnative
+inherit autotools gettext ${PYTHON_PN}native
 
-DEPENDS += "python"
+DEPENDS += "${PYTHON_PN}"
 
 EXTRA_OECONF = " \
     STAGING_INCDIR=${STAGING_INCDIR} \

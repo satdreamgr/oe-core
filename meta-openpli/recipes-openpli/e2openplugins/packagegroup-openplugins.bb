@@ -9,7 +9,6 @@ DEPENDS = " \
 	enigma2-plugin-extensions-autobackup \
 	enigma2-plugin-extensions-autobouquets \
 	enigma2-plugin-extensions-bitrate \
-	enigma2-plugin-extensions-buienradar \
 	enigma2-plugin-extensions-changerootpassword \
 	enigma2-plugin-extensions-filecommander \
 	enigma2-plugin-extensions-foreca \
@@ -24,10 +23,8 @@ DEPENDS = " \
 	enigma2-plugin-extensions-permanentvfdclock \
 	enigma2-plugin-extensions-ppanel \
 	enigma2-plugin-extensions-remotecontrolchannel \
-	enigma2-plugin-extensions-remotestreamconvert \
 	enigma2-plugin-extensions-screenposition \
 	enigma2-plugin-extensions-shootyourscreen \
-	enigma2-plugin-extensions-simpleumount \
 	enigma2-plugin-extensions-streaminterface \
 	enigma2-plugin-extensions-wakeonlan \
 	enigma2-plugin-systemplugins-autoshutdown \
@@ -38,12 +35,9 @@ DEPENDS = " \
 	enigma2-plugin-extensions-systemtools \
 	enigma2-plugin-extensions-cacheflush \
 	enigma2-plugin-extensions-analogclock \
-	enigma2-plugin-extensions-epgimportfilter \
 	enigma2-plugin-systemplugins-autobouquetsmaker \
-	enigma2-plugin-systemplugins-crossepg \
 	enigma2-plugin-extensions-telekomsport \
 	enigma2-plugin-extensions-oscamstatus \
-	enigma2-plugin-extensions-blackoutblind \
 "
 
 require conf/license/license-gplv2.inc

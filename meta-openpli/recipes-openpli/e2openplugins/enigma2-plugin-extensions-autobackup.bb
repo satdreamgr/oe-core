@@ -13,3 +13,5 @@ require openplugins-distutils.inc
 do_install_append() {
 	chmod a+x ${D}${libdir}/enigma2/python/Plugins/*/*/*.sh
 }
+
+DEPENDS = "python3-future-native"

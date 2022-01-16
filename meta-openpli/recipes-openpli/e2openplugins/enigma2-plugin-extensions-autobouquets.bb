@@ -18,9 +18,9 @@ PV = "2.2+git${SRCPV}"
 PKGV = "2.2+git${GITPKGV}"
 PR = "r0"
 
-INSANE_SKIP_${PN} += "already-stripped"
+INSANE_SKIP_${PN} += "already-stripped ldflags"
 
-SRC_URI="git://github.com/LraiZer/AutoBouquets.git;protocol=https;branch=${AUTOBOUQUETS_BRANCH}"
+SRC_URI="git://github.com/LraiZer/AutoBouquets.git;branch=${AUTOBOUQUETS_BRANCH};protocol=https"
 
 S = "${WORKDIR}/git"
 
