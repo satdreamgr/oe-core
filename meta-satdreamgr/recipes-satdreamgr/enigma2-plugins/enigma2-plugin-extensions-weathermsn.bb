@@ -12,7 +12,7 @@ PKGV = "0.7+git${GITPKGV}"
 PR = "r7"
 
 PACKAGES = "${PN}"
-SRC_URI = "git://github.com/nautilus7/enigma2-plugin-extensions-weathermsn.git;protocol=https;branch=python3-fixes"
+SRC_URI = "git://github.com/satdreamgr/enigma2-plugin-extensions-weathermsn.git;protocol=https;branch=python3-fixes"
 SRCREV = "${AUTOREV}"
 
 FILES_${PN} = "/usr/lib/enigma2/"
