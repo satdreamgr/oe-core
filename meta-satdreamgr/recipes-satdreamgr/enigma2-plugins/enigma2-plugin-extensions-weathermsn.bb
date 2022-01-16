@@ -9,11 +9,11 @@ inherit gitpkgv ${PYTHON_PN}native allarch
 
 PV = "0.7+git${SRCPV}"
 PKGV = "0.7+git${GITPKGV}"
-PR = "r5"
+PR = "r7"
 
 PACKAGES = "${PN}"
-SRC_URI = "git://github.com/Sirius0103/enigma2-plugins.git;protocol=https"
-SRCREV = "a704ae5593144142c9dd9091e68a540809a4aea7"
+SRC_URI = "git://github.com/nautilus7/enigma2-plugin-extensions-weathermsn.git;protocol=https;branch=python3-fixes"
+SRCREV = "${AUTOREV}"
 
 FILES_${PN} = "/usr/lib/enigma2/"
 
