@@ -13,12 +13,12 @@ SRCREV = "${AUTOREV}"
 PKGVERSION = "2.0-r0"
 PV = "${PKGVERSION}-${SRCPV}"
 PKGV = "${PKGVERSION}-${GITPKGV}"
-PR = "r1"
+PR = "r2"
 
 INSANE_SKIP_${PN} += "already-stripped arch"
 
 SRC_URI = "git://github.com/oe-alliance/enigma2-plugin-extensions-hbbtv-webkit.git;protocol=https;branch=dev \
-	file://0001-Revert-dags-fix-close-hbbtv-7252-model.patch \
+	file://revert-machine-specific.patch \
 "
 
 S = "${WORKDIR}/git"

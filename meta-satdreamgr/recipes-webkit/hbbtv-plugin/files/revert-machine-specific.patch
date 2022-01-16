@@ -1,16 +1,9 @@
-Subject: [PATCH] Revert "[dags] fix close hbbtv 7252 model"
-
-This reverts commit 812c3e4d136fd6b785e4d496ff0e42d86e5838c4.
----
- HbbTV/hbbtv.py  | 21 +++++----------------
- HbbTV/plugin.py | 15 +++++----------
- 2 files changed, 10 insertions(+), 26 deletions(-)
-
 diff --git a/HbbTV/hbbtv.py b/HbbTV/hbbtv.py
-index 84006fd..df031f1 100644
+index 4af9d81..9ae43ba 100644
 --- a/HbbTV/hbbtv.py
 +++ b/HbbTV/hbbtv.py
-@@ -1,8 +1,6 @@
+@@ -1,9 +1,7 @@
+ from __future__ import absolute_import
  from Screens.Screen import Screen
 -from Screens.ChannelSelection import ChannelSelection
  from Components.ActionMap import ActionMap
@@ -18,9 +11,22 @@ index 84006fd..df031f1 100644
 -from boxbranding import getMachineBuild
 +from enigma import eTimer
  
- import os, struct, vbcfg
- 
-@@ -35,10 +33,7 @@ class HbbTVWindow(Screen):
+ import os, struct
+ from . import vbcfg
+@@ -28,11 +26,7 @@ class HbbTVWindow(Screen):
+ 			self.height = 1080
+ 		elif (self.height < 576):
+ 			self.height = 576
+-
+-		if getMachineBuild() in ('pulse4k', 'pulse4kmini', 'h9', 'h9combo', 'h9combose', 'h9se', 'h10', 'h8', 'hzero', 'i55', 'i55plus', 'i55se', 'hd60', 'hd61', 'multibox', 'multiboxse'):
+-			self.width=1280
+-			self.height=720
+-
++		
+ 		vbcfg.g_vmpegposition = vbcfg.getvmpegPosition()
+ 		vbcfg.g_position = vbcfg.getPosition()
+ 		vbcfg.osd_lock()
+@@ -41,10 +35,7 @@ class HbbTVWindow(Screen):
  
  		self._url = url
  		self._info = app_info
@@ -32,7 +38,7 @@ index 84006fd..df031f1 100644
  		self.onLayoutFinish.append(self.start_hbbtv_application)
  
  		self._close_timer = eTimer()
-@@ -115,16 +110,10 @@ class HbbTVWindow(Screen):
+@@ -122,16 +113,10 @@ class HbbTVWindow(Screen):
  		vbcfg.osd_unlock()
  		dsk.paint()
  
@@ -53,10 +59,10 @@ index 84006fd..df031f1 100644
  		self.close()
  
 diff --git a/HbbTV/plugin.py b/HbbTV/plugin.py
-index f3db5f3..51ddf15 100644
+index f9e1e44..4b60b6d 100644
 --- a/HbbTV/plugin.py
 +++ b/HbbTV/plugin.py
-@@ -10,7 +10,6 @@ from Components.Language import language
+@@ -11,7 +11,6 @@ from Components.Language import language
  from Components.ServiceEventTracker import ServiceEventTracker
  from Components.VolumeControl import VolumeControl
  from Tools.Directories import fileExists
@@ -64,7 +70,7 @@ index f3db5f3..51ddf15 100644
  
  from enigma import eTimer, iServiceInformation, iPlayableService
  
-@@ -98,15 +97,11 @@ class VBHandler(VBHandlers):
+@@ -100,15 +99,11 @@ class VBHandler(VBHandlers):
  					if x in self.onCloseCB:
  						self.onCloseCB.remove(x)
  		#print "============== self.videobackend_activate: ", self.videobackend_activate, "   =============="
@@ -85,6 +91,3 @@ index f3db5f3..51ddf15 100644
  		return (True, None)
  
  	def _CB_CONTROL_TITLE(self, result, packet):
--- 
-2.1.4
-
