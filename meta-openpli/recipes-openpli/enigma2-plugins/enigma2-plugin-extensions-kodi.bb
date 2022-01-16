@@ -7,9 +7,11 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-RRECOMMENDS_${PN} = "enigma2-plugin-extensions-subssupport virtual/kodi"
+RRECOMMENDS_${PN} = "enigma2-plugin-extensions-subssupport kodi"
 
-SRC_URI = "git://github.com/mx3L/kodiext;protocol=https;branch=master \
+RDEPENDS_${PN} = "${PYTHON_PN}-pycryptodome ${PYTHON_PN}-pycryptodomex kodi-addon-inputstream-adaptive nspr nss"
+
+SRC_URI = "git://github.com/oe-mirrors/kodiext;protocol=https;branch=master \
 	file://0001-make-transparant.patch \
 	file://advancedsettings.xml \
 	file://advancedsettings-empty.xml \
