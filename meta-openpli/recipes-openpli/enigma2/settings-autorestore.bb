@@ -1,10 +1,11 @@
-PV = "2018102501"
-SRC_URI = "file://*"
 DESCRIPTION = "Autorecover settings and install packages at first boot from /media/*/backup"
 PACKAGES = "${PN}"
 MAINTAINER = "OpenPLi team"
 
 require conf/license/openpli-gplv2.inc
+
+PV = "2021081701"
+SRC_URI = "file://settings-restore.sh file://convert-smbconf.py"
 
 # Need to tell bitbake that we have extra files installed
 FILES_${PN} = " \
