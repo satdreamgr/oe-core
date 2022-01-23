@@ -14,7 +14,6 @@ PACKAGES += "\
 	enigma2-plugin-extensions-fancontrol2 \
 	enigma2-plugin-extensions-bonjour \
 	enigma2-plugin-extensions-transmission \
-	enigma2-plugin-systemplugins-systemtime \
 	"
 RDEPENDS_enigma2-plugin-extensions-mosaic = "aio-grab"
 RDEPENDS_enigma2-plugin-extensions-fancontrol2 = "smartmontools hdparm"
@@ -22,20 +21,18 @@ RDEPENDS_enigma2-plugin-extensions-bonjour = "avahi-daemon"
 RDEPENDS_enigma2-plugin-systemplugins-satipclient = "satipclient"
 
 RRECOMMENDS_enigma2-plugin-systemplugins-blindscan = "virtual/blindscan-dvbs"
-RRECOMMENDS_enigma2-plugin-systemplugins-systemtime = "ntpdate"
 RRECOMMENDS_enigma2-plugin-extensions-transmission = "transmission transmission-client"
 
 PROVIDES += "\
 	${@bb.utils.contains("MACHINE_FEATURES", "transcoding","enigma2-plugin-systemplugins-transcodingsetup","",d)} \
 "
 
-inherit gitpkgv pythonnative pkgconfig gettext
+inherit gitpkgv ${PYTHON_PN}native pkgconfig gettext
 
 PV = "z-git${SRCPV}"
 PKGV = "z-git${GITPKGV}"
 
-GITHUB_URI ?= "git://github.com"
-SRC_URI = "${GITHUB_URI}/OpenPLi/${BPN}.git;protocol=https"
+SRC_URI = "git://github.com/OpenPLi/${BPN}.git;protocol=https;branch=python3"
 
 EXTRA_OECONF = " \
 	BUILD_SYS=${BUILD_SYS} \
@@ -64,17 +61,19 @@ PACKAGES += "${PN}-meta ${PN}-build-dependencies"
 
 CFLAGS += "-I${STAGING_INCDIR}/tirpc"
 LDFLAGS += "-ltirpc"
+CXXFLAGS = " -std=c++11"
 
 inherit autotools-brokensep
 
 S = "${WORKDIR}/git"
 
 DEPENDS = " \
-	python-pyopenssl \
+	${PYTHON_PN}-pyopenssl \
 	streamripper \
-	python-mutagen \
-	python-twisted \
-	python-daap \
+	${PYTHON_PN}-mutagen \
+	${PYTHON_PN}-six-native \
+	${PYTHON_PN}-twisted \
+	${PYTHON_PN}-daap \
 	libcddb \
 	dvdbackup \
 	libtirpc \
@@ -102,12 +101,12 @@ python populate_packages_prepend () {
             if line.startswith('Package: '):
                 full_package = line[9:]
             elif line.startswith('Depends: '):
-                # some plugins still reference twisted-* dependencies, these packages are now called python-twisted-*
+                # some plugins still reference twisted-* dependencies, these packages are now called ${PYTHON_PN}-twisted-*
                 rdepends = []
                 for depend in line[9:].split(','):
                     depend = depend.strip()
                     if depend.startswith('twisted-'):
-                        rdepends.append(depend.replace('twisted-', 'python-twisted-'))
+                        rdepends.append(depend.replace('twisted-', '${PYTHON_PN}-twisted-'))
                     elif depend.startswith('enigma2') and not depend.startswith('enigma2-'):
                         pass # Ignore silly depends on enigma2 with all kinds of misspellings
                     else:
@@ -131,8 +130,6 @@ python populate_packages_prepend () {
 }
 
 do_install_append() {
-	# remove unused .pyc files
-	find ${D}${libdir}/enigma2/python/ -name '*.pyc' -exec rm {} \;
 	# remove leftover webinterface garbage
 	rm -rf ${D}${libdir}/enigma2/python/Plugins/Extensions/WebInterface
 }
