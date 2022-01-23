@@ -4,7 +4,7 @@ SECTION = "multimedia"
 MAINTAINER = "SatDreamGR"
 HOMEPAGE = "http://satdreamgr.com"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://setup.py;md5=6343fbab37d88d4ad588416c903cad95"
+LIC_FILES_CHKSUM = "file://setup.py;md5=515f62cc4c69f2e0aac597788ed0349e"
 
 RDEPENDS_${PN} = "\
 	${PYTHON_PN}-lxml \
@@ -15,7 +15,7 @@ RDEPENDS_${PN} = "\
 
 S="${WORKDIR}/git"
 
-SRC_URI = "git://github.com/athoik/GreekStreamTV;protocol=https"
+SRC_URI = "git://github.com/athoik/GreekStreamTV.git;protocol=https"
 
 inherit distutils-openplugins gitpkgv
 SRCREV = "${AUTOREV}"
