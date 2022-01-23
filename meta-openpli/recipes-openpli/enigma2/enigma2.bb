@@ -11,52 +11,56 @@ DEPENDS = " \
 	jpeg \
 	libdreamdvd libdvbsi++ fribidi libmad libpng libsigc++-2.0 giflib libxml2 \
 	openssl libudfread \
-	python-imaging python-twisted python-wifi \
+	${PYTHON_PN}-twisted ${PYTHON_PN}-wifi \
+	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-imaging", "${PYTHON_PN}-pillow", d)} \
 	swig-native \
 	tuxtxt-enigma2 \
 	"
 
-# SoftcamSetup and SkinSelector is integrated now
-RREPLACES_${PN} = "enigma2-plugin-pli-softcamsetup enigma2-plugin-systemplugins-skinselector"
-RCONFLICTS_${PN} = "enigma2-plugin-pli-softcamsetup enigma2-plugin-systemplugins-skinselector"
+# SoftcamSetup, SkinSelector and Systemtime is integrated now
+RREPLACES_${PN} = "enigma2-plugin-pli-softcamsetup enigma2-plugin-systemplugins-skinselector enigma2-plugin-systemplugins-systemtime"
+RCONFLICTS_${PN} = "enigma2-plugin-pli-softcamsetup enigma2-plugin-systemplugins-skinselector enigma2-plugin-systemplugins-systemtime"
 
 RDEPENDS_${PN} = " \
 	alsa-conf \
 	enigma2-fonts \
 	ethtool \
-	glibc-gconv-iso8859-15 \
 	${PYTHON_RDEPS} \
 	"
+
+RDEPENDS_${PN}_append_libc-glibc = " glibc-gconv-iso8859-15"
 
 RRECOMMENDS_${PN} = " \
 	enigma2-plugin-skins-pli-hd \
 	hotplug-e2-helper \
-	glibc-gconv-utf-16 \
-	python-sendfile \
+	${PYTHON_PN}-sendfile \
 	ofgwrite \
 	virtual/enigma2-mediaservice \
 	"
 
+RRECOMMENDS_${PN}_append_libc-glibc = " glibc-gconv-utf-16"
+
 PYTHON_RDEPS = " \
-	python-codecs \
-	python-core \
-	python-crypt \
-	python-fcntl \
-	python-lang \
-	python-logging \
-	python-mmap \
-	python-netclient \
-	python-netserver \
-	python-numbers \
-	python-pickle \
-	python-re \
-	python-shell \
-	python-threading \
-	python-twisted-core \
-	python-twisted-web \
-	python-xml \
-	python-zlib \
-	python-zopeinterface \
+	${PYTHON_PN}-codecs \
+	${PYTHON_PN}-core \
+	${PYTHON_PN}-crypt \
+	${PYTHON_PN}-fcntl \
+	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-lang", "", d)} \
+	${PYTHON_PN}-logging \
+	${PYTHON_PN}-mmap \
+	${PYTHON_PN}-netclient \
+	${PYTHON_PN}-netifaces \
+	${PYTHON_PN}-netserver \
+	${PYTHON_PN}-numbers \
+	${PYTHON_PN}-pickle \
+	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-re", "", d)} \
+	${PYTHON_PN}-shell \
+	${PYTHON_PN}-threading \
+	${PYTHON_PN}-twisted-core \
+	${PYTHON_PN}-twisted-web \
+	${PYTHON_PN}-xml \
+	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-zlib", "", d)} \
+	${PYTHON_PN}-zopeinterface \
 	"
 
 # DVD and iso playback is integrated, we need the libraries
@@ -81,11 +85,13 @@ DESCRIPTION_append_enigma2-plugin-systemplugins-wirelesslan = "helps you configu
 DESCRIPTION_append_enigma2-plugin-systemplugins-networkwizard = "provides easy step by step network configuration"
 
 RDEPENDS_enigma2-plugin-extensions-cutlisteditor = "aio-grab"
-RDEPENDS_enigma2-plugin-systemplugins-nfiflash = "python-twisted-web"
-RDEPENDS_enigma2-plugin-systemplugins-softwaremanager = "python-twisted-web"
-RDEPENDS_enigma2-plugin-systemplugins-wirelesslan = "wpa-supplicant wireless-tools python-wifi"
+RDEPENDS_enigma2-plugin-systemplugins-nfiflash = "${PYTHON_PN}-twisted-web"
+RDEPENDS_enigma2-plugin-systemplugins-softwaremanager = "${PYTHON_PN}-twisted-web"
+RDEPENDS_enigma2-plugin-systemplugins-wirelesslan = "wpa-supplicant wireless-tools ${PYTHON_PN}-wifi"
+
 # Note that these tools lack recipes
-RDEPENDS_enigma2-plugin-extensions-dvdburn = "dvd+rw-tools dvdauthor mjpegtools cdrkit python-imaging ${DEMUXTOOL}"
+RDEPENDS_enigma2-plugin-extensions-dvdburn = "dvd+rw-tools dvdauthor mjpegtools cdrkit ${PYTHON_PN}-imaging ${DEMUXTOOL} \
+                                              ${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-imaging", "${PYTHON_PN}-pillow", d)}"
 RDEPENDS_enigma2-plugin-systemplugins-hotplug = "hotplug-e2-helper"
 RRECOMMENDS_enigma2-plugin-extensions-dvdplayer = "kernel-module-udf"
 
@@ -93,38 +99,35 @@ RRECOMMENDS_enigma2-plugin-extensions-dvdplayer = "kernel-module-udf"
 # the RDEPENDS for the plugins above, preventing [build-deps] warnings.
 RDEPENDS_${PN}-build-dependencies = "\
 	aio-grab \
-	dvd+rw-tools dvdauthor mjpegtools cdrkit python-imaging ${DEMUXTOOL} \
-	wpa-supplicant wireless-tools python-wifi \
-	python-twisted-web \
+	dvd+rw-tools dvdauthor mjpegtools cdrkit ${DEMUXTOOL} \
+	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-imaging", "${PYTHON_PN}-pillow", d)} \
+	wpa-supplicant wireless-tools ${PYTHON_PN}-wifi \
+	${PYTHON_PN}-twisted-web \
 	"
 RRECOMMENDS_${PN}-build-dependencies = "\
 	kernel-module-udf \
 	"
 
-inherit gitpkgv pythonnative
+inherit gitpkgv ${@bb.utils.contains("PYTHON_PN", "python", "setuptools", "setuptools3", d)}
 
-PV = "2.7+git${SRCPV}"
-PKGV = "2.7+git${GITPKGV}"
+PV = "3.9+git${SRCPV}"
+PKGV = "3.9+git${GITPKGV}"
 
-ENIGMA2_BRANCH ?= "develop"
-GITHUB_URI ?= "git://github.com"
-SRC_URI = "${GITHUB_URI}/OpenPLi/${BPN}.git;protocol=https;branch=${ENIGMA2_BRANCH}"
+ENIGMA2_BRANCH ?= "${@bb.utils.contains("PYTHON_PN", "python", "develop", "python3", d)}"
+
+SRC_URI = " git://github.com/OpenPLi/enigma2.git;protocol=https;branch=${ENIGMA2_BRANCH}"
 
 LDFLAGS_prepend = " -lxml2 "
 
 S = "${WORKDIR}/git"
 
-FILES_${PN} += "${datadir}/keymaps"
-FILES_${PN}-meta = "${datadir}/meta"
-#PACKAGES =+ "${PN}-src"
-PACKAGES += "${PN}-meta ${PN}-build-dependencies"
+PACKAGES += "${PN}-meta ${PN}-build-dependencies enigma2-fonts"
+
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit autotools pkgconfig
 
-PACKAGES =+ "enigma2-fonts"
-PKGV_enigma2-fonts = "2018.08.15"
-FILES_enigma2-fonts = "${datadir}/fonts"
+PKGV_enigma2-fonts = "2020.10.17"
 
 def get_crashaddr(d):
     if d.getVar('CRASHADDR', True):
@@ -151,25 +154,30 @@ EXTRA_OEMAKE = "\
 	ENIGMA2_BRANCH=${ENIGMA2_BRANCH} \
 	"
 
+FILES_enigma2-fonts = "${datadir}/fonts"
+
+FILES_${PN} += "${datadir}/keymaps"
+
+FILES_${PN}-meta = "${datadir}/meta"
+
 # some plugins contain so's, their stripped symbols should not end up in the enigma2 package
 FILES_${PN}-dbg += "\
 	${libdir}/enigma2/python/Plugins/*/*/.debug \
 	"
 
 # Swig generated 200k enigma.py file has no purpose for end users
-# Save some space by not installing sources (mytest.py must remain)
+# Save some space by not installing sources (Startup.py must remain)
 FILES_${PN}-src += "\
+	${libdir}/enigma2/python/e2reactor.py \
 	${libdir}/enigma2/python/enigma.py \
 	${libdir}/enigma2/python/GlobalActions.py \
+	${libdir}/enigma2/python/keyids.py \
+	${libdir}/enigma2/python/keymapparser.py \
 	${libdir}/enigma2/python/Navigation.py \
 	${libdir}/enigma2/python/NavigationInstance.py \
 	${libdir}/enigma2/python/RecordTimer.py \
 	${libdir}/enigma2/python/ServiceReference.py \
 	${libdir}/enigma2/python/SleepTimer.py \
-	${libdir}/enigma2/python/e2reactor.py \
-	${libdir}/enigma2/python/enigma.py \
-	${libdir}/enigma2/python/keyids.py \
-	${libdir}/enigma2/python/keymapparser.py \
 	${libdir}/enigma2/python/skin.py \
 	${libdir}/enigma2/python/timer.py \
 	${libdir}/enigma2/python/*/*.py \
@@ -179,7 +187,6 @@ FILES_${PN}-src += "\
 
 do_install_append() {
 	install -d ${D}${datadir}/keymaps
-	find ${D}${libdir}/enigma2/python/ -name '*.pyc' -exec rm {} \;
 }
 
 python populate_packages_prepend() {
