@@ -12,7 +12,7 @@ DEPENDS = " \
 	libdreamdvd libdvbsi++ fribidi libmad libpng libsigc++-2.0 giflib libxml2 \
 	openssl libudfread \
 	${PYTHON_PN}-twisted ${PYTHON_PN}-wifi \
-	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-imaging", "${PYTHON_PN}-pillow", d)} \
+	${PYTHON_PN}-pillow \
 	swig-native \
 	tuxtxt-enigma2 \
 	"
@@ -45,7 +45,6 @@ PYTHON_RDEPS = " \
 	${PYTHON_PN}-core \
 	${PYTHON_PN}-crypt \
 	${PYTHON_PN}-fcntl \
-	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-lang", "", d)} \
 	${PYTHON_PN}-logging \
 	${PYTHON_PN}-mmap \
 	${PYTHON_PN}-netclient \
@@ -53,13 +52,11 @@ PYTHON_RDEPS = " \
 	${PYTHON_PN}-netserver \
 	${PYTHON_PN}-numbers \
 	${PYTHON_PN}-pickle \
-	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-re", "", d)} \
 	${PYTHON_PN}-shell \
 	${PYTHON_PN}-threading \
 	${PYTHON_PN}-twisted-core \
 	${PYTHON_PN}-twisted-web \
 	${PYTHON_PN}-xml \
-	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-zlib", "", d)} \
 	${PYTHON_PN}-zopeinterface \
 	"
 
@@ -91,7 +88,7 @@ RDEPENDS_enigma2-plugin-systemplugins-wirelesslan = "wpa-supplicant wireless-too
 
 # Note that these tools lack recipes
 RDEPENDS_enigma2-plugin-extensions-dvdburn = "dvd+rw-tools dvdauthor mjpegtools cdrkit ${PYTHON_PN}-imaging ${DEMUXTOOL} \
-                                              ${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-imaging", "${PYTHON_PN}-pillow", d)}"
+                                              ${PYTHON_PN}-pillow"
 RDEPENDS_enigma2-plugin-systemplugins-hotplug = "hotplug-e2-helper"
 RRECOMMENDS_enigma2-plugin-extensions-dvdplayer = "kernel-module-udf"
 
@@ -100,7 +97,7 @@ RRECOMMENDS_enigma2-plugin-extensions-dvdplayer = "kernel-module-udf"
 RDEPENDS_${PN}-build-dependencies = "\
 	aio-grab \
 	dvd+rw-tools dvdauthor mjpegtools cdrkit ${DEMUXTOOL} \
-	${@bb.utils.contains("PYTHON_PN", "python", "${PYTHON_PN}-imaging", "${PYTHON_PN}-pillow", d)} \
+	${PYTHON_PN}-pillow \
 	wpa-supplicant wireless-tools ${PYTHON_PN}-wifi \
 	${PYTHON_PN}-twisted-web \
 	"
@@ -108,12 +105,12 @@ RRECOMMENDS_${PN}-build-dependencies = "\
 	kernel-module-udf \
 	"
 
-inherit gitpkgv ${@bb.utils.contains("PYTHON_PN", "python", "setuptools", "setuptools3", d)}
+inherit gitpkgv setuptools3
 
 PV = "3.9+git${SRCPV}"
 PKGV = "3.9+git${GITPKGV}"
 
-ENIGMA2_BRANCH ?= "${@bb.utils.contains("PYTHON_PN", "python", "develop", "python3", d)}"
+ENIGMA2_BRANCH ?= "python3"
 
 SRC_URI = " git://github.com/OpenPLi/enigma2.git;protocol=https;branch=${ENIGMA2_BRANCH}"
 
