@@ -19,6 +19,11 @@ SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
 FILES_${PN} = "${libdir}"
+FILES_${PN}-src = "\
+    ${libdir}/enigma2/python/Components/Converter/*.py \
+    ${libdir}/enigma2/python/Plugins/Satdreamgr/*.py \
+    ${libdir}/enigma2/python/Plugins/Satdreamgr/*/*.py \
+    "
 
 do_install() {
    install -d ${D}${libdir}

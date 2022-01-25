@@ -29,3 +29,4 @@ do_install() {
 	chmod -R a+rX ${D}/usr/lib/enigma2/
 }
 
+FILES_${PN}-src += "${libdir}/enigma2/python/Plugins/Extensions/*/*.py ${libdir}/enigma2/python/Plugins/Extensions/*/*/*.py"
