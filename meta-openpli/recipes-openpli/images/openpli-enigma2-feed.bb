@@ -33,7 +33,6 @@ OPTIONAL_WIFI_PACKAGES = "\
 	${@ 'kernel-module-mt7610u' if ("${KERNEL_VERSION}" and "${MACHINE}" != "dm8000" and bb.utils.vercmp_string("${KERNEL_VERSION}", '4.19') < 0) else '' } \
 	\
 	${@ 'kernel-module-8192fu' if ("${KERNEL_VERSION}" and bb.utils.vercmp_string("${KERNEL_VERSION}", '3.8') >= 0) else '' } \
-	${@ 'kernel-module-8821cu' if ("${KERNEL_VERSION}" and bb.utils.vercmp_string("${KERNEL_VERSION}", '3.8') >= 0) else '' } \
 	${@ 'kernel-module-88xxau' if ("${KERNEL_VERSION}" and bb.utils.vercmp_string("${KERNEL_VERSION}", '4.0') >= 0) else '' } \
 	\
 	${@bb.utils.contains('MACHINE_ESSENTIAL_EXTRA_RDEPENDS', 'rtl8723bs', '', bb.utils.contains('MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS', 'spycat-rtl8723bs', '', 'kernel-module-r8723bs' if ("${KERNEL_VERSION}" and "${MACHINE}" != "dm8000" and bb.utils.vercmp_string("${KERNEL_VERSION}", '4.12') < 0) else '', d), d)} \
@@ -141,6 +140,7 @@ OPTIONAL_PACKAGES += " \
 	smartmontools \
 	strace \
 	streamlink \
+	streamlinksrv \
 	tcpdump \
 	tmux \
 	transmission \
@@ -165,11 +165,17 @@ OPTIONAL_ENIGMA2_PACKAGES = " \
 	channelsettings-enigma2-meta \
 	enigma2-plugin-drivers-usbserial \
 	enigma2-plugin-extensions-blurayplayer \
+	enigma2-plugin-extensions-epgimport \
+	enigma2-plugin-extensions-dlnaserver \
 	enigma2-plugin-extensions-e2iplayer-deps \
 	enigma2-plugin-extensions-youtube \
+	enigma2-plugin-extensions-sdgradio \
+	enigma2-plugin-systemplugins-crossepg \
 	enigma2-plugin-systemplugins-misplslcnscan \
 	enigma2-plugin-systemplugins-terrestrialscan \
+	enigma2-plugin-systemplugins-serviceapp \
 	enigma2-plugin-systemplugins-radiotimesxmltvemulator \
+	enigma2-plugin-extensions-lcd4linux \
 	enigma2-plugin-extensions-tmbd \
 	enigma2-plugin-security-firewall \
 	enigma2-plugin-skins-pli-hd \
@@ -187,6 +193,7 @@ OPTIONAL_ENIGMA2_PACKAGES = " \
 	${@bb.utils.contains("MACHINE_FEATURES", "transcoding", "streamproxy", "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "webkithbbtv", "enigma2-plugin-extensions-webkithbbtv", "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "chromiumos", "enigma2-plugin-extensions-chromium", "", d)} \
+	${@bb.utils.contains('OPENPLI_FEATURES', 'openhbbtvbrowser', 'enigma2-plugin-extensions-openhbbtvbrowser', '', d)} \
 	libcrypto-compat \
 	libxcrypt-compat \
 	dvb-usb-drivers-meta \
