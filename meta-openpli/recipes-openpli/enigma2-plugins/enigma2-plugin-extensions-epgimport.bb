@@ -9,25 +9,22 @@ inherit gitpkgv
 PV = "1.0+git${SRCPV}"
 PKGV = "1.0+git${GITPKGV}"
 
-GITHUB_URI ?= "git://github.com"
-SRC_URI = "${GITHUB_URI}/OpenPLi/${BPN}.git;protocol=https"
+SRC_URI = "git://github.com/OpenPLi/${BPN}.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git/src"
 
 inherit distutils-openplugins
 
-DEPENDS = "python"
-RDEPENDS_${PN} = "python-compression python-shell python-lzma python-pkgutil"
+DEPENDS = "${PYTHON_PN}"
+RDEPENDS_${PN} = "${PYTHON_PN}-compression ${PYTHON_PN}-shell ${PYTHON_PN}-pkgutil"
 RRECOMMENDS_${PN} = "${PN}-rytec"
 PACKAGES = "${PN}-dbg ${PN}"
-
-RREPLACES_${PN} = "enigma2-plugin-extensions-xmltvimport"
-RCONFLICTS_${PN} = "enigma2-plugin-extensions-xmltvimport"
 
 PLUGIN = "EPGImport"
 
 FILES_${PN} = "${libdir}/enigma2/python"
 FILES_${PN}-dbg = "${libdir}/enigma2/python/Plugins/Extensions/${PLUGIN}/.debug ${prefix}/src/debug"
+FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/Extensions/${PLUGIN}/*.py"
 
 pkg_postinst_${PN}() {
 
