@@ -4,7 +4,7 @@ SECTION = "multimedia"
 MAINTAINER = "SatDreamGR"
 HOMEPAGE = "http://satdreamgr.com"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://setup.py;md5=6343fbab37d88d4ad588416c903cad95"
+LIC_FILES_CHKSUM = "file://setup.py;md5=515f62cc4c69f2e0aac597788ed0349e"
 
 RDEPENDS_${PN} = "\
 	python-lxml \
@@ -23,7 +23,6 @@ inherit distutils-openplugins gitpkgv
 SRCREV = "${AUTOREV}"
 PV = "3.4+git${SRCPV}"
 PKGV = "3.4+git${GITPKGV}"
-PR = "r1"
 
 do_install_append() {
 	chmod 755 ${D}${libdir}/enigma2/python/Plugins/Extensions/GreekStreamTV/*.sh
