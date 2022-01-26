@@ -1,60 +1,67 @@
 SUMMARY = "CLI for extracting streams from various websites to a video player of your choosing"
 DESCRIPTION = "Streamlink is a command-line utility that pipes video streams from various services into a video player, such as VLC."
-HOMEPAGE = "https://streamlink.github.io/"
+HOMEPAGE = "https://github.com/streamlink/streamlink"
 SECTION = "devel/python"
-LICENSE = "BSD"
+LICENSE = "BSD-2-Clause"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=381ff91bf309000e0ec58dafe27a97b0"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=68840183c9e610b678d72969d3944db9"
+RDEPENDS_${PN} = "${PYTHON_PN}-core \
+    ${PYTHON_PN}-ctypes \
+    ${PYTHON_PN}-isodate \
+    ${PYTHON_PN}-pycountry \
+    ${PYTHON_PN}-lxml \
+    ${PYTHON_PN}-misc \
+    ${PYTHON_PN}-pkgutil \
+    ${PYTHON_PN}-pycryptodome \
+    ${PYTHON_PN}-pysocks \
+    ${PYTHON_PN}-requests \
+    ${PYTHON_PN}-shell \
+    ${PYTHON_PN}-singledispatch \
+    ${PYTHON_PN}-websocket-client \
+    "
 
-inherit setuptools
+inherit setuptools3 python3-dir gittag
 
-RDEPENDS_${PN} = " \
-	python-argparse \
-	python-backports-functools-lru-cache \
-	python-backports-shutil-which \
-	python-ctypes \
-	python-futures \
-	python-iso3166 \
-	python-iso639 \
-	python-isodate \
-	python-misc \
-	python-parse \
-	python-pkgutil \
-	python-pycrypto \
-	python-requests \
-	python-shell \
-	python-singledispatch \
-	python-subprocess \
-	python-websocket-client \
-	"
+SRCREV_streamlink = "${AUTOREV}"
+SRCREV_plugins = "${AUTOREV}"
+SRCREV_FORMAT = "streamlink_plugins"
 
-SRC_URI = "git://github.com/Billy2011/streamlink-27.git;protocol=https"
-SRCREV = "${AUTOREV}"
-S = "${WORKDIR}/git/"
-
-inherit gitpkgv python-dir
-
-PV = "2.0.0+git${SRCPV}"
-PKGV = "2.0.0+git${GITPKGV}"
+PV = "3.0.0+git${SRCPV}"
+PKGV = "3.0.0+git${GITPKGV}"
 PR = "r0"
 
+SRC_URI = "git://github.com/streamlink/streamlink;protocol=https;branch=master \
+    git://github.com/oe-mirrors/streamlink-plugins;protocol=https;branch=master;name=plugins;destsuffix=additional-plugins \
+    file://module.patch \
+    "
+
+S = "${WORKDIR}/git"
+
+do_unpack_append() {
+    bb.build.exec_func('do_prepare_plugins_dir', d)
+}
+
+do_prepare_plugins_dir() {
+    cp -f ${WORKDIR}/additional-plugins/*.py ${S}/src/streamlink/plugins
+}
+
 do_install_append() {
-	rm -rf ${D}${bindir}
-	rm -rf ${D}${libdir}/${PYTHON_DIR}/site-packages/streamlink_cli
+    rm -rf ${D}${bindir}
+    rm -rf ${D}${libdir}/${PYTHON_DIR}/site-packages/streamlink_cli
+    rm -rf ${D}${libdir}/${PYTHON_DIR}/site-packages/*.egg-info
+    rm -rf ${D}${libdir}/${PYTHON_DIR}/site-packages/streamlink/plugins/.removed
+    rm -rf ${D}${datadir}
 }
 
 PACKAGES = "${PN}-src ${PN}"
-
 FILES_${PN} = " \
-    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.pyo \
-    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.pyo \
-    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.pyo \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.pyc \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.pyc \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.pyc \
     "
 
 FILES_${PN}-src += " \
-    ${libdir}/${PYTHON_DIR}/site-packages/streamlink-*.egg-info/* \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.py \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.py \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.py \
     "
-

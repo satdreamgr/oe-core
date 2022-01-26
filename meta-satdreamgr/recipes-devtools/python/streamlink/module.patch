@@ -1,0 +1,16 @@
+diff --git a/src/streamlink/utils/module.py b/src/streamlink/utils/module.py
+index ce65184d..650e6999 100644
+--- a/src/streamlink/utils/module.py
++++ b/src/streamlink/utils/module.py
+@@ -1,8 +1,9 @@
+-from importlib.machinery import FileFinder, SOURCE_SUFFIXES, SourceFileLoader
++from importlib.machinery import FileFinder, SOURCE_SUFFIXES, SourceFileLoader, SourcelessFileLoader, BYTECODE_SUFFIXES
++
+ from importlib.util import module_from_spec
+ 
+ 
+-_loader_details = [(SourceFileLoader, SOURCE_SUFFIXES)]
++_loader_details = [(SourceFileLoader, SOURCE_SUFFIXES), (SourcelessFileLoader, BYTECODE_SUFFIXES)]
+ 
+ 
+ def load_module(name, path=None):
