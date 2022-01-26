@@ -39,5 +39,6 @@ do_install_append() {
 	chmod a+rX ${D}${PLUGINPATH}
 }
 
+FILES_${PN}-src += "${PLUGINPATH}/*.py ${PLUGINPATH}/*/*.py ${PLUGINPATH}/*/*/*.py ${PLUGINPATH}/*/*/*/*.py ${PLUGINPATH}/*/*/*/*/*.py"
 FILES_${PN}-src += "${PLUGINPATH}/controllers/views/*.tmpl ${PLUGINPATH}/controllers/views/*/*.tmpl ${PLUGINPATH}/controllers/views/*/*/*.tmpl"
 FILES_${PN} = "${PLUGINPATH}"
