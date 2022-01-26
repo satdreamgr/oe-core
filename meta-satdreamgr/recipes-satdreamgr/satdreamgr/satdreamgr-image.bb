@@ -78,6 +78,7 @@ DEPENDS += " \
 	enigma2-plugin-extensions-oscamstatus \
 	enigma2-plugin-extensions-permanentvfdclock \
 	enigma2-plugin-extensions-ppanel \
+	enigma2-plugin-extensions-shootyourscreen \
 	enigma2-plugin-extensions-subssupport \
 	enigma2-plugin-extensions-tmbd \
 	enigma2-plugin-extensions-weathermsn \
