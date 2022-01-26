@@ -8,7 +8,7 @@ SRC_URI = "git://code.vuplus.com/git/dvbapp.git;protocol=http;branch=${BRANCH} \
 	file://enigma2-plugin-systemplugins-dlnabrowser_20130723.patch;striplevel=1;apply=yes \
 "
 
-inherit gitpkgv pythonnative
+inherit gitpkgv ${PYTHON_PN}native
 PV = "git${SRCPV}"
 PKGV = "git${GITPKGV}"
 
@@ -22,5 +22,5 @@ PACKAGES = "${PN}"
 do_install() {
 	install -d ${D}${libdir}/enigma2/python/Plugins/Extensions/DLNABrowser
 	install -m 0644 ${S}/lib/python/Plugins/Extensions/DLNABrowser/*.py ${D}${libdir}/enigma2/python/Plugins/Extensions/DLNABrowser
-	python -O -m compileall ${D}${libdir}/enigma2/python/Plugins/
+	python3 -O -m compileall ${D}${libdir}/enigma2/python/Plugins/
 }

@@ -3,7 +3,7 @@ LICENSE = "GPLv3"
 AUTHOR = "Pedro Newbie <pedro.newbie@gmail.com>"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=84dcc94da3adb52b53ae4fa38fe49e5d"
 
-SRC_URI = "git://github.com/persianpros/BackupSuite-PLi.git;protocol=https"
+SRC_URI = "git://github.com/satdreamgr/BackupSuite-PLi.git;protocol=https"
 
 # don't inherit allarch, it can't work with arch-dependent RDEPENDS
 inherit gitpkgv distutils-openplugins gettext
@@ -17,25 +17,14 @@ RDEPENDS_${PN} = " \
 
 S = "${WORKDIR}/git"
 
-PV = "26+git${SRCPV}"
-PKGV = "26+git${GITPKGV}"
+PV = "git${SRCPV}"
+PKGV = "git${GITPKGV}"
 
 do_install_append() {
 	find "${D}" -name '*.sh' -exec chmod a+x '{}' ';'
 }
 
-FILES_${PN}-src = "\
-    ${libdir}/enigma2/python/*/*.py \
-    ${libdir}/enigma2/python/*/*/*.py \
-    ${libdir}/enigma2/python/*/*/*/*.py \
-    ${libdir}/enigma2/python/*/*/*/*/*.py \
-    ${libdir}/enigma2/python/*/*/*/*/*/*.py \
-    ${libdir}/enigma2/python/*/*/*/*/*/*/*.py \
-    ${libdir}/enigma2/python/*/*/*/*/*/*/*/*.py \
-    ${libdir}/enigma2/python/*/*/*/*/*/*/*/*/*.py \
-    ${libdir}/enigma2/python/*/*/*/*/*/*/*/*/*/*.py \
-    ${libdir}/enigma2/python/*/*/*/*/*/*/*/*/*/*/*.py \
-    "
+FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/Extensions/BackupSuite/*.py"
 
 python populate_packages_prepend() {
     enigma2_plugindir = bb.data.expand('${libdir}/enigma2/python/Plugins', d)
