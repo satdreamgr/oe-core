@@ -15,12 +15,12 @@ PKGV = "1+git${GITPKGV}"
 inherit distutils-openplugins
 
 RDEPENDS_${PN} = " \
-	python-codecs \
-	python-json \
-	python-netclient \
-	python-pyopenssl \
-	python-zlib \
-	python-twisted-web \
+	${PYTHON_PN}-core \
+	${PYTHON_PN}-codecs \
+	${PYTHON_PN}-json \
+	${PYTHON_PN}-netclient \
+	${PYTHON_PN}-pyopenssl \
+	${PYTHON_PN}-twisted-web \
 	"
 
 CONFFILES = "/etc/enigma2/YouTube.key"
@@ -30,6 +30,5 @@ do_install_append() {
 	install -m 0644 ${S}/YouTube.key ${D}/etc/enigma2/YouTube.key
 }
 
-#PACKAGES =+ " ${PN}-src"
 RDEPENDS_{PN}-src = "${PN}"
 FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/Extensions/YouTube/*.py"
