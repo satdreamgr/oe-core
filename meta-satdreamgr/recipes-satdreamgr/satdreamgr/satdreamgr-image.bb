@@ -27,6 +27,7 @@ IMAGE_INSTALL += " \
 	enigma2-plugin-extensions-xmltvimport-greekepg \
 	enigma2-plugin-extensions-youtube \
 	enigma2-plugin-skins-satdreamgr-hd-transpba \
+	enigma2-plugin-skins-proteusfhd \
 	enigma2-plugin-systemplugins-devicemanager \
 	enigma2-plugin-systemplugins-mphelp \
 	fuse-exfat \
@@ -47,14 +48,14 @@ export KERNEL_VERSION = "${@oe.utils.read_file('${STAGING_KERNEL_BUILDDIR}/kerne
 DEPENDS += " \
 	${@ 'wireguard-tools' if (bb.utils.vercmp_string("${KERNEL_VERSION}" or "0", '3.14') >= 0) else '' } \
 	${@bb.utils.contains("MACHINE_FEATURES", "blindscan-dvbs", "enigma2-plugin-systemplugins-satscan" , "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "chromiumos", "enigma2-plugin-extensions-chromium", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "Xchromiumos", "enigma2-plugin-extensions-chromium", "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "hbbtv-browser-webkit", "enigma2-plugin-extensions-hbbtv-webkit", "", d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi kodi-addons-meta', '', d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "qthbbtv", "enigma2-plugin-extensions-hbbtv-qt", "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "qtstalker", "enigma2-plugin-extensions-stalker-qt", "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "webkithbbtv", "enigma2-plugin-extensions-webkithbbtv", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "Xqthbbtv", "enigma2-plugin-extensions-hbbtv-qt", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "Xqtstalker", "enigma2-plugin-extensions-stalker-qt", "", d)} \
+	${@bb.utils.contains("MACHINE_FEATURES", "Xwebkithbbtv", "enigma2-plugin-extensions-webkithbbtv", "", d)} \
 	${@bb.utils.contains('OPENPLI_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi kodi-addons-meta', '', d)} \
-	${@bb.utils.contains('TARGET_FPU', 'soft', '', 'nodejs', d)} \
+	${@bb.utils.contains('TARGET_FPU', 'soft', '', '', d)} \
 	\
 	astra-sm \
 	bluez-hidd \
@@ -67,7 +68,6 @@ DEPENDS += " \
 	dvbsnoop \
 	edid-decode \
 	enigma2-plugin-extensions-bitrate \
-	enigma2-plugin-extensions-blackoutblind \
 	enigma2-plugin-extensions-btdevicesmanager \
 	enigma2-plugin-extensions-dlnaserver \
 	enigma2-plugin-extensions-e2iplayer \
@@ -87,7 +87,7 @@ DEPENDS += " \
 	enigma2-plugin-skins-pli-hd-fullnight \
 	enigma2-plugin-skins-proteusfhd \
 	enigma2-plugin-skins-satdreamgr-hd \
-	enigma2-plugin-skins-simple-gray-hd \
+	enigma2-plugin-skins-simple-gray \
 	enigma2-plugin-softcams-oscam-emu \
 	enigma2-plugin-systemplugins-crossepg \
 	enigma2-plugin-systemplugins-quadpip \
@@ -116,18 +116,18 @@ DEPENDS += " \
 	p7zip \
 	pcsc-lite \
 	pointercal \
-	python-bluetool \
-	python-cfscrape \
-	python-dbus \
-	python-js2py \
-	python-mechanize \
-	python-pycrypto \
-	python-pycurl \
-	python-pyexecjs \
-	python-tcpbridge \
-	python-pyric \
-	python-pyroute2 \
-	python-youtube-dl \
+	${PYTHON_PN}-bluetool \
+	${PYTHON_PN}-cfscrape \
+	${PYTHON_PN}-dbus \
+	${PYTHON_PN}-js2py \
+	${PYTHON_PN}-mechanize \
+	${PYTHON_PN}-pycryptodome \
+	${PYTHON_PN}-pycurl \
+	${PYTHON_PN}-pyexecjs \
+	${PYTHON_PN}-tcpbridge \
+	${PYTHON_PN}-pyric \
+	${PYTHON_PN}-pyroute2 \
+	${PYTHON_PN}-youtube-dl \
 	redsea \
 	rt8812au \
 	rt8814au \
