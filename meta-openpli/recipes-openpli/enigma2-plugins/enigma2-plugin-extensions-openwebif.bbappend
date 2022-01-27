@@ -6,6 +6,8 @@ SRC_URI = "git://github.com/E2OpenPlugins/e2openplugin-openwebif.git;protocol=ht
 
 SRC_URI_append = " file://0001-revert-workaround-for-non-pli-streamproxy.patch"
 
+PR = "r1"
+
 python do_cleanup () {
     # contains: MACHINE, box image, remote image, remote map
     boxtypes = [
@@ -126,7 +128,7 @@ python do_cleanup () {
 
     import os
 
-    pluginpath = "%s%s" % (d.getVar('D', True), d.getVar('PLUGINPATH', True))
+    pluginpath = os.path.join(d.getVar('S', True), 'plugin')
     images = "%s/public/images/" % pluginpath
     keymaps = "%s/public/static/" % pluginpath
 
@@ -178,7 +180,7 @@ python do_cleanup () {
                 os.remove(os.path.join(root, name))
 }
 
-addtask do_cleanup after do_populate_sysroot before do_package
+addtask do_cleanup after do_compile before do_install
 
 PACKAGES =+ "${PN}-vxg"
 DESCRIPTION_${PN}-vxg = "Adds Google Chrome support to OpenWebif's WebTV"
