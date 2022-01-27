@@ -1,0 +1,35 @@
+diff --git a/IPTVPlayer/tools/e2ijs.py b/IPTVPlayer/tools/e2ijs.py
+index 738d767d..73133ae7 100644
+--- a/IPTVPlayer/tools/e2ijs.py
++++ b/IPTVPlayer/tools/e2ijs.py
+@@ -12,7 +12,7 @@ import time
+ import _thread
+ import six
+ 
+-DUKTAPE_VER = '226'
++DUKTAPE_VER = '250'
+ 
+ 
+ def duktape_execute(cmd_params):
+diff --git a/bk/iptvsetupimpl.py b/bk/iptvsetupimpl.py
+index a7789d0a..770a1dd8 100644
+--- a/bk/iptvsetupimpl.py
++++ b/bk/iptvsetupimpl.py
+@@ -110,7 +110,7 @@ class IPTVSetupImpl:
+ 
+         # cmdwrap
+         self.cmdwrapVersion = 2
+-        self.cmdwrapPaths = [resolveFilename(SCOPE_PLUGINS, 'Extensions/IPTVPlayer/bin/cmdwrap'), "/usr/bin/cmdwrap"]
++        self.cmdwrapPaths = [resolveFilename(SCOPE_PLUGINS, 'Extensions/IPTVPlayer/bin/cmdwrap'), "/usr/bin/cmdwrapper"]
+ 
+         # duk
+         self.dukVersion = 5 # "2.1.99" # real version
+@@ -944,7 +944,7 @@ class IPTVSetupImpl:
+         def _deprecatedHandler(paths, stsTab, dataTab):
+             sts, retPath = False, ""
+             for idx in range(len(dataTab)):
+-                if 'cmdwrap input_file' in dataTab[idx]:
++                if 'cmdwrapper input_file' in dataTab[idx]:
+                     sts, retPath = True, paths[idx]
+             return sts, retPath
+ 

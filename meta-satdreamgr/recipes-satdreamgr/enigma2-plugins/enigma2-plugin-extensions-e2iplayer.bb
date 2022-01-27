@@ -1,37 +1,32 @@
-SUMMARY = "E2iPlayer zadmario fork"
+SUMMARY = "E2iPlayer oe-mirrors fork"
 DESCRIPTION = "Watch Videos Online"
 HOMEPAGE = "https://gitlab.com/zadmario/e2iplayer"
 SECTION = "multimedia"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://README.md;md5=02f735bad3e90ba91c281a94ae92a684"
-SRC_URI = "git://gitlab.com/zadmario/e2iplayer.git;protocol=http file://e2i.patch"
+LIC_FILES_CHKSUM = "file://README.md;md5=091c336cd25a792dd0e18add61d3ef74"
+SRC_URI = "git://github.com/oe-mirrors/e2iplayer.git;branch=python3;protocol=https file://e2io.patch"
 S = "${WORKDIR}/git"
 
 inherit gitpkgv
 SRCREV = "${AUTOREV}"
 PV = "1+git${SRCPV}"
 PKGV = "1+git${GITPKGV}"
-PR = "r6"
+PR = "r8"
 
 inherit distutils-openplugins
 
-
-RCONFLICTS_${PN} = "enigma2-plugin-extensions-iptvplayer"
-RREPLACES_${PN} = "enigma2-plugin-extensions-iptvplayer"
+DEPENDS = "gettext-native ${PYTHON_PN}-future-native ${PYTHON_PN}"
 
 RDEPENDS_${PN} = " \
 	enigma2-plugin-extensions-e2iplayer-deps \
-	python-compression \
-	python-core \
-	python-e2icjson \
-	python-html \
-	python-json \
-	python-shell \
-	python-subprocess \
-	python-textutils \
+	${PYTHON_PN}-compression \
+	${PYTHON_PN}-core \
+	${PYTHON_PN}-e2icjson \
+	${PYTHON_PN}-html \
+	${PYTHON_PN}-json \
+	${PYTHON_PN}-shell \
 	"
 
-#PACKAGES =+ " ${PN}-src"
 RDEPENDS_{PN}-src = "${PN}"
 FILES_${PN}-src = " \
 	${libdir}/enigma2/python/Plugins/*/*.py \
@@ -39,7 +34,7 @@ FILES_${PN}-src = " \
 	${libdir}/enigma2/python/Plugins/*/*/*/*.py \
 	${libdir}/enigma2/python/Plugins/*/*/*/*/*.py \
 	${libdir}/enigma2/python/Plugins/*/*/*/*/*/*.py \
-	${libdir}/enigma2/python/Plugins/*-py2.7.egg-info/* \
+	${libdir}/enigma2/python/Plugins/*.egg-info/* \
 	${libdir}/enigma2/python/Plugins/*/locale/*/LC_MESSAGES/*.po \
 	"
 
