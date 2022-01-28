@@ -18,6 +18,10 @@ PKGV = "${GITPKGVTAG}"
 FILES_${PN} = "${libdir}/enigma2/python/Plugins/Extensions/SubsSupport \
 ${localstatedir}/lib/subssupport"
 
+FILES_${PN}-src = "${libdir}/enigma2/python/Plugins/Extensions/SubsSupport/*.py \
+    ${libdir}/enigma2/python/Plugins/Extensions/SubsSupport/*/*.py \
+    ${libdir}/enigma2/python/Plugins/Extensions/SubsSupport/*/*/*.py"
+
 do_install_append() {
     install -d ${D}${localstatedir}/lib/subssupport
 }
