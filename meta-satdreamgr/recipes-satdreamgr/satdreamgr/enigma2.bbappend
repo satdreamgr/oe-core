@@ -1,8 +1,8 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI += " \
-	file://0001-Set-default-skin-ProteusFHD.patch \
-	file://0001-Set-default-skin-Satdreamgr-HD-TranspBA.patch;apply=false \
+	file://0001-Set-default-skin-ProteusFHD.patch;apply=false \
+	file://0001-Set-default-skin-Satdreamgr-HD-TranspBA.patch;apply=true \
 	file://0002-Satdreamgr-InfoBarGenerics-changes.patch \
 	file://0001-Satdreamgr-show-softwaremanger-on-setupmenu.patch \
 	file://0001-Satdreamgr-tempfancontrol-add-support-for-dmv2.patch \
