@@ -7,13 +7,13 @@ RDEPENDS_${PN} = "dumpait-legacy \
     webkit-hbbtv-plugin \
 "
 
-inherit gitpkgv
+inherit gitpkgv python3native
 
 SRCREV = "${AUTOREV}"
 PKGVERSION = "2.0-r0"
 PV = "${PKGVERSION}-${SRCPV}"
 PKGV = "${PKGVERSION}-${GITPKGV}"
-PR = "r2"
+PR = "r3"
 
 INSANE_SKIP_${PN} += "already-stripped arch"
 
@@ -37,3 +37,4 @@ do_install_append() {
 }
 
 FILES_${PN} = "/"
+FILES_${PN}-src = "${libdir}/${DESTDIR}/*.py"
