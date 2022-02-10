@@ -19,8 +19,8 @@ SRC_URI = "git://github.com/openhbbtvbrowser/enigma2-plugin-extensions-openhbbtv
 S = "${WORKDIR}/git"
 
 do_install(){
-    install -d ${D}${libdir}/enigma2/python/Plugins/Extensions/HbbTV
-    install -m 0755 ${S}/*.py ${D}${libdir}/enigma2/python/Plugins/Extensions/HbbTV
+    install -d ${D}${libdir}/enigma2/python/Plugins/Extensions/OpenHbbTV
+    install -m 0755 ${S}/*.py ${D}${libdir}/enigma2/python/Plugins/Extensions/OpenHbbTV
 }
 
 FILES_${PN} = "${libdir}"
