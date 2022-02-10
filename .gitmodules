@@ -26,8 +26,8 @@
 	branch = zeus
 [submodule "meta-qt5"]
 	path = meta-qt5
-	url = https://code.qt.io/cgit/yocto/meta-qt5.git
-	branch = 5.9
+	url = https://github.com/oe-mirrors/meta-qt5.15.git
+	branch = 5.15
 [submodule "meta-gigablue"]
 	path = meta-gigablue
 	url = https://github.com/satdreamgr/meta-gigablue.git
