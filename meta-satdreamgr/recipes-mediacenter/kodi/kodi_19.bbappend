@@ -1,7 +1,13 @@
 
 EXTRA_OECMAKE_append_osmio4k = " -DWITH_PLATFORM=edision-cortexa15 -DWITH_FFMPEG=stb"
+SRC_URI_append_osmio4k = " file://0001-Add-initial-support-for-V4L2-mem2mem-decoder.patch"
+
 EXTRA_OECMAKE_append_osmio4kplus = " -DWITH_PLATFORM=edision-cortexa15 -DWITH_FFMPEG=stb"
+SRC_URI_append_osmio4kplus = " file://0001-Add-initial-support-for-V4L2-mem2mem-decoder.patch"
+
 EXTRA_OECMAKE_append_osmini4k = " -DWITH_PLATFORM=edision-cortexa15 -DWITH_FFMPEG=stb"
+SRC_URI_append_osmini4k = " file://0001-Add-initial-support-for-V4L2-mem2mem-decoder.patch"
+
 EXTRA_OECMAKE_append_osmega = " -DWITH_PLATFORM=xcore-mipsel -DWITH_FFMPEG=stb"
 
 SRC_URI_append_sf8008 = " file://hiplayer-19.patch"
