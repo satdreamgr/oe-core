@@ -45,4 +45,4 @@
 [submodule "meta-gfutures"]
 	path = meta-gfutures
 	url = https://github.com/satdreamgr/meta-gfutures.git
-	branch = zeus
+	branch = hardknott
