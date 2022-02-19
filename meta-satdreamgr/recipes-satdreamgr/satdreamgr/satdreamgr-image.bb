@@ -55,6 +55,7 @@ DEPENDS += " \
 	${@bb.utils.contains("MACHINE_FEATURES", "Xqtstalker", "enigma2-plugin-extensions-stalker-qt", "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "Xwebkithbbtv", "enigma2-plugin-extensions-webkithbbtv", "", d)} \
 	${@bb.utils.contains('OPENPLI_FEATURES', 'kodi', 'enigma2-plugin-extensions-kodi kodi-addons-meta', '', d)} \
+	${@bb.utils.contains('OPENPLI_FEATURES', 'openhbbtvbrowser', 'enigma2-plugin-extensions-openhbbtvbrowser', '', d)} \
 	${@bb.utils.contains('TARGET_FPU', 'soft', '', '', d)} \
 	\
 	astra-sm \
