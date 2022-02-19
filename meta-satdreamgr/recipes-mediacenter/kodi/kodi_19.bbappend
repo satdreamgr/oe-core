@@ -15,3 +15,6 @@ EXTRA_OECMAKE_append_sf8008 = " -DWITH_PLATFORM=clap-cortexa15 -DWITH_FFMPEG=stb
 RDEPENDS_${PN}_append_sf4008 = "nextv-v3ddriver-${MACHINE} platform-util-${MACHINE} octagon-dvb-modules-kodi-${MACHINE}"
 EXTRA_OECMAKE_append_sf4008 = " -DWITH_PLATFORM=nextv-cortexa15 -DWITH_FFMPEG=stb"
 INSANE_SKIP_${PN}_sf4008 += "file-rdeps"
+
+EXTRA_OECMAKE_append_hd51 = " -DWITH_PLATFORM=v3d-cortexa15 -DWITH_FFMPEG=stb"
+RDEPENDS_${PN}_append_hd51 = " hd-v3ddriver-${MACHINE}"
