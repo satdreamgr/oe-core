@@ -299,6 +299,7 @@ EXTRA_FFCONF = " \
 	\
 	--enable-zlib \
 	--enable-bzlib \
+	--enable-libxml2 \
 	--enable-openssl \
 	--enable-libass \
 	--enable-bsfs \
