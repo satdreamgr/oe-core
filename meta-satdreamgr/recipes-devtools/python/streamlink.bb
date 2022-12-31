@@ -33,6 +33,8 @@ PR = "r0"
 SRC_URI = "git://github.com/streamlink/streamlink;protocol=https;branch=master \
     git://github.com/oe-mirrors/streamlink-plugins;protocol=https;branch=master;name=plugins;destsuffix=additional-plugins \
     file://module.patch \
+    file://0001-Revert-build-move-imports-in-setup.py.patch \
+    file://0002-Revert-build-add-pyproject.toml-switch-to-versioning.patch \
     "
 
 S = "${WORKDIR}/git"
