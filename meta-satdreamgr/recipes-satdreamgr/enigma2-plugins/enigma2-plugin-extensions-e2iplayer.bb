@@ -3,7 +3,7 @@ DESCRIPTION = "Watch Videos Online"
 HOMEPAGE = "https://gitlab.com/zadmario/e2iplayer"
 SECTION = "multimedia"
 LICENSE = "PD"
-LIC_FILES_CHKSUM = "file://README.md;md5=091c336cd25a792dd0e18add61d3ef74"
+LIC_FILES_CHKSUM = "file://README.md;md5=894bd5e61984ba24c3bb18f88f69130f"
 SRC_URI = "git://github.com/oe-mirrors/e2iplayer.git;branch=python3;protocol=https file://e2io.patch"
 S = "${WORKDIR}/git"
 
