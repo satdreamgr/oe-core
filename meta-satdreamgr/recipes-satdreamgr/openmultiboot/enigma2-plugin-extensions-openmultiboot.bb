@@ -4,7 +4,7 @@ MAINTAINER = "oe-alliance"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-inherit gitpkgv ${PYTHON_PN}native gettext
+inherit gitpkgv ${PYTHON_PN}native gettext python3targetconfig
 
 SRCREV = "${AUTOREV}"
 PV = "1.0+git${SRCPV}"
@@ -18,9 +18,9 @@ S = "${WORKDIR}/git"
 
 inherit autotools-brokensep
 
-DEPENDS = "${PYTHON_PN}"
+DEPENDS = "${PYTHON_PN} lzo"
 
-RDEPENDS_${PN} = "kernel-module-nandsim openmultiboot oe-alliance-branding"
+RDEPENDS_${PN} = "kernel-module-nandsim openmultiboot oe-alliance-branding lzo"
 
 RDEPENDS_${PN}_dm800 = "openmultiboot oe-alliance-branding unjffs2"
 RDEPENDS_${PN}_dm500hd = "openmultiboot oe-alliance-branding unjffs2"
