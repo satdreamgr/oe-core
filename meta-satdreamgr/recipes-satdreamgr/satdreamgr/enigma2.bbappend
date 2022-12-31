@@ -19,8 +19,8 @@ SRC_URI += " \
 	file://sdg_sw.patch \
 	"
 
-SRC_URI_append_sf4008 = " file://sf4008_boxmode6.patch file://sf4008rc2.patch file://sdg_vtuner_msg2.patch "
-SRC_URI_append_sf8008 = " file://sf8008_e2.patch;apply=no file://sdg_vtuner_msg2.patch file://sdg_hdmioutput.patch "
+SRC_URI_append_sf4008 = " file://sf4008_boxmode6.patch file://sf4008rc2.patch "
+SRC_URI_append_sf8008 = " file://sf8008_e2.patch;apply=no file://sdg_hdmioutput.patch "
 
 RRECOMMENDS_${PN} = " \
 	tzdata enigma2-plugin-skins-satdreamgr-hd-transpba \

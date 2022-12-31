@@ -1,20 +1,20 @@
 diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
-index a1528f51e9..1eb0d0cb18 100644
+index ac9583a8d6..85bdfd976a 100644
 --- a/lib/python/Components/SystemInfo.py
 +++ b/lib/python/Components/SystemInfo.py
-@@ -131,6 +131,7 @@ SystemInfo["CanDownmixAC3"] = fileHas("/proc/stb/audio/ac3_choices", "downmix")
- SystemInfo["CanDownmixDTS"] = fileHas("/proc/stb/audio/dts_choices", "downmix")
- SystemInfo["CanDownmixAAC"] = fileHas("/proc/stb/audio/aac_choices", "downmix")
- SystemInfo["HDMIAudioSource"] = fileCheck("/proc/stb/hdmi/audio_source")
+@@ -42,6 +42,7 @@ def getBootdevice():
+ 
+ 
+ model = HardwareInfo().get_device_model()
 +SystemInfo["HDMIOutput"] = fileCheck("/proc/stb/hdmi/output")
- SystemInfo["BootDevice"] = getBootdevice()
- SystemInfo["FbcTunerPowerAlwaysOn"] = model in ("vusolo4k", "vuduo4k", "vuduo4kse", "vuultimo4k", "vuuno4k", "vuuno4kse", "gbquad4k", "gbue4k")
- SystemInfo["HasPhysicalLoopthrough"] = ["Vuplus DVB-S NIM(AVL2108)", "GIGA DVB-S2 NIM (Internal)"]
+ SystemInfo["InDebugMode"] = eGetEnigmaDebugLvl() >= 4
+ SystemInfo["CommonInterface"] = model in ("h9combo", "h9combose", "h10","pulse4kmini") and 1 or eDVBCIInterfaces.getInstance().getNumOfSlots()
+ SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
 diff --git a/lib/python/Screens/Standby.py b/lib/python/Screens/Standby.py
-index 587a2a6f39..8bdf8648ac 100644
+index dec87b4015..41be71f420 100644
 --- a/lib/python/Screens/Standby.py
 +++ b/lib/python/Screens/Standby.py
-@@ -57,6 +57,12 @@ class StandbyScreen(Screen):
+@@ -58,6 +58,12 @@ class StandbyScreen(Screen):
  		if os.path.exists("/usr/script/standby_enter.sh"):
  			Console().ePopen("/usr/script/standby_enter.sh")
  
@@ -27,7 +27,7 @@ index 587a2a6f39..8bdf8648ac 100644
  		self["actions"] = ActionMap(["StandbyActions"],
  		{
  			"power": self.Power,
-@@ -148,6 +154,13 @@ class StandbyScreen(Screen):
+@@ -152,6 +158,13 @@ class StandbyScreen(Screen):
  		self.leaveMute()
  		if os.path.exists("/usr/script/standby_leave.sh"):
  			Console().ePopen("/usr/script/standby_leave.sh")

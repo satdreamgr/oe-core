@@ -1,19 +1,22 @@
 diff --git a/lib/python/Components/AVSwitch.py b/lib/python/Components/AVSwitch.py
-index 7ee5e1650f..6b82cea026 100644
+index 3364762c8d..718c74e2d4 100644
 --- a/lib/python/Components/AVSwitch.py
 +++ b/lib/python/Components/AVSwitch.py
-@@ -268,3 +268,9 @@ def InitAVSwitch():
- 		eDVBVolumecontrol.getInstance().setVolumeSteps(int(configElement.value))
- 	config.av.volume_stepsize = ConfigSelectionNumber(1, 10, 1, default=5)
- 	config.av.volume_stepsize.addNotifier(setVolumeStepsize)
-+
+@@ -211,6 +211,12 @@ def InitAVSwitch():
+ 			default = choiceslist[0]
+ 		return (choices, default)
+ 
 +	if SystemInfo["HasBoxMode"]:
 +		def setBoxMode(configElement):
 +			open(SystemInfo["HasBoxMode"], "w").write(configElement.value)
 +		config.av.boxmode = ConfigSelection(choices={"12":_("enable PIP no HDR"), "1": _("12bit 4:2:0/4:2:2 no PIP")}, default="12")
 +		config.av.boxmode.addNotifier(setBoxMode)
++
+ 	if SystemInfo["HasMultichannelPCM"]:
+ 		def setMultichannelPCM(configElement):
+ 			open(SystemInfo["HasMultichannelPCM"], "w").write(configElement.value and "enable" or "disable")
 diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
-index 5cda407cf4..fa6bfcdfa1 100644
+index ac9583a8d6..0634c1ffcb 100644
 --- a/lib/python/Components/SystemInfo.py
 +++ b/lib/python/Components/SystemInfo.py
 @@ -48,6 +48,7 @@ SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
@@ -25,10 +28,10 @@ index 5cda407cf4..fa6bfcdfa1 100644
  SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
  SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
 diff --git a/lib/python/Plugins/SystemPlugins/Videomode/plugin.py b/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
-index 922583dcdd..696fca72a4 100644
+index ad6e52517c..b83c85408a 100644
 --- a/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
 +++ b/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
-@@ -144,6 +144,9 @@ class VideoSetup(Screen, ConfigListScreen):
+@@ -158,6 +158,9 @@ class VideoSetup(ConfigListScreen, Screen):
  		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
  			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
  
@@ -36,5 +39,5 @@ index 922583dcdd..696fca72a4 100644
 +			self.list.append(getConfigListEntry(_("Control Hardware Chip Modes"), config.av.boxmode,_("Switch Mode to enable HDR or PIP Functions")))
 +
  		self["config"].list = self.list
- 		self["config"].l.setList(self.list)
  
+ 	def keyLeft(self):
