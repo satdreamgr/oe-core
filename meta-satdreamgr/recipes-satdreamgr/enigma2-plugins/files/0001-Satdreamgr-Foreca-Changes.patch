@@ -1212,35 +1212,19 @@ index 0000000..e0a788d
 +Greece/Zouzouli
 +Greece/Zoniana
 diff --git a/plugin/ui.py b/plugin/ui.py
-index f3912ce..36953ae 100644
+index 74a4eae..1486cc6 100644
 --- a/plugin/ui.py
 +++ b/plugin/ui.py
-@@ -13,7 +13,7 @@
- #
+@@ -1,7 +1,7 @@
+ # -*- coding: UTF-8 -*-
  from __future__ import absolute_import
  from __future__ import print_function
--VERSION = "3.2.6"
-+VERSION = "3.2.6-gr.mod"
+-VERSION = "3.2.8"
++VERSION = "3.2.8-gr.mod"
  #
- #                    04.10.2017
+ #  $Id$
  #
-@@ -183,7 +183,6 @@ config.plugins.foreca.units = ConfigSelection(default="metrickmh", choices=[("me
- config.plugins.foreca.time = ConfigSelection(default="24h", choices=[("12h", _("12 h")), ("24h", _("24 h"))])
- config.plugins.foreca.debug = ConfigEnableDisable(default=False)
- 
--
- HEADERS = {'User-Agent': 'Mozilla/5.0 (SmartHub; SMART-TV; U; Linux/SmartTV; Maple2012) AppleWebKit/534.7 (KHTML, like Gecko) SmartTV Safari/534.7'}
- MAIN_PAGE = "http://www.foreca.net"
- USR_PATH = resolveFilename(SCOPE_CONFIG) + "Foreca"
-@@ -436,6 +435,7 @@ class MainMenuList(MenuList):
- 		else:
- 			self.centigrades = int(self.x[2])
- 			tempUnit = _(SIGN + "C")
-+
- 		if self.centigrades <= -20:
- 			self.tempcolor = ddblau
- 		elif self.centigrades <= -15:
-@@ -469,7 +469,10 @@ class MainMenuList(MenuList):
+@@ -459,7 +459,10 @@ class MainMenuList(MenuList):
  		pngpic = LoadPixmap(self.thumb)
  		if pngpic is not None:
  			x, y, w, h = self.valPict
@@ -1252,7 +1236,7 @@ index f3912ce..36953ae 100644
  
  		# Temp
  		x, y, w, h = self.valTemp
-@@ -481,7 +484,10 @@ class MainMenuList(MenuList):
+@@ -471,7 +474,10 @@ class MainMenuList(MenuList):
  		pngpic = LoadPixmap(self.wind + ".png")
  		if pngpic is not None:
  			x, y, w, h = self.valWindPict
@@ -1264,7 +1248,7 @@ index f3912ce..36953ae 100644
  
  		# Wind
  		x, y, w, h = self.valWind
-@@ -491,7 +497,7 @@ class MainMenuList(MenuList):
+@@ -481,7 +487,7 @@ class MainMenuList(MenuList):
  
  		# Text
  		x, y, w, h = self.valText1
@@ -1273,7 +1257,7 @@ index f3912ce..36953ae 100644
  		x, y, w, h = self.valText2
  		textsechs = self.x[6]
  		textsechs = textsechs.replace("&deg;", "") + tempUnit
-@@ -612,8 +618,8 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -584,8 +590,8 @@ class ForecaPreview(Screen, HelpableScreen):
  
  		if HD:
  			self.skin = """
@@ -1284,7 +1268,7 @@ index f3912ce..36953ae 100644
  					<widget source="Titel" render="Label" position="4,10" zPosition="3" size="978,60" font="Regular;24" valign="center" halign="left" transparent="1" foregroundColor="#ffffff"/>
  					<widget source="Titel2" render="Label" position="35,15" zPosition="2" size="900,60" font="Regular;26" valign="center" halign="center" transparent="1" foregroundColor="#f47d19"/>
  					<eLabel position="5,70" zPosition="2" size="970,2" foregroundColor="#c3c3c9" backgroundColor="#FFFFFF" />
-@@ -636,8 +642,8 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -608,8 +614,8 @@ class ForecaPreview(Screen, HelpableScreen):
  				</screen>"""
  		else:
  			self.skin = """
@@ -1295,15 +1279,15 @@ index f3912ce..36953ae 100644
  					<widget source="Titel" render="Label" position="20,3" zPosition="3" size="680,50" font="Regular;20" valign="center" halign="left" transparent="1" foregroundColor="#ffffff"/>
  					<widget source="Titel2" render="Label" position="40,5" zPosition="2" size="640,50" font="Regular;22" valign="center" halign="center" transparent="1" foregroundColor="#f47d19"/>
  					<eLabel position="5,55" zPosition="2" size="710,2" foregroundColor="#c3c3c9" backgroundColor="#FFFFFF" />
-@@ -674,6 +680,7 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -646,6 +652,7 @@ class ForecaPreview(Screen, HelpableScreen):
  			self["key_blue"] = StaticText(_("Home"))
  		self["key_info"] = StaticText(_("Legend"))
  		self["key_menu"] = StaticText(_("Maps"))
 +		self["key_help"] = StaticText(_("International City"))
- 		self.setTitle(_("Foreca Weather Forecast") + "   " + _("Version ") + VERSION)
+ 		self.setTitle(_("Foreca Weather Forecast") + " " + _("Version ") + VERSION)
  
  		HelpableScreen.__init__(self)
-@@ -682,7 +689,8 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -654,7 +661,8 @@ class ForecaPreview(Screen, HelpableScreen):
  				"cancel": (self.exit, _("Exit - End")),
  				"menu": (self.Menu, _("Menu - Weather maps")),
  				"showEventInfo": (self.info, _("Info - Legend")),
@@ -1313,7 +1297,7 @@ index f3912ce..36953ae 100644
  				"left": (self.left, _("Left - Previous day")),
  				"right": (self.right, _("Right - Next day")),
  				"up": (self.up, _("Up - Previous page")),
-@@ -874,7 +882,13 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -831,7 +839,13 @@ class ForecaPreview(Screen, HelpableScreen):
  
  	def OK(self):
  		global city
@@ -1328,7 +1312,7 @@ index f3912ce..36953ae 100644
  		city = self.ort
  		self.session.openWithCallback(self.OKCallback, CityPanel, panelmenu)
  
-@@ -1168,6 +1182,7 @@ class CityPanel(Screen, HelpableScreen):
+@@ -1111,6 +1125,7 @@ class CityPanel(Screen, HelpableScreen):
  		self.setup_title = _("Select a city")
  		self.Mlist = []
  		self["Mlist"] = CityPanelList([])
@@ -1336,20 +1320,20 @@ index f3912ce..36953ae 100644
  
  		self.onChangedEntry = []
  
-@@ -1199,8 +1214,8 @@ class CityPanel(Screen, HelpableScreen):
+@@ -1142,8 +1157,8 @@ class CityPanel(Screen, HelpableScreen):
  
  	def prepare(self):
  		self.maxidx = 0
 -		if fileExists(USR_PATH + "/City.cfg"):
--			file = open(USR_PATH + "/City.cfg", "r", encoding="UTF-8")
+-			content = open(USR_PATH + "/City.cfg", "r")
 +		if fileExists(USR_PATH + self.panelmenu):
-+			file = open(USR_PATH + self.panelmenu, "r", encoding="UTF-8")
- 			for line in file:
++			content = open(USR_PATH + self.panelmenu, "r", encoding="UTF-8")
+ 			for line in content:
  				text = line.strip()
  				self.maxidx += 1
-@@ -1553,7 +1568,10 @@ class SatPanel(Screen, HelpableScreen):
- #------------------------------------------------------------------------------------------
+@@ -1492,7 +1507,10 @@ class SatPanel(Screen, HelpableScreen):
  
+ #------------------------------------------------------------------------------------------
  	def SatEntryItem(self, entry):
 +		flags = 0
  		pict_scale = self["Mlist"].pictScale
@@ -1358,23 +1342,23 @@ index f3912ce..36953ae 100644
  
  		ItemSkin = self["Mlist"].itemHeight
  
-@@ -1610,7 +1628,6 @@ class SatPanel(Screen, HelpableScreen):
+@@ -1548,7 +1566,6 @@ class SatPanel(Screen, HelpableScreen):
+ 			with open(devicepath, 'wb') as f:
  				f.write(resp.read())
- 
  			self.session.open(PicView, devicepath, 0, False)
 -
  		else:
  			# http://www.foreca.de/Austria/Linz?map=sat
  			devicepath = "/tmp/sat.html"
 diff --git a/setup.py b/setup.py
-index be0878a..0a39366 100644
+index 412af3a..d18cad6 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -8,6 +8,6 @@ setup(name='enigma2-plugin-extensions-foreca',
         packages=[pkg],
         package_dir={pkg: 'plugin'},
         package_data={pkg: ['*.png', '*.xml', '*/*.png', 'locale/*/LC_MESSAGES/*.mo']},
--       data_files=[('/etc/enigma2/Foreca', ['plugin/City.cfg', 'plugin/fav1.cfg', 'plugin/fav2.cfg', 'plugin/startservice.cfg', 'plugin/Filter.cfg'])],
-+       data_files=[('/etc/enigma2/Foreca', ['plugin/City.cfg', 'plugin/GreekCity.cfg', 'plugin/fav1.cfg', 'plugin/fav2.cfg', 'plugin/startservice.cfg', 'plugin/Filter.cfg'])],
-        cmdclass=setup_translate.cmdclass, # for translation
+-       data_files=[('/etc/enigma2/Foreca', ['plugin/City.cfg', 'plugin/Filter.cfg'])],
++       data_files=[('/etc/enigma2/Foreca', ['plugin/City.cfg', 'plugin/GreekCity.cfg', 'plugin/Filter.cfg'])],
+        cmdclass=setup_translate.cmdclass,  # for translation
        )
