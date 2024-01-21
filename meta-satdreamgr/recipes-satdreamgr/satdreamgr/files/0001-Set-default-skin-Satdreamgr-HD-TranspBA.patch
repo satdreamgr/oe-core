@@ -1,12 +1,12 @@
 diff --git a/lib/python/skin.py b/lib/python/skin.py
-index 3e2f1212c5..6543d95424 100644
+index 596b030559..982626b892 100644
 --- a/lib/python/skin.py
 +++ b/lib/python/skin.py
 @@ -12,7 +12,7 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT
  from Tools.Import import my_import
  from Tools.LoadPixmap import LoadPixmap
  
--DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"  # SD hardware is no longer supported by the default skin.
+-DEFAULT_SKIN = BoxInfo.getItem("HasFullHDSkinSupport") and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"  # SD hardware is no longer supported by the default skin.
 +DEFAULT_SKIN = "Satdreamgr-HD-TranspBA/skin.xml"
  EMERGENCY_SKIN = "skin_default/skin.xml"
  EMERGENCY_NAME = "Stone II"

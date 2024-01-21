@@ -1,18 +1,19 @@
 diff --git a/lib/python/Screens/ChannelSelection.py b/lib/python/Screens/ChannelSelection.py
-index c82d330..f9b3eff 100644
+index a581be32d8..33ca4837f7 100644
 --- a/lib/python/Screens/ChannelSelection.py
 +++ b/lib/python/Screens/ChannelSelection.py
-@@ -193,6 +193,9 @@ class ChannelContextMenu(Screen):
+@@ -217,6 +217,10 @@ class ChannelContextMenu(Screen):
+ 								append_when_current_valid(current, menu, (_("Do not center DVB subs on this service"), self.removeCenterDVBSubsFlag), level=2)
  							else:
  								append_when_current_valid(current, menu, (_("Do center DVB subs on this service"), self.addCenterDVBSubsFlag), level=2)
- 
++
 +					if not eDVBDB.getInstance().isCrypted(eServiceReference(current.toString())):
 +						append_when_current_valid(current, menu, (_("Add Biss Caid to service"), self.setBISS), level=0)
 +
  					if haveBouquets:
  						bouquets = self.csel.getBouquetList()
  						if bouquets is None:
-@@ -291,6 +294,14 @@ class ChannelContextMenu(Screen):
+@@ -323,6 +327,14 @@ class ChannelContextMenu(Screen):
  		menu.append(ChoiceEntryComponent("menu", (_("Configuration"), self.openSetup)))
  		self["menu"] = ChoiceList(menu)
  

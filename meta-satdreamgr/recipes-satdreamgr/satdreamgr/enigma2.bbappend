@@ -6,11 +6,11 @@ SRC_URI += " \
 	file://0002-Satdreamgr-InfoBarGenerics-changes.patch \
 	file://0001-Satdreamgr-show-softwaremanger-on-setupmenu.patch \
 	file://0001-Satdreamgr-tempfancontrol-add-support-for-dmv2.patch \
-	file://0001-Satdreamgr-Devices-with-Spaces.patch \
+	file://0001-Satdreamgr-Devices-with-Spaces.patch;apply=false \
 	file://caid2.patch \
 	file://expert.patch \
 	file://transba.patch \
-	file://vh2.patch \
+	file://vh2.patch;apply=false \
 	file://pos.patch \
 	file://sdgjson.patch \
 	file://sdg_about.patch \

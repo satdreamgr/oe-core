@@ -1212,19 +1212,16 @@ index 0000000..e0a788d
 +Greece/Zouzouli
 +Greece/Zoniana
 diff --git a/plugin/ui.py b/plugin/ui.py
-index 74a4eae..1486cc6 100644
+index 2f2824e..ca7ddb5 100644
 --- a/plugin/ui.py
 +++ b/plugin/ui.py
-@@ -1,7 +1,7 @@
- # -*- coding: UTF-8 -*-
- from __future__ import absolute_import
- from __future__ import print_function
--VERSION = "3.2.8"
-+VERSION = "3.2.8-gr.mod"
- #
- #  $Id$
- #
-@@ -459,7 +459,10 @@ class MainMenuList(MenuList):
+@@ -1,4 +1,4 @@
+-VERSION = "3.3.1"
++VERSION = "3.3.1-gr.mod"
+ #-------------------------------------------------------
+ #              Foreca Weather Forecast E2
+ #   This Plugin retrieves the actual weather forecast
+@@ -443,7 +443,10 @@ class MainMenuList(MenuList):
  		pngpic = LoadPixmap(self.thumb)
  		if pngpic is not None:
  			x, y, w, h = self.valPict
@@ -1236,7 +1233,7 @@ index 74a4eae..1486cc6 100644
  
  		# Temp
  		x, y, w, h = self.valTemp
-@@ -471,7 +474,10 @@ class MainMenuList(MenuList):
+@@ -455,7 +458,10 @@ class MainMenuList(MenuList):
  		pngpic = LoadPixmap(self.wind + ".png")
  		if pngpic is not None:
  			x, y, w, h = self.valWindPict
@@ -1248,7 +1245,7 @@ index 74a4eae..1486cc6 100644
  
  		# Wind
  		x, y, w, h = self.valWind
-@@ -481,7 +487,7 @@ class MainMenuList(MenuList):
+@@ -465,7 +471,7 @@ class MainMenuList(MenuList):
  
  		# Text
  		x, y, w, h = self.valText1
@@ -1257,8 +1254,8 @@ index 74a4eae..1486cc6 100644
  		x, y, w, h = self.valText2
  		textsechs = self.x[6]
  		textsechs = textsechs.replace("&deg;", "") + tempUnit
-@@ -584,8 +590,8 @@ class ForecaPreview(Screen, HelpableScreen):
- 
+@@ -564,8 +570,8 @@ class ForecaPreview(Screen, HelpableScreen):
+ 		FAlog("initial link:", MAIN_PAGE)
  		if HD:
  			self.skin = """
 -				<screen name="ForecaPreview" position="center,center" size="980,505" title="Foreca Weather Forecast" backgroundColor="#00000000" >
@@ -1268,7 +1265,7 @@ index 74a4eae..1486cc6 100644
  					<widget source="Titel" render="Label" position="4,10" zPosition="3" size="978,60" font="Regular;24" valign="center" halign="left" transparent="1" foregroundColor="#ffffff"/>
  					<widget source="Titel2" render="Label" position="35,15" zPosition="2" size="900,60" font="Regular;26" valign="center" halign="center" transparent="1" foregroundColor="#f47d19"/>
  					<eLabel position="5,70" zPosition="2" size="970,2" foregroundColor="#c3c3c9" backgroundColor="#FFFFFF" />
-@@ -608,8 +614,8 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -588,8 +594,8 @@ class ForecaPreview(Screen, HelpableScreen):
  				</screen>"""
  		else:
  			self.skin = """
@@ -1279,15 +1276,15 @@ index 74a4eae..1486cc6 100644
  					<widget source="Titel" render="Label" position="20,3" zPosition="3" size="680,50" font="Regular;20" valign="center" halign="left" transparent="1" foregroundColor="#ffffff"/>
  					<widget source="Titel2" render="Label" position="40,5" zPosition="2" size="640,50" font="Regular;22" valign="center" halign="center" transparent="1" foregroundColor="#f47d19"/>
  					<eLabel position="5,55" zPosition="2" size="710,2" foregroundColor="#c3c3c9" backgroundColor="#FFFFFF" />
-@@ -646,6 +652,7 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -625,6 +631,7 @@ class ForecaPreview(Screen, HelpableScreen):
  			self["key_blue"] = StaticText(_("Home"))
  		self["key_info"] = StaticText(_("Legend"))
  		self["key_menu"] = StaticText(_("Maps"))
 +		self["key_help"] = StaticText(_("International City"))
  		self.setTitle(_("Foreca Weather Forecast") + " " + _("Version ") + VERSION)
- 
  		HelpableScreen.__init__(self)
-@@ -654,7 +661,8 @@ class ForecaPreview(Screen, HelpableScreen):
+ 		self["actions"] = HelpableActionMap(self, "ForecaActions",
+@@ -632,7 +639,8 @@ class ForecaPreview(Screen, HelpableScreen):
  				"cancel": (self.exit, _("Exit - End")),
  				"menu": (self.Menu, _("Menu - Weather maps")),
  				"showEventInfo": (self.info, _("Info - Legend")),
@@ -1297,7 +1294,7 @@ index 74a4eae..1486cc6 100644
  				"left": (self.left, _("Left - Previous day")),
  				"right": (self.right, _("Right - Next day")),
  				"up": (self.up, _("Up - Previous page")),
-@@ -831,7 +839,13 @@ class ForecaPreview(Screen, HelpableScreen):
+@@ -804,7 +812,13 @@ class ForecaPreview(Screen, HelpableScreen):
  
  	def OK(self):
  		global city
@@ -1312,15 +1309,15 @@ index 74a4eae..1486cc6 100644
  		city = self.ort
  		self.session.openWithCallback(self.OKCallback, CityPanel, panelmenu)
  
-@@ -1111,6 +1125,7 @@ class CityPanel(Screen, HelpableScreen):
+@@ -1058,6 +1072,7 @@ class CityPanel(Screen, HelpableScreen):
  		self.setup_title = _("Select a city")
  		self.Mlist = []
  		self["Mlist"] = CityPanelList([])
 +		self.panelmenu = panelmenu
- 
  		self.onChangedEntry = []
- 
-@@ -1142,8 +1157,8 @@ class CityPanel(Screen, HelpableScreen):
+ 		self["key_green"] = StaticText(_("Favorite 1"))
+ 		self["key_yellow"] = StaticText(_("Favorite 2"))
+@@ -1085,8 +1100,8 @@ class CityPanel(Screen, HelpableScreen):
  
  	def prepare(self):
  		self.maxidx = 0
@@ -1331,25 +1328,6 @@ index 74a4eae..1486cc6 100644
  			for line in content:
  				text = line.strip()
  				self.maxidx += 1
-@@ -1492,7 +1507,10 @@ class SatPanel(Screen, HelpableScreen):
- 
- #------------------------------------------------------------------------------------------
- 	def SatEntryItem(self, entry):
-+		flags = 0
- 		pict_scale = self["Mlist"].pictScale
-+		if pict_scale:
-+			flags = BT_SCALE # need stretch to height, due it is missing BT_KEEP_ASPECT_RATIO
- 
- 		ItemSkin = self["Mlist"].itemHeight
- 
-@@ -1548,7 +1566,6 @@ class SatPanel(Screen, HelpableScreen):
- 			with open(devicepath, 'wb') as f:
- 				f.write(resp.read())
- 			self.session.open(PicView, devicepath, 0, False)
--
- 		else:
- 			# http://www.foreca.de/Austria/Linz?map=sat
- 			devicepath = "/tmp/sat.html"
 diff --git a/setup.py b/setup.py
 index 412af3a..d18cad6 100644
 --- a/setup.py
