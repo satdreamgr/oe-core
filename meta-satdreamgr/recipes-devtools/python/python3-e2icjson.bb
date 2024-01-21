@@ -9,7 +9,7 @@ SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"
 
-inherit distutils3 gitpkgv
+inherit setuptools3 gitpkgv
 
 PV = "1.2.2+git${SRCPV}"
 PKGV = "1.2.2+git${GITPKGV}"
