@@ -1,0 +1,41 @@
+From 4474c62908b37fc734f1cc69dcf7d49cf692d646 Mon Sep 17 00:00:00 2001
+From: Athanasios Oikonomou <athoik@gmail.com>
+Date: Sun, 21 Jan 2024 15:18:27 +0200
+Subject: [PATCH] Revert "distutils are outdated use setuptools"
+
+This reverts commit 8de3f4e3ddc236fc85bc2d89817d940bb488c5c1.
+
+diff --git a/setup.py b/setup.py
+index 81e5847b..ed5d79ed 100755
+--- a/setup.py
++++ b/setup.py
+@@ -1,4 +1,4 @@
+-from setuptools import setup
++from distutils.core import setup
+ import setup_translate
+ 
+ pkg = 'Extensions.IPTVPlayer'
+diff --git a/setup_translate.py b/setup_translate.py
+index 0860ea39..23489fc7 100644
+--- a/setup_translate.py
++++ b/setup_translate.py
+@@ -1,10 +1,13 @@
++
++# Language extension for distutils Python scripts. Based on this concept:
++# http://wiki.maemo.org/Internationalize_a_Python_application
+ from future.utils import raise_
+-from setuptools import Command
+-from setuptools.command.build import build as _build
++from distutils import cmd
++from distutils.command.build import build as _build
+ import os
+ 
+ 
+-class build_trans(Command):
++class build_trans(cmd.Command):
+ 	description = 'Compile .po files into .mo files'
+ 
+ 	def initialize_options(self):
+-- 
+2.20.1
+
