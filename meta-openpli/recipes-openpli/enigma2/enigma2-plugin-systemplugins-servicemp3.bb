@@ -89,7 +89,7 @@ RRECOMMENDS_${PN} = "\
 	gstreamer${GST_VERSION}-plugins-good-pulse \
 	"
 
-SRC_URI = "git://github.com/openpli/servicemp3.git;protocol=https;branch=python3"
+SRC_URI = "git://github.com/openpli/servicemp3.git;branch=python3;protocol=https"
 
 S = "${WORKDIR}/git"
 
@@ -99,7 +99,6 @@ PV = "git${SRCPV}"
 PKGV = "git${GITPKGV}"
 
 EXTRA_OECONF = "\
-	--with-gstversion=${GST_VERSION} \
 	BUILD_SYS=${BUILD_SYS} \
 	HOST_SYS=${HOST_SYS} \
 	STAGING_INCDIR=${STAGING_INCDIR} \

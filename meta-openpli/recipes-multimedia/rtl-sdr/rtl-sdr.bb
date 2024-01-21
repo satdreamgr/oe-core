@@ -11,7 +11,7 @@ PKGV = "${GITPKGVTAG}"
 
 SRC_URI[sha256sum] = "84db1d332e27f0c6c28e261f4993f4b7c2953761991c328fd0f195260d26c60e"
 
-SRC_URI = "git://git.osmocom.org/rtl-sdr;protocol=git"
+SRC_URI = "git://gitea.osmocom.org/sdr/rtl-sdr.git;protocol=https"
 
 S = "${WORKDIR}/git"
 

@@ -27,10 +27,10 @@ PROVIDES += "\
 	${@bb.utils.contains("MACHINE_FEATURES", "transcoding","enigma2-plugin-systemplugins-transcodingsetup","",d)} \
 "
 
-inherit gitpkgv ${PYTHON_PN}native pkgconfig gettext
+inherit gitpkgv ${PYTHON_PN}native pkgconfig gettext python3targetconfig
 
-PV = "z-git${SRCPV}"
-PKGV = "z-git${GITPKGV}"
+PV = "git${SRCPV}"
+PKGV = "git${GITPKGV}"
 
 SRC_URI = "git://github.com/OpenPLi/${BPN}.git;protocol=https;branch=python3"
 
@@ -72,14 +72,22 @@ S = "${WORKDIR}/git"
 DEPENDS = " \
 	${PYTHON_PN}-pyopenssl \
 	streamripper \
+	${PYTHON_PN}-icalendar \
+	${PYTHON_PN}-dateutil \
 	${PYTHON_PN}-mutagen \
+	${PYTHON_PN}-pyusb \
+	${PYTHON_PN}-requests \
+	${PYTHON_PN}-simplejson \
 	${PYTHON_PN}-six-native \
+	${PYTHON_PN}-treq \
 	${PYTHON_PN}-twisted \
 	${PYTHON_PN}-daap \
 	libcddb \
+	pydpflib \
 	dvdbackup \
 	libtirpc \
 	enigma2-plugin-extensions-lcd4linuxplugin \
+	png-util \
 	"
 
 python populate_packages_prepend () {
@@ -104,13 +112,10 @@ python populate_packages_prepend () {
             if line.startswith('Package: '):
                 full_package = line[9:]
             elif line.startswith('Depends: '):
-                # some plugins still reference twisted-* dependencies, these packages are now called ${PYTHON_PN}-twisted-*
                 rdepends = []
                 for depend in line[9:].split(','):
                     depend = depend.strip()
-                    if depend.startswith('twisted-'):
-                        rdepends.append(depend.replace('twisted-', '${PYTHON_PN}-twisted-'))
-                    elif depend.startswith('enigma2') and not depend.startswith('enigma2-'):
+                    if depend.startswith('enigma2') and not depend.startswith('enigma2-'):
                         pass # Ignore silly depends on enigma2 with all kinds of misspellings
                     else:
                         rdepends.append(depend)

@@ -24,6 +24,7 @@ RCONFLICTS_${PN} = "enigma2-plugin-pli-softcamsetup enigma2-plugin-systemplugins
 RDEPENDS_${PN} = " \
 	alsa-conf \
 	enigma2-fonts \
+	enigma-info \
 	ethtool \
 	${PYTHON_RDEPS} \
 	"
@@ -87,7 +88,7 @@ RDEPENDS_enigma2-plugin-systemplugins-softwaremanager = "${PYTHON_PN}-twisted-we
 RDEPENDS_enigma2-plugin-systemplugins-wirelesslan = "wpa-supplicant wireless-tools ${PYTHON_PN}-wifi"
 
 # Note that these tools lack recipes
-RDEPENDS_enigma2-plugin-extensions-dvdburn = "dvd+rw-tools dvdauthor mjpegtools cdrkit ${PYTHON_PN}-imaging ${DEMUXTOOL} \
+RDEPENDS_enigma2-plugin-extensions-dvdburn = "dvd+rw-tools dvdauthor mjpegtools genisoimage ${PYTHON_PN}-imaging ${DEMUXTOOL} \
                                               ${PYTHON_PN}-pillow"
 RDEPENDS_enigma2-plugin-systemplugins-hotplug = "hotplug-e2-helper"
 RRECOMMENDS_enigma2-plugin-extensions-dvdplayer = "kernel-module-udf"
@@ -105,14 +106,16 @@ RRECOMMENDS_${PN}-build-dependencies = "\
 	kernel-module-udf \
 	"
 
-inherit gitpkgv setuptools3
+inherit gitpkgv setuptools3 python3targetconfig
 
 PV = "${PYTHON_BASEVERSION}+git${SRCPV}"
 PKGV = "${PYTHON_BASEVERSION}+git${GITPKGV}"
 
-ENIGMA2_BRANCH ?= "python3"
+ENIGMA2_BRANCH ?= "develop"
 
-SRC_URI = " git://github.com/OpenPLi/enigma2.git;protocol=https;branch=${ENIGMA2_BRANCH}"
+# make the origin overridable from OE config, for local mirroring
+SRC_ORIGIN ?= "git://github.com/OpenPLi/enigma2.git;protocol=https"
+SRC_URI := " ${SRC_ORIGIN};branch=${ENIGMA2_BRANCH}"
 
 LDFLAGS_prepend = " -lxml2 "
 
@@ -139,7 +142,6 @@ EXTRA_OECONF = "\
 	${@get_crashaddr(d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
 	${@bb.utils.contains("MACHINE_FEATURES", "7segment", "--with-7segment" , "", d)} \
-	${@bb.utils.contains("MACHINE_FEATURES", "7seg", "--with-7segment" , "", d)} \
 	BUILD_SYS=${BUILD_SYS} \
 	HOST_SYS=${HOST_SYS} \
 	STAGING_INCDIR=${STAGING_INCDIR} \
