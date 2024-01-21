@@ -13,7 +13,7 @@ PV = "git${SRCPV}"
 PKGV = "git${GITPKGV}"
 PR = "r1"
 
-SRC_URI = "git://github.com/openhbbtvbrowser/openhbbtvbrowser.git;protocol=https \
+SRC_URI = "git://github.com/athoik/openhbbtvbrowser.git;protocol=https \
 "
 
 S = "${WORKDIR}/git"
