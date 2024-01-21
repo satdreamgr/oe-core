@@ -3,10 +3,13 @@ DESCRIPTION = "Streamlink is a command-line utility that pipes video streams fro
 HOMEPAGE = "https://github.com/streamlink/streamlink"
 SECTION = "devel/python"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=381ff91bf309000e0ec58dafe27a97b0"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=15519b204ac11ccc2e4c72b87d310191"
+
+DEPENDS += "${PYTHON_PN}-importlib-metadata-native"
 
 RDEPENDS_${PN} = "${PYTHON_PN}-core \
     ${PYTHON_PN}-ctypes \
+    ${PYTHON_PN}-futures3 \
     ${PYTHON_PN}-isodate \
     ${PYTHON_PN}-pycountry \
     ${PYTHON_PN}-lxml \
@@ -22,19 +25,18 @@ RDEPENDS_${PN} = "${PYTHON_PN}-core \
 
 inherit setuptools3 python3-dir gittag
 
-SRCREV_streamlink = "${AUTOREV}"
+SRCREV_streamlink = "f868f969598a46f8effd0e25774819f87d73c9f5"
 SRCREV_plugins = "${AUTOREV}"
 SRCREV_FORMAT = "streamlink_plugins"
 
-PV = "3.0.0+git${SRCPV}"
-PKGV = "3.0.0+git${GITPKGV}"
+PV = "6.0.0+git${SRCPV}"
+PKGV = "6.0.0+git${GITPKGV}"
 PR = "r0"
 
-SRC_URI = "git://github.com/streamlink/streamlink;protocol=https;branch=master \
+SRC_URI = "git://github.com/streamlink/streamlink;protocol=https;branch=master;name=streamlink \
     git://github.com/oe-mirrors/streamlink-plugins;protocol=https;branch=master;name=plugins;destsuffix=additional-plugins \
-    file://module.patch \
-    file://0001-Revert-build-move-imports-in-setup.py.patch \
-    file://0002-Revert-build-add-pyproject.toml-switch-to-versioning.patch \
+    file://module.patch;apply=false \
+    file://version.patch \
     "
 
 S = "${WORKDIR}/git"
@@ -60,10 +62,12 @@ FILES_${PN} = " \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.pyc \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.pyc \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.pyc \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*/*.pyc \
     "
 
 FILES_${PN}-src += " \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*.py \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*.py \
     ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*.py \
+    ${libdir}/${PYTHON_DIR}/site-packages/streamlink/*/*/*/*.py \
     "
