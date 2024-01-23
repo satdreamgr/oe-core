@@ -254,7 +254,7 @@ do_install() {
     printf "dboxlcd=${SUPPORT_DBOXLCD}\n" >> ${D}${INFOFILE}
     printf "developername=${DEVELOPER_NAME}\n" >> ${D}${INFOFILE}
     printf "displaybrand=${MACHINE_BRAND}\n" >> ${D}${INFOFILE}
-    printf "displaydistro=OpenPLi\n" >> ${D}${INFOFILE}
+    printf "displaydistro=SDG\n" >> ${D}${INFOFILE}
     printf "displaymodel=${MACHINE_NAME}\n" >> ${D}${INFOFILE}
     printf "displaytype=${DISPLAY_TYPE}\n" >> ${D}${INFOFILE}
     printf "distro=${DISTRO_NAME}\n" >> ${D}${INFOFILE}
