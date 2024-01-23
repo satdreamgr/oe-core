@@ -1,26 +1,26 @@
 diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
-index ac9583a8d6..85bdfd976a 100644
+index dc5521d530..ae72d29e57 100644
 --- a/lib/python/Components/SystemInfo.py
 +++ b/lib/python/Components/SystemInfo.py
-@@ -42,6 +42,7 @@ def getBootdevice():
+@@ -140,6 +140,7 @@ from Tools.Multiboot import getMultibootStartupDevice, getMultibootslots  # This
  
- 
- model = HardwareInfo().get_device_model()
-+SystemInfo["HDMIOutput"] = fileCheck("/proc/stb/hdmi/output")
- SystemInfo["InDebugMode"] = eGetEnigmaDebugLvl() >= 4
- SystemInfo["CommonInterface"] = model in ("h9combo", "h9combose", "h10","pulse4kmini") and 1 or eDVBCIInterfaces.getInstance().getNumOfSlots()
- SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
+ def setBoxInfoItems():
+ 	model = BoxInfo.getItem("machine")
++	BoxInfo.setItem("HDMIOutput", fileCheck("/proc/stb/hdmi/output"))
+ 	BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
+ 	BoxInfo.setItem("CommonInterface", model in ("h9combo", "h9combose", "h10", "pulse4kmini") and 1 or eDVBCIInterfaces.getInstance().getNumOfSlots())
+ 	BoxInfo.setItem("CommonInterfaceCIDelay", fileCheck("/proc/stb/tsmux/rmx_delay"))
 diff --git a/lib/python/Screens/Standby.py b/lib/python/Screens/Standby.py
-index dec87b4015..41be71f420 100644
+index 214706c922..e5a8c9b60a 100644
 --- a/lib/python/Screens/Standby.py
 +++ b/lib/python/Screens/Standby.py
 @@ -58,6 +58,12 @@ class StandbyScreen(Screen):
  		if os.path.exists("/usr/script/standby_enter.sh"):
  			Console().ePopen("/usr/script/standby_enter.sh")
  
-+		if SystemInfo["HDMIOutput"]:
++		if BoxInfo.getItem("HDMIOutput"):
 +			try:
-+				open(SystemInfo["HDMIOutput"], "w").write("off")
++				open(BoxInfo.getItem("HDMIOutput"), "w").write("off")
 +			except:
 +				pass
 +
@@ -32,9 +32,9 @@ index dec87b4015..41be71f420 100644
  		if os.path.exists("/usr/script/standby_leave.sh"):
  			Console().ePopen("/usr/script/standby_leave.sh")
 +
-+		if SystemInfo["HDMIOutput"]:
++		if BoxInfo.getItem("HDMIOutput"):
 +			try:
-+				open(SystemInfo["HDMIOutput"], "w").write("on")
++				open(BoxInfo.getItem("HDMIOutput"), "w").write("on")
 +			except:
 +				pass
 +

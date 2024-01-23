@@ -1,41 +1,41 @@
 diff --git a/lib/python/Components/AVSwitch.py b/lib/python/Components/AVSwitch.py
-index 3364762c8d..718c74e2d4 100644
+index 399e06847f..d6185bb65b 100644
 --- a/lib/python/Components/AVSwitch.py
 +++ b/lib/python/Components/AVSwitch.py
 @@ -211,6 +211,12 @@ def InitAVSwitch():
  			default = choiceslist[0]
  		return (choices, default)
  
-+	if SystemInfo["HasBoxMode"]:
++	if BoxInfo.getItem("HasBoxMode"):
 +		def setBoxMode(configElement):
-+			open(SystemInfo["HasBoxMode"], "w").write(configElement.value)
++			open(BoxInfo.getItem("HasBoxMode"), "w").write(configElement.value)
 +		config.av.boxmode = ConfigSelection(choices={"12":_("enable PIP no HDR"), "1": _("12bit 4:2:0/4:2:2 no PIP")}, default="12")
 +		config.av.boxmode.addNotifier(setBoxMode)
 +
- 	if SystemInfo["HasMultichannelPCM"]:
+ 	if BoxInfo.getItem("HasMultichannelPCM"):
  		def setMultichannelPCM(configElement):
- 			open(SystemInfo["HasMultichannelPCM"], "w").write(configElement.value and "enable" or "disable")
+ 			open(BoxInfo.getItem("HasMultichannelPCM"), "w").write(configElement.value and "enable" or "disable")
 diff --git a/lib/python/Components/SystemInfo.py b/lib/python/Components/SystemInfo.py
-index ac9583a8d6..0634c1ffcb 100644
+index dc5521d530..ca438ef761 100644
 --- a/lib/python/Components/SystemInfo.py
 +++ b/lib/python/Components/SystemInfo.py
-@@ -48,6 +48,7 @@ SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
- for cislot in range(0, SystemInfo["CommonInterface"]):
- 	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot)
- 	SystemInfo["CI%dRelevantPidsRoutingSupport" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot)
-+SystemInfo["HasBoxMode"] = fileCheck("/proc/stb/info/boxmode")
- SystemInfo["HasSoftcamInstalled"] = hassoftcaminstalled()
- SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
- SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
+@@ -146,6 +146,7 @@ def setBoxInfoItems():
+ 	for cislot in range(0, BoxInfo.getItem("CommonInterface")):
+ 		BoxInfo.setItem("CI%dSupportsHighBitrates" % cislot, fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot))
+ 		BoxInfo.setItem("CI%dRelevantPidsRoutingSupport" % cislot, fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot))
++	BoxInfo.setItem("HasBoxMode", fileCheck("/proc/stb/info/boxmode"))
+ 	BoxInfo.setItem("HasSoftcamInstalled", hassoftcaminstalled())
+ 	BoxInfo.setItem("NumVideoDecoders", getNumVideoDecoders())
+ 	BoxInfo.setItem("PIPAvailable", BoxInfo.getItem("NumVideoDecoders") > 1)
 diff --git a/lib/python/Plugins/SystemPlugins/Videomode/plugin.py b/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
-index ad6e52517c..b83c85408a 100644
+index 73f7728ccc..7249e66376 100644
 --- a/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
 +++ b/lib/python/Plugins/SystemPlugins/Videomode/plugin.py
 @@ -158,6 +158,9 @@ class VideoSetup(ConfigListScreen, Screen):
  		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
- 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
+ 			self.list.append((_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
  
-+		if SystemInfo["HasBoxMode"]:
++		if BoxInfo.getItem("HasBoxMode"):
 +			self.list.append(getConfigListEntry(_("Control Hardware Chip Modes"), config.av.boxmode,_("Switch Mode to enable HDR or PIP Functions")))
 +
  		self["config"].list = self.list
