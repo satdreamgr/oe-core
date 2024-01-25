@@ -11,6 +11,7 @@ RDEPENDS_${PN} = "${PYTHON_PN}-core \
     ${PYTHON_PN}-ctypes \
     ${PYTHON_PN}-futures3 \
     ${PYTHON_PN}-isodate \
+    ${PYTHON_PN}-profile \
     ${PYTHON_PN}-pycountry \
     ${PYTHON_PN}-lxml \
     ${PYTHON_PN}-misc \
@@ -20,6 +21,7 @@ RDEPENDS_${PN} = "${PYTHON_PN}-core \
     ${PYTHON_PN}-requests \
     ${PYTHON_PN}-shell \
     ${PYTHON_PN}-singledispatch \
+    ${PYTHON_PN}-typing-extensions \
     ${PYTHON_PN}-websocket-client \
     "
 
@@ -31,11 +33,11 @@ SRCREV_FORMAT = "streamlink_plugins"
 
 PV = "6.0.0+git${SRCPV}"
 PKGV = "6.0.0+git${GITPKGV}"
-PR = "r0"
+PR = "r2"
 
 SRC_URI = "git://github.com/streamlink/streamlink;protocol=https;branch=master;name=streamlink \
     git://github.com/oe-mirrors/streamlink-plugins;protocol=https;branch=master;name=plugins;destsuffix=additional-plugins \
-    file://module.patch;apply=false \
+    file://module.patch \
     file://version.patch \
     "
 
