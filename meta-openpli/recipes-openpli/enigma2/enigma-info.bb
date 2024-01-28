@@ -20,6 +20,7 @@ KERNEL_VERSION = "${@get_kernelversion_headers('${STAGING_KERNEL_DIR}') or oe.ut
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 PV = "${DISTRO_VERSION}"
+PR = "r3"
 PR[vardepsexclude] = "DATE"
 
 PACKAGES = "${PN}"
@@ -105,8 +106,8 @@ do_install() {
 	IMAGE_VERSION=`echo ${DISTRO_VERSION} | cut -d "-" -f 1`
 
 # OE version info
-	OE_NAME=`cd ${OPENPLI_BASE} && git submodule | grep "meta-openembedded" | cut -d '(' -f 2 | cut -d ')' -f 1 | cut -d '/' -f 3`
-	OE_VERSION=`cd ${OPENPLI_BASE} && git submodule | grep "openembedded-core" | cut -d '(' -f 2 | cut -d ')' -f 1 | cut -d '-' -f 2`
+	OE_NAME=`cd ${OPENPLI_BASE}/openembedded-core/ && git describe --tags --abbrev=0 | cut -d '-' -f 3`
+	OE_VERSION=`cd ${OPENPLI_BASE}/openembedded-core/ && git describe --tags --abbrev=0 | cut -d '-' -f 1,2`
 
 # OE-A compatible machine names
 
@@ -208,8 +209,10 @@ do_install() {
         DRIVERSDATE=`grep "SRCDATE = " ${BSP-BASE-AMIKO}/recipes-bsp/drivers/amiko-dvb-modules-${MACHINE}.bb | cut -b 12-19`
     elif [ "${MACHINE_BRAND}" = "AXAS" ]; then
         DRIVERSDATE=`grep "SRCDATE = " ${BSP-BASE-AXAS}/recipes-bsp/drivers/axas-dvb-modules-${MACHINE}.bb | cut -b 12-19`
+    elif [ "${MACHINE_BRAND}" = "Edision" ] && [[ "${MACHINE}" =~ "4k" ]]; then
+        DRIVERSDATE=`grep "SRCDATE = " ${BSP-BASE-EDISION}/recipes-kernel/os-dvb-modules/edision-dvb-modules-${MACHINE}.bb | cut -b 12-19`
     elif [ "${MACHINE_BRAND}" = "Edision" ]; then
-        DRIVERSDATE=`grep "SRCDATE = " ${BSP-BASE-EDISION}/recipes-bsp/drivers/edision-dvb-modules-${MACHINE}.bb | cut -b 12-19`
+        DRIVERSDATE=`grep "SRCDATE = " ${BSP-BASE-EDISION}/recipes-kernel/os-dvb-modules/os-dvb-modules-${MACHINE}.bb | cut -b 12-19`
     elif [ "${MACHINE_BRAND}" = "Formuler" ]; then
         DRIVERSDATE=`grep "SRCDATE = " ${BSP-BASE-FORMULER}/recipes-bsp/drivers/formuler-dvb-modules-${MACHINE}.bb | cut -b 12-19`
     elif [ "${MACHINE_BRAND}" = "Miraclebox" ]; then
