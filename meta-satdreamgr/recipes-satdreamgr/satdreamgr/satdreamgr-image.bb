@@ -112,6 +112,7 @@ DEPENDS += " \
 	ntp \
 	oe-satipclient \
 	ofgwrite \
+	openresolv \
 	openvpn \
 	p7zip \
 	pcsc-lite \
