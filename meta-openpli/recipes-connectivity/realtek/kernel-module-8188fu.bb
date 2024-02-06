@@ -1,13 +1,15 @@
-SUMMARY = "Drivers for Realtek 8821CU/8811CU"
+SUMMARY = "Realtek rtl8188fu"
 HOMEPAGE = "http://www.realtek.com.tw"
 SECTION = "kernel/modules"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://ifcfg-wlan0;md5=a84acae65af4b2d44d5035aa9f63cd85"
+LIC_FILES_CHKSUM = "file://Makefile;md5=84b010020bb976d347a15f8a666ba2d7"
+
+DEPENDS ="bc-native"
 
 inherit module
-
-SRC_URI = "git://github.com/atvcaptain/RTL8821CU_driver_v5.8.1.git;protocol=https \
-    file://add-5.15-support.patch \
+SRCREV = "${AUTOREV}"
+SRC_URI = " \
+    git://github.com/OpenIPC/realtek-wlan.git;protocol=https;branch=rtl8188fu \
 "
 
 EXTRA_OEMAKE = "LINUX_SRC=${STAGING_KERNEL_DIR} KDIR=${STAGING_KERNEL_DIR}"
@@ -31,8 +33,5 @@ do_compile () {
 
 do_install() {
     install -d ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
-    install -m 0644 ${S}/8821cu.ko ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
-}
-
-do_package_qa() {
+    install -m 0644 ${S}/8188fu.ko ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
 }
